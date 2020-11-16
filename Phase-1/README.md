@@ -10,6 +10,11 @@ Website ini adalah website yang memberikan informasi terkait seminar dan acara y
 Tujuan pembuatan sistem ini adalah untuk memudahkan panitia sebagai penyelenggara acara dan juga untuk memudahkan peserta yang ingin mendaftar.
 
 ## Interview
+Kami melakukan dua interview kepada mahasiswa jurusan Ilmu Komputer di Universitas Negeri Jakarta. Hasil interview dapat dilihat pada link di bawah ini:
+
+Interview 1 : https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-1/bukti-interview/interview1.md
+
+Interview 2 : https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-1/bukti-interview/interview2.md
 
 ## Observasi
 Kami melakukan observasi dengan menanyakan sistem seminar dan acara yang ada kepada anggota kepanitiaan BEM Ilmu Komputer. Berdasarkan sejumlah pertanyaan yang telah kami tanyakan berikut adalah hasil observasi yang kami dapatkan terhadap sistem yang masih digunakan saat ini :

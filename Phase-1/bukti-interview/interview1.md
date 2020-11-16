@@ -31,7 +31,7 @@ Jika ada pemberian sertifikat, Bagaimana proses pemberian sertifikatnya?
 > Pemberian sertifikatnya itu pertama kan kita sudah ada data peserta dari Microsoft Excel baru nanti dilist siapa aja. Setelah itu kita bikin sertifikat dan ditulis nama-namanya. Setelah itu
 dikirim biasanya via e-mail tapi ada juga beberapa dikirim via Whatsapp.
 
-8. Menurut anda, apa kelebihan dan kekurangan dari cara yang telah anda sebutkan tadi, mengenai proses mengundang orang, pendaftaran, pembayaran htm, dan pemberian sertifikat?
+Menurut anda, apa kelebihan dan kekurangan dari cara yang telah anda sebutkan tadi, mengenai proses mengundang orang, pendaftaran, pembayaran htm, dan pemberian sertifikat?
 > Kelebihannya untuk semua prosesnya sih semua orang biasanya punya Whatsapp dan E-mail jadi udah mainstream lah dan leih mudah juga. Kalau untuk pendaftaran, kekurangannya itu mungkin
 jadi dua kali ya habis Google Form lalu ke Whatsapp jadi bolak-balik lah mungkin. Kalau untuk kekurangan pemberian sertifikat mungkin kurang konsisten jadinya kalau ada yang via e-mail
 atau Whatsapp kasian panitianya juga sih.

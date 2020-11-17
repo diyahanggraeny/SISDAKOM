@@ -10,5 +10,7 @@ Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar
 
 ## Mockup Design dan Presentasi
 Link Mockup Guest : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Guest
+
 Link Mockup User : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/User
+
 Link Presentasi Mockup User & Guest Page: https://youtu.be/cmauZKpzeB4

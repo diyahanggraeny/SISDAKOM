@@ -15,7 +15,7 @@ Dalam mengadakan suatu acara, biasanya prosesnya tidak singkat dan dalam proses 
 ### Use Case
 <img src="https://github.com/diyahanggraeny/SISDAKOM/blob/main/Grand%20Design/Use%20Case%20(1).png" height=900px />
 
-### ERD Diagram
+### Entity Relationship Diagram
 <img src="https://github.com/diyahanggraeny/SISDAKOM/blob/main/Grand%20Design/erd_sisdakom%20(1).png" height=400px />
 
 ## Interaction Control

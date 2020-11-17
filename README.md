@@ -27,4 +27,6 @@ Link Mockup Guest : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%
 
 Link Mockup User : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/User
 
+Link Mockup Admin : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Admin
+
 Link Presentasi Mockup User & Guest Page: https://youtu.be/cmauZKpzeB4

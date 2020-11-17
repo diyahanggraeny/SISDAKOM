@@ -14,6 +14,8 @@ Dalam mengadakan suatu acara, biasanya prosesnya tidak singkat dan dalam proses 
 ## Grand Design
 
 ## Interaction Control
+### Interaction Control User
+<img src="https://github.com/diyahanggraeny/SISDAKOM/blob/main/Interaction%20Control%20Design/interaction%20control-user.jpeg"/>
 
 ## Mockup Design dan Presentasi
 Link Mockup Guest : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Guest

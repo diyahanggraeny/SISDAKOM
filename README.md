@@ -5,7 +5,7 @@
 2. Diyah Anggraeny (1313618005)
 3. Rachel Haryawan (1313618026)
 
-## About
+## Tentang Website
 Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar dan acara yang diadakan oleh BEM Ilmu Komputer Universitas Negeri Jakarta. Website ini dapat menghubungkan antara peminat dan penyelenggara dimana di dalam website ini kami memberikan fitur-fitur lengkap dari mulai pendaftaran hingga selesai.
 
 ## Latar Belakang Permasalahan

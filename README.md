@@ -12,6 +12,11 @@ Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar
 Dalam mengadakan suatu acara, biasanya prosesnya tidak singkat dan dalam proses tersebut banyak hal yang dibutuhkan. Dari mulai proses penyebaran informasi, pendaftaran, proses pembayaran HTM, sampai proses pemberian sertifikat kepada peserta, masing - masing prosesnya melibatkan banyak hal dan bahkan platform. Contohnya untuk pendaftaran, menggunakan platform form untuk pengisian data dan platform chat untuk konfirmasi. Menurut Team G IMK dan dibuktikan melalui interview dan observasi dengan beberapa mahasiswa Ilmu Komputer UNJ, cara tersebut kurang efektif karena melibatkan 2 platform.
 
 ## Grand Design
+### Use Case
+<img src="https://github.com/diyahanggraeny/SISDAKOM/blob/main/Grand%20Design/Use%20Case%20(1).png" height=900px />
+
+### ERD Diagram
+<img src="https://github.com/diyahanggraeny/SISDAKOM/blob/main/Grand%20Design/erd_sisdakom%20(1).png" height=400px />
 
 ## Interaction Control
 ### Interaction Control User

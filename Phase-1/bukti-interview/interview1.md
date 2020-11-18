@@ -3,7 +3,7 @@
 
 **Jurusan** : Ilmu Komputer 2019
 
-**Link Interview** : https://youtu.be/7bVl5LJnQUY
+**Link Record Interview** : https://youtu.be/7bVl5LJnQUY
 
 ### Hasil Interview
 

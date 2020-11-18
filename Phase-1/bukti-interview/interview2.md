@@ -3,6 +3,8 @@
 
 **Jurusan** : Ilmu Komputer 2019
 
+**Link Record Interview** : https://youtu.be/EnB9XfmjzvA
+
 ### Hasil Interview
 
 Sebagai seorang panitia dan anggota BEM, Apakah Anda pernah mengatur sebuah seminar/acara? Dan jika pernah sudah berapa?

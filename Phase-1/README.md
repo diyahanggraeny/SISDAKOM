@@ -12,9 +12,11 @@ Tujuan pembuatan sistem ini adalah untuk memudahkan panitia sebagai penyelenggar
 ## Interview
 Kami melakukan dua interview kepada mahasiswa jurusan Ilmu Komputer di Universitas Negeri Jakarta. Hasil interview dapat dilihat pada link di bawah ini:
 
-Link Interview 1 : https://youtu.be/7bVl5LJnQUY
+Link Record Interview 1 : https://youtu.be/7bVl5LJnQUY
 
 Interview 1 : https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-1/bukti-interview/interview1.md
+
+Link Record Interview 2 : https://youtu.be/EnB9XfmjzvA
 
 Interview 2 : https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-1/bukti-interview/interview2.md
 

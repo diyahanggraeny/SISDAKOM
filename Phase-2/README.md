@@ -11,5 +11,6 @@ Team G mengadakan sesi konferensi di Zoom dengan Ridho dan Hafiz untuk mempresen
 
 Setelah konferensi, team G mengirimkan questionnaire kepada Hafiz dan Ridho mengenai website SISDAKOM. Jawaban questionnaire ada di link:
 
-Ridho:
+Ridho: https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-2/Response%20Quesioner%20Ridho.png
+
 Hafiz:

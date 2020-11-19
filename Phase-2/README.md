@@ -15,4 +15,4 @@ Ridho: https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-2/Response%20Q
 
 Hafiz: https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-2/Response%20Quesioner%20Hafiz.png
 
-Hasil dari response questionnaire yaitu SISDAKOM sudah cukup rapi dan bagus interaction controlnya serta mudah untuk digunakan user, guest dan oleh admin. Hanya kurang fitur sign in with google yang mengharuskan user mengisi data e-mail yang membuat sedikit tidak praktis dan juga ada saran dari Hafiz untuk meningkatkan UI mockupnya karena menurut pendapatnya warna terlalu kontras.
+Hasil dari response questionnaire yaitu SISDAKOM dapat membantu untuk mengatur seminar dan acara sebagai panitia (penyelenggara) dan peserta. Lalu website SISDAKOM sudah cukup rapi dan bagus, interaction controlnya sudah rapi, dan website SISDAKOM mudah untuk digunakan oleh user, guest dan admin. Hanya kurang fitur sign in with google yang mengharuskan user mengisi data e-mail yang membuat sedikit tidak praktis dan juga ada saran dari Hafiz untuk meningkatkan UI mockupnya karena menurut pendapatnya warna terlalu kontras.

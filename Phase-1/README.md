@@ -4,7 +4,7 @@ Dalam mengadakan suatu acara, biasanya prosesnya tidak singkat dan dalam proses 
 
 ## Ide yang Diusulkan
 Berdasarkan permasalahan tersebut, maka Team G IMK mengusulkan ide yaitu dengan membuat suatu website yang bernama “Sisdakom” atau kepanjangannya adalah Sistem Seminar dan Acara Ilmu Komputer. Website ini akan dikelola oleh anggota BEM Ilmu Komputer Universitas Negeri Jakarta yang sering mengadakan acara.
-Website ini adalah website yang memberikan informasi terkait seminar dan acara yang diadakan oleh BEM Ilmu Komputer Universitas Negeri Jakarta. Website ini akan mencakup berbagai hal mengenai acara – acara tersebut, dimulai dari pemberian informasi mengenai acara, fitur pendaftaran acara, fitur konfirmasi bukti pembayaran acara, dan fitur download e-certificate acara.
+Website ini adalah website yang memberikan informasi terkait seminar dan acara yang diadakan oleh BEMP Ilmu Komputer Universitas Negeri Jakarta. Website ini akan mencakup berbagai hal mengenai acara – acara tersebut, dimulai dari pemberian informasi mengenai acara, fitur pendaftaran acara, fitur konfirmasi bukti pembayaran acara, dan fitur download e-certificate acara.
 
 ## Tujuan
 Tujuan pembuatan sistem ini adalah untuk memudahkan panitia sebagai penyelenggara acara dan juga untuk memudahkan peserta yang ingin mendaftar.

@@ -13,4 +13,4 @@ Setelah konferensi, team G mengirimkan questionnaire kepada Hafiz dan Ridho meng
 
 Ridho: https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-2/Response%20Quesioner%20Ridho.png
 
-Hafiz:
+Hafiz: https://github.com/diyahanggraeny/SISDAKOM/blob/main/Phase-2/Response%20Quesioner%20Hafiz.png

@@ -6,7 +6,7 @@
 3. Rachel Haryawan (1313618026)
 
 ## Tentang
-Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar dan acara yang diadakan oleh BEM Ilmu Komputer Universitas Negeri Jakarta. Website ini dapat menghubungkan antara peminat dan penyelenggara dimana di dalam website ini kami memberikan fitur-fitur lengkap dari mulai pendaftaran hingga selesai.
+Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar dan acara yang diadakan oleh BEMP Ilmu Komputer Universitas Negeri Jakarta. Website ini dapat menghubungkan antara peminat dan penyelenggara dimana di dalam website ini kami memberikan fitur-fitur lengkap dari mulai pendaftaran hingga selesai.
 
 ## Latar Belakang Permasalahan 
 Dalam mengadakan suatu acara, biasanya prosesnya tidak singkat dan dalam proses tersebut banyak hal yang dibutuhkan. Dari mulai proses penyebaran informasi, pendaftaran, proses pembayaran HTM, sampai proses pemberian sertifikat kepada peserta, masing - masing prosesnya melibatkan banyak hal dan bahkan platform. Contohnya untuk pendaftaran, menggunakan platform form untuk pengisian data dan platform chat untuk konfirmasi. Menurut Team G IMK dan dibuktikan melalui interview dan observasi dengan beberapa mahasiswa Ilmu Komputer UNJ, cara tersebut kurang efektif karena melibatkan 2 platform.

@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/login-admin.css">
+    <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 <body>
     <main class="white">
         <div class="container">
-            <h3 class="center typo-1">ADMIN LOGIN</h3>
+            <h3 class="center typo-1"><b>ADMIN LOGIN</b></h3>
             <div class="row">
                 <div class="center col s12 m6 offset-m3 l6 offset-l3">
                     <i class="center large material-icons icon-acc">account_circle</i>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <div class="center col s12 m6 offset-m3 l6 offset-l3">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">LOGIN
+                        <button class="btn waves-effect waves-light black-text" type="submit" name="action"><b>LOGIN</b>
                         </button>
                     </div>
                 </div>

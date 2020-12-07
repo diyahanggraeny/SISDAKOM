@@ -4,3 +4,11 @@
     color: #bdbdbd;
 }
 
+.brand-logo{
+    padding-left: 10px !important;
+}
+
+/********* admin dashboard *******************/
+.icon-acc2{
+    color: grey;
+}

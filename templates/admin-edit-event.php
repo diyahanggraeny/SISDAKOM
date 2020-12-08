@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Event</title>
+    <title>Edit Event</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css//materialize.css">
@@ -37,55 +37,55 @@
     <main class="white">
         <br>
         <div class="container">
-            <h4 class="center typo-1"><b>ADD EVENT</b></h4>
+            <h4 class="center typo-1"><b>EDIT EVENT</b></h4>
             <form>
                 <div class="row">
-                    <div class="input-field col s12 m12 l12">
+                    <div class="col s12 m3 l3">
+                    <img src="../static/img/logo-woc.png" class="responsive-img">
+                    </div>
+                    <div class="col s12 m9 l9">
+                        <div class="file-field input-field">
+                            <h5>Poster</h5>
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <button class="right btn waves-effect waves-light indigo" type="submit" name="action"><b>CHANGE</b>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <div class="row">
+                    <div class="input-field col s12 m9 offset-m3 l9 offset-l3">
+                        <h5>Event Name</h5>
                         <input id="nama_event" type="text" class="validate">
-                        <label for="nama_event">EVENT</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l12">
+                        <h5>HTM</h5>
                         <input id="harga_event" type="text" class="validate">
-                        <label for="harga_event">HTM</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l12">
+                        <h5>Information</h5>
                         <textarea id="info_event" class="materialize-textarea"></textarea>
-                        <label for="info_event">INFORMATION</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s4 m4 l4">
+                        <h5>Date</h5>
                         <input id="tanggal_event" type="date" class="validate">
-                        <label for="tanggal_event">DATE</label>
-                    </div>
-                    <div class="input-field col s4 m4 l4">
+                        <h5>Time</h5>
                         <input id="waktu_event" type="time" class="validate">
-                        <label for="waktu_event">TIME</label>
-                    </div>
-                    <div class="input-field col s4 m4 l4">
+                        <h5>Max Participants</h5>
                         <input id="jumlah_partisipan" type="number" class="validate">
-                        <label for="jumlah_partisipan">MAX PARTICIPANTS</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="file-field input-field col s12 m12 l12">
-                        <div class="btn green accent-2 black-text">
-                            <span>POSTER</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s11 m11 l11">
-                        <button class="right btn waves-effect waves-light black white-text" type="submit" name="action"><b>ADD</b>
+                        <h5>Status Event</h5>
+                        <select>
+                            <option value="" disabled selected>Pilih Status</option>
+                            <option value="On Process">On Process</option>
+                            <option value="Done">Done</option>
+                            <option value="Cancel">Cancel</option>
+                        </select>
+                        <button class="right btn waves-effect waves-light indigo" type="submit" name="action"><b>UPDATE</b>
                         </button>
                     </div>
                 </div>
@@ -102,10 +102,16 @@
         <br>
     </footer>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../static/js/materialize.js"></script>
     <script>
         const sideNav = document.querySelectorAll('.sidenav');
         M.Sidenav.init(sideNav);
+    </script>
+    <script>
+        $(document).ready(function(){
+        $('select').formSelect();
+        });
     </script>
 </body>
 </html> 

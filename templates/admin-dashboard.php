@@ -102,7 +102,6 @@
     </main>
 
     <footer class="blue">
-        <br>
         <div class="center">
             <a class="white-text"><b>Copyright © 2020 - Developed by Diyah, Izzat, Rachel</b></a>
         </div>

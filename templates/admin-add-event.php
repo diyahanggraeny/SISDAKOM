@@ -46,15 +46,41 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col s12 m12 l12">
+                    <label for="harga_event">HTM</label>
+                    <p>
+                        <label>
+                            <input name="harga_event" type="radio" />
+                            <span>Free</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input name="harga_event" type="radio" />
+                            <span><input id="harga_event" type="text" class="validate" placeholder="ISI HARGA"></span>
+                        </label>
+                    </p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12 m12 l12">
-                        <input id="harga_event" type="text" class="validate">
-                        <label for="harga_event">HTM</label>
+                        <select>
+                            <option value="" disabled selected>PILIH KATEGORI</option>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
                         <textarea id="info_event" class="materialize-textarea"></textarea>
                         <label for="info_event">INFORMATION</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input id="tempat_event" type="text" class="validate">
+                        <label for="tempat_event">PLACE</label>
                     </div>
                 </div>
                 <div class="row">
@@ -102,10 +128,17 @@
         <br>
     </footer>
 
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../static/js/materialize.js"></script>
     <script>
         const sideNav = document.querySelectorAll('.sidenav');
         M.Sidenav.init(sideNav);
+    </script>
+    <script>
+        $(document).ready(function(){
+        $('select').formSelect();
+        });
     </script>
 </body>
 </html> 

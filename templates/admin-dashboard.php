@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["login"])){
+    header("Location: admin-login.php");
+    exit;
+}
+
+require 'functions2.php';
+
+
+$id_admin = $_SESSION["login"];
+$result = mysqli_query($conn, "SELECT * FROM admin WHERE id_admin = '$id_admin'");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,45 +30,49 @@
     <nav class="blue">
         <div class="nav-wrapper">
             <a></a>
-            <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
+            <a class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
+                <li><a href="admin-dashboard.php" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
+                <li><a href="admin-list.php" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
+                <li><a href="admin-userlist.php" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
+                <li><a href="admin-manage-event.php" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text" >Dashboard</a></li>
-        <li><a href="#" class="black-text" >Manage Admin</a></li>
-        <li><a href="#" class="black-text" >Manage User</a></li>
-        <li><a href="#" class="black-text" >Manage Event</a></li>
+        <li><a href="admin-dashboard.php" class="black-text" >Dashboard</a></li>
+        <li><a href="admin-list.php" class="black-text" >Manage Admin</a></li>
+        <li><a href="admin-userlist.php" class="black-text" >Manage User</a></li>
+        <li><a href="admin-manage-event.php" class="black-text" >Manage Event</a></li>
     </ul>
 
 
     <main class="white">
         <div class="row">
+            <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
             <div class="center blue lighten-4 col s12 m3 l3">
+                <br>
+                <br>
                 <br>
                 <br>
                 <div class="center">
                     <i class="center large material-icons icon-acc2">account_circle</i>
                 </div>
-                <h5>ADMIN 1</h5>
-                <p>hahahihi@gmail.com</p>
-                <p>ILKOM-XX</p>
-                <a class="waves-effect waves-light btn-small grey lighten-2 black-text">Edit Profile</a>
+                <h5><?= $row["admin_name"]; ?></h5>
+                <p><?= $row["admin_email"]; ?></p>
+                <a href="admin-edit-profile.php" class="waves-effect waves-light btn-small grey lighten-2 black-text">Edit Profile</a>
                 <br>
                 <br>
-                <h6><b>LOGOUT</b></h6>
+                <h6><a href="admin-logout.php" class="black-text"><b>LOGOUT</b></a></h6>
+                <br>
                 <br>
                 <br>
                 <br>
             </div>
+            <?php endwhile; ?>
             <div class="col s12 m9 l9">
                 <br>
                 <div class="center col s12 m4 l6">
@@ -61,7 +81,7 @@
                             <br>
                             <span class="card-title"><b>ADMIN</b></span>
                             <br>
-                            <a href="#">
+                            <a href="admin-list.php">
                                 <btn class="waves-effect waves-light btn-small grey lighten-2 black-text" style="margin-bottom: 10px;">
                                     Manage Admin
                                 </btn>
@@ -75,7 +95,7 @@
                             <br>
                             <span class="card-title"><b>USER</b></span>
                             <br>
-                            <a href="#">
+                            <a href="admin-userlist.php">
                                 <btn class="waves-effect waves-light btn-small grey lighten-2 black-text" style="margin-bottom: 10px;">
                                     Manage User
                                 </btn>
@@ -89,7 +109,7 @@
                             <br>
                             <span class="card-title"><b>EVENT</b></span>
                             <br>
-                            <a href="#">
+                            <a href="admin-manage-event.php">
                                 <btn class="waves-effect waves-light btn-small grey lighten-2 black-text" style="margin-bottom: 10px;">
                                     Manage Event
                                 </btn>

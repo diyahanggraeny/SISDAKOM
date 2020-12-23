@@ -17,7 +17,7 @@ $mahasiswa = query("SELECT * FROM admin");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin List</title>
+    <title>Edit Admin</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css//materialize.css">
@@ -51,39 +51,39 @@ $mahasiswa = query("SELECT * FROM admin");
     <main class="white">
         <br>
         <div class="container">
-            <h4 class="center typo-1"><b>ADMIN LIST</b></h4>
-            <table class="centered responsive-table blue lighten-4">
-                <div>
-                    <a href="admin-add.php" class="btn-floating btn-large waves-effect waves-light green accent-2 right"><i class="black-text material-icons">add</i></a>
-                    <br>
+            <h4 class="center typo-1"><b>EDIT ADMIN</b></h4>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input  name="id_admin" type="hidden">
+                        <h6>Username</h6>
+                        <input id="admin_username" name="admin_username" type="text" class="validate" required>
+                        <h6>Name</h6>
+                        <input id="admin_name" name="admin_name" type="text" class="validate" required>
+                        <h6>E-Mail</h6>
+                        <input id="admin_email" name="admin_email" type="email" class="validate" required>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <div class="file-field input-field">
+                            <h6>Profile Picture</h6>
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" name="admin_picture">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th>NAME</th>
-                        <th>E-MAIL</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                <?php $i =1; ?>
-                <?php foreach( $mahasiswa as $row) : ?>
-                    <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $row["admin_name"]; ?></td>
-                        <td><?= $row["admin_email"]; ?></td>
-                        <td><a class="black-text" href="admin-edit.php?id=<?= $row["id_admin"]; ?>" ><b>EDIT</b></a></td>
-                        <td><a class="black-text" href="admin-delete.php?id=<?= $row["id_admin"]; ?>" onclick="
-                        return confirm('Apakah Anda yakin?');" ><b>DELETE</b></a></td>
-                    </tr>
-                <?php $i++; ?>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <button class="right btn waves-effect waves-light indigo" type="submit" name="submit"><b>ADD ADMIN</b>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <br>
         <br>
     </main>
 

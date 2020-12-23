@@ -68,7 +68,7 @@
                             <br><br>
                             <div class="center">
                               <a class="blue-text">Already have an account?</a>
-                              <a href="#" class="purple-text"><u>Login</u></a>
+                              <a href="login.php" class="purple-text"><u>Login</u></a>
                             </div>
                             <br><br>                        
                         </div>

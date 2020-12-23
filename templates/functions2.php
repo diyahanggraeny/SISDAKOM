@@ -61,5 +61,39 @@ function tambahadmin($data) {
     return mysqli_affected_rows($conn);
 }
 
+function signup($data) {
+    global $conn;
+
+    $user_username = strtolower(stripslashes($data["user_username"]));
+    $user_email = htmlspecialchars($data["user_email"]);
+    $full_name = htmlspecialchars($data["full_name"]);
+    $user_password = mysqli_real_escape_string($conn, $data["user_password"]);
+    $confirmpassword = mysqli_real_escape_string($conn, $data["confirmpassword"]);
+
+    // Cek username sudah ada atau belum
+    $result = mysqli_query($conn, "SELECT user_username FROM user WHERE user_username ='$user_username'");
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+                alert('Username sudah terdaftar')
+              </script>";
+        return false;
+    }
+
+    // Cek konfirmasi password
+    if ($user_password !== $confirmpassword){
+        echo "<script> 
+                alert('Konfirmasi password tidak sesuai');
+              </script>";
+        return false;
+    }
+
+    // Enkripsi password
+    $user_password = password_hash($user_password, PASSWORD_DEFAULT);
+
+    // Tambah data user ke database
+    mysqli_query($conn, "INSERT INTO user VALUES('', '$user_username', '$user_email', '$full_name', '', '', '', '$user_password', '')");
+
+    return mysqli_affected_rows($conn);
+}
 
 ?>

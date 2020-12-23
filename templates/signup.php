@@ -1,3 +1,19 @@
+<?php
+require 'functions2.php';
+
+// Pemberitahuan Sign Up berhasil atau tidak
+if (isset($_POST["signup"])) {
+    if(signup($_POST) > 0) {
+        echo "<script> 
+                alert('Sign Up berhasil!')
+              </script>";
+    } else {
+        echo mysqli_error($conn);
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,24 +58,28 @@
                     <div class="center">
                         <div class="container">
                             <div class="card-content">
-                            <form action="#">
+                            <form action="" method="post">
                                 <div class="input-field">
-                                    <input id="email" type="email" class="validated" required>
-                                    <label for="email">E-mail</label>
+                                    <input id="full_name" type="text" name="full_name" class="validated" required>
+                                    <label for="full_name">Full Name</label>
                                 </div>
                                 <div class="input-field">
-                                    <input id="username" type="text" class="validated" required>
-                                    <label for="username">Username</label>
+                                    <input id="user_email" type="email" name="user_email" class="validated" required>
+                                    <label for="user_email">E-mail</label>
                                 </div>
                                 <div class="input-field">
-                                    <input id="password" type="password" class="validated" required>
-                                    <label for="password">Password</label>
+                                    <input id="user_username" type="text" name="user_username" class="validated" required>
+                                    <label for="user_username">Username</label>
                                 </div>
                                 <div class="input-field">
-                                    <input id="confirmpassword" type="password" class="validated" required>
+                                    <input id="user_password" type="password" name="user_password" class="validated" required>
+                                    <label for="user_password">Password</label>
+                                </div>
+                                <div class="input-field">
+                                    <input id="confirmpassword" type="password" name="confirmpassword" class="validated" required>
                                     <label for="confirmpassword">Confirm Password</label>
                                 </div>
-                                <button type="submit" class="waves-effect waves-light btn blue white-text link-button" style="border-radius: 10px;">
+                                <button type="submit" name="signup"  class="waves-effect waves-light btn blue white-text link-button" style="border-radius: 10px;">
                                     <b>
                                         Sign Up
                                     </b>

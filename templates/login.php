@@ -71,7 +71,7 @@
                             </div>
                             <div class="center">
                               <a class="blue-text">Dont't have an account?</a>
-                              <a href="#" class="purple-text"><u>Sign Up</u></a>
+                              <a href="signup.php" class="purple-text"><u>Sign Up</u></a>
                             </div>
                             <br><br>
                             <a href="#" class="blue-text btn" style="border: 2px solid #3282E1; border-radius: 10px;">

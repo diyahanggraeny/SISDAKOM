@@ -1,3 +1,28 @@
+<?php
+require 'functions2.php';
+
+if (isset($_POST["loginsubmit"])) {
+    
+    $user_username = $_POST["user_username"];
+    $user_password = $_POST["user_password"];
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE user_username = '$user_username'");
+
+    // Cek Username
+    if ( mysqli_num_rows($result) === 1) {
+
+        #Cek Password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($user_password, $row["user_password"])) {
+            header("Location: user-home.php");
+            exit;
+        }
+
+    } $error = true;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,26 +65,22 @@
                     <br>
                     <h3 class="center blue-text"><b>Login</b></h3>
                     <div class="center">
+                        <?php if (isset($error)): ?>
+                            <br>
+                            <h5 class="purple-text"> Username / Password salah </h5>
+                        <?php endif; ?>
                         <div class="container">
                             <div class="card-content">
-                            <form action="#">
+                            <form action="" method = "post">
                                 <div class="input-field">
-                                    <input id="Username" type="text" class="validated" required>
-                                    <label for="Username">Username</label>
+                                    <input id="user_username" type="text" name="user_username" class="validated" required>
+                                    <label for="user_username">Username</label>
                                 </div>
                                 <div class="input-field">
-                                    <input id="Password" type="password" class="validated" required>
-                                    <label for="Password">Password</label>
+                                    <input id="user_password" type="password" name="user_password" class="validated" required>
+                                    <label for="user_password">Password</label>
                                 </div>
-                                <form action="#" class="center filled-in">
-                                    <p>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <span>Remember Me</span>
-                                    </label>
-                                    </p>
-                                </form>
-                                <button type="submit" class="waves-effect waves-light btn blue white-text link-button" style="border-radius: 10px;">
+                                <button type="submit" name="loginsubmit" class="waves-effect waves-light btn blue white-text link-button" style="border-radius: 10px;">
                                     <b>
                                         Login
                                     </b>

@@ -8,7 +8,30 @@ if( !isset($_SESSION["login"])){
 
 require 'functions2.php';
 
-$mahasiswa = query("SELECT * FROM admin");
+// cek tombol submit sudah ditekan atau belum
+if( isset($_POST["submit"]) ){
+    // cek apakah data berhasil ditambahkan atau tidak
+    if ( ubahadmin($_POST) > 0 ) {
+        echo "
+            <script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'admin-list.php';
+            </script>
+        
+        ";
+    } else {
+        echo "
+            <script>
+                alert('Data gagal diubah!');
+                document.location.href = 'admin-list.php';
+            </script>
+    
+    "; }
+}
+
+$id = $_GET["id"];
+
+$mhs = query("SELECT * FROM admin WHERE id_admin = $id")[0];
 
 ?>
 
@@ -55,30 +78,34 @@ $mahasiswa = query("SELECT * FROM admin");
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
-                        <input  name="id_admin" type="hidden">
+                        <input  name="id_admin" type="hidden" value="<?= $mhs["id_admin"]; ?>">
+                        <input  name="admin_old_picture" type="hidden" value="<?= $mhs["admin_picture"]; ?>">
                         <h6>Username</h6>
-                        <input id="admin_username" name="admin_username" type="text" class="validate" required>
+                        <input id="admin_username" name="admin_username" type="text" class="validate" value="<?= $mhs["admin_username"]; ?>" required >
                         <h6>Name</h6>
-                        <input id="admin_name" name="admin_name" type="text" class="validate" required>
+                        <input id="admin_name" name="admin_name" type="text" class="validate" value="<?= $mhs["admin_name"]; ?>" required>
                         <h6>E-Mail</h6>
-                        <input id="admin_email" name="admin_email" type="email" class="validate" required>
+                        <input id="admin_email" name="admin_email" type="email" class="validate" value="<?= $mhs["admin_email"]; ?>" required>
                     </div>
-                    <div class="col s12 m12 l12">
+                    <div class="col s12 m3 l3">
+                        <img src="../static/img/<?= $mhs["admin_picture"]; ?>" width="150px" class="center">
+                    </div>
+                    <div class="col s12 m9 l9">
                         <div class="file-field input-field">
                             <h6>Profile Picture</h6>
                             <div class="btn">
                                 <span>File</span>
-                                <input type="file" name="admin_picture">
+                                <input type="file" name="admin_picture" >
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
+                                <input class="file-path validate" name="admin_picture" type="text" value="<?= $mhs["admin_picture"]; ?>">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m12 l12">
-                        <button class="right btn waves-effect waves-light indigo" type="submit" name="submit"><b>ADD ADMIN</b>
+                        <button class="right btn waves-effect waves-light indigo" type="submit" name="submit"><b>EDIT ADMIN</b>
                         </button>
                     </div>
                 </div>

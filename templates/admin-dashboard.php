@@ -59,11 +59,11 @@ $result = mysqli_query($conn, "SELECT * FROM admin WHERE id_admin = '$id_admin'"
                 <br>
                 <br>
                 <div class="center">
-                    <i class="center large material-icons icon-acc2">account_circle</i>
+                    <img src="../static/img/<?= $row["admin_picture"]; ?>" width="100px" class="center">
                 </div>
                 <h5><?= $row["admin_name"]; ?></h5>
                 <p><?= $row["admin_email"]; ?></p>
-                <a href="admin-edit-profile.php" class="waves-effect waves-light btn-small grey lighten-2 black-text">Edit Profile</a>
+                <a href="admin-edit.php?id=<?= $row["id_admin"]; ?>" class="waves-effect waves-light btn-small grey lighten-2 black-text">Edit Profile</a>
                 <br>
                 <br>
                 <h6><a href="admin-logout.php" class="black-text"><b>LOGOUT</b></a></h6>

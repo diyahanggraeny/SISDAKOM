@@ -60,7 +60,9 @@ $mahasiswa = query("SELECT * FROM admin");
                 <thead>
                     <tr>
                         <th>NO</th>
+                        <th>PICTURE</th>
                         <th>NAME</th>
+                        <th>USERNAME</th>
                         <th>E-MAIL</th>
                         <th></th>
                         <th></th>
@@ -72,7 +74,9 @@ $mahasiswa = query("SELECT * FROM admin");
                 <?php foreach( $mahasiswa as $row) : ?>
                     <tr>
                         <td><?= $i; ?></td>
+                        <td><img src="../static/img/<?= $row["admin_picture"]; ?>" width="80px" class="center"></td>
                         <td><?= $row["admin_name"]; ?></td>
+                        <td><?= $row["admin_username"]; ?></td>
                         <td><?= $row["admin_email"]; ?></td>
                         <td><a class="black-text" href="admin-edit.php?id=<?= $row["id_admin"]; ?>" ><b>EDIT</b></a></td>
                         <td><a class="black-text" href="admin-delete.php?id=<?= $row["id_admin"]; ?>" onclick="

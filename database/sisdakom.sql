@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2020 at 04:22 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Waktu pembuatan: 25 Des 2020 pada 00.44
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +37,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `admin_name`, `admin_email`, `admin_username`, `admin_password`, `admin_picture`) VALUES
@@ -46,7 +47,7 @@ INSERT INTO `admin` (`id_admin`, `admin_name`, `admin_email`, `admin_username`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event`
+-- Struktur dari tabel `event`
 --
 
 CREATE TABLE `event` (
@@ -64,20 +65,33 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `event`
+-- Dumping data untuk tabel `event`
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informasi_event`, `tanggal_event`, `waktu_event`, `tempat_event`, `max_partisipan`, `poster_event`, `status_event`) VALUES
-(23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'On Process'),
+(23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'Cancel'),
 (30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 10, '5fe44313c860d.jpg', 'On Process');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_partisipan`
+-- Struktur dari tabel `event_partisipan_bayar`
 --
 
-CREATE TABLE `event_partisipan` (
+CREATE TABLE `event_partisipan_bayar` (
+  `id_partisipan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `id_pembayaran` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `event_partisipan_gratis`
+--
+
+CREATE TABLE `event_partisipan_gratis` (
   `id_partisipan` int(11) NOT NULL,
   `id_event` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
@@ -86,7 +100,7 @@ CREATE TABLE `event_partisipan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Struktur dari tabel `message`
 --
 
 CREATE TABLE `message` (
@@ -100,7 +114,7 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
+-- Struktur dari tabel `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -114,7 +128,7 @@ CREATE TABLE `pembayaran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -130,7 +144,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `user_username`, `user_email`, `full_name`, `instansi`, `angkatan`, `user_picture`, `user_password`, `phone_number`) VALUES
@@ -141,27 +155,36 @@ INSERT INTO `user` (`id_user`, `user_username`, `user_email`, `full_name`, `inst
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `event`
+-- Indeks untuk tabel `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id_event`);
 
 --
--- Indexes for table `event_partisipan`
+-- Indeks untuk tabel `event_partisipan_bayar`
 --
-ALTER TABLE `event_partisipan`
+ALTER TABLE `event_partisipan_bayar`
+  ADD PRIMARY KEY (`id_partisipan`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_event` (`id_event`),
+  ADD KEY `id_pembayaran` (`id_pembayaran`);
+
+--
+-- Indeks untuk tabel `event_partisipan_gratis`
+--
+ALTER TABLE `event_partisipan_gratis`
   ADD PRIMARY KEY (`id_partisipan`),
   ADD KEY `id_event` (`id_event`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `message`
+-- Indeks untuk tabel `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id_pesan`),
@@ -169,7 +192,7 @@ ALTER TABLE `message`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `pembayaran`
+-- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`),
@@ -177,40 +200,52 @@ ALTER TABLE `pembayaran`
   ADD KEY `id_event` (`id_event`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `event`
+-- AUTO_INCREMENT untuk tabel `event`
 --
 ALTER TABLE `event`
   MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
--- AUTO_INCREMENT for table `event_partisipan`
+-- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
-ALTER TABLE `event_partisipan`
+ALTER TABLE `event_partisipan_bayar`
   MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `pembayaran`
+-- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`
+--
+ALTER TABLE `event_partisipan_gratis`
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
   MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

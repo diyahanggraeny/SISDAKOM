@@ -1,5 +1,11 @@
 <?php
+session_start();
 require 'functions2.php';
+
+if (isset($_SESSION["loginsubmit"])) {
+    header("Location: user-home.php");
+    exit;
+}
 
 if (isset($_POST["loginsubmit"])) {
     
@@ -14,6 +20,8 @@ if (isset($_POST["loginsubmit"])) {
         #Cek Password
         $row = mysqli_fetch_assoc($result);
         if (password_verify($user_password, $row["user_password"])) {
+
+            $_SESSION["loginsubmit"] = true;
             header("Location: user-home.php");
             exit;
         }

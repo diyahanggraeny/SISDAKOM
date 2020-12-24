@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["loginsubmit"])) {
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,20 +27,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
+                <li><a href="user-home.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
+                <li><a href="user-events.php" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
+                <li><a href="user-message.php" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
+                <li><a href="user-profile-info.php" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text">Home</a></li>
-        <li><a href="#" class="black-text">Events</a></li>
-        <li><a href="#" class="black-text">Messages</a></li>
-        <li><a href="#" class="black-text">Profile</a></li>
+        <li><a href="user-home.php" class="black-text">Home</a></li>
+        <li><a href="user-events.php" class="black-text">Events</a></li>
+        <li><a href="user-message.php" class="black-text">Messages</a></li>
+        <li><a href="user-profile-info.php" class="black-text">Profile</a></li>
     </ul>
 
 
@@ -40,7 +50,7 @@
               <br>
               <a class="white-text"><h2 style="margin-bottom: 25px;"><b>Start Searching for Events</b></h2></a>
               <br>
-              <a href="#" class="blue-text btn" style="font-size: 25px; margin-bottom: 50px;"><b>Start Now</b></a>
+              <a href="user-events.php" class="blue-text btn" style="font-size: 25px; margin-bottom: 50px;"><b>Start Now</b></a>
             </div>
         </div>
 

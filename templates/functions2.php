@@ -226,6 +226,40 @@ function uploadevent() {
 }
 
 
+function ubahevent($data) {
+    global $conn;
+
+    $id_event = $data["id_event"];
+    $nama_event = htmlspecialchars($data["nama_event"]);
+    $htm = htmlspecialchars($data["htm"]);
+    $kategori_event = htmlspecialchars($data["kategori_event"]);
+    $informasi_event = htmlspecialchars($data["informasi_event"]);
+    $tempat_event = htmlspecialchars($data["tempat_event"]);
+    $tanggal_event = htmlspecialchars($data["tanggal_event"]);
+    $waktu_event = htmlspecialchars($data["waktu_event"]);
+    $max_partisipan = htmlspecialchars($data["max_partisipan"]);
+    $status_event = htmlspecialchars($data["status_event"]);
+    $event_old_picture = htmlspecialchars($data["event_old_picture"]);
+
+    //cek apa user memilih gambar atau tidak
+    if( $_FILES['poster_event']['error'] == 4 ) {
+        $poster_event = $event_old_picture;
+    }else {
+        $poster_event = uploadevent();
+    }
+
+    $query = "UPDATE event SET nama_event = '$nama_event',htm = '$htm',kategori_event = '$kategori_event',
+                informasi_event = '$informasi_event', tempat_event = '$tempat_event',tanggal_event = '$tanggal_event',
+                waktu_event = '$waktu_event', max_partisipan = '$max_partisipan', status_event = '$status_event',
+                poster_event = '$poster_event'  WHERE id_event = $id_event";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
+}
+
+
 
 function tambahevent($data) {
     global $conn;

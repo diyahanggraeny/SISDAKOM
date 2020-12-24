@@ -174,4 +174,99 @@ function ubahadmin($data) {
 
 }
 
+
+function uploadevent() {
+    $namaFile = $_FILES['poster_event']['name'];
+    $ukuranFile = $_FILES['poster_event']['size'];
+    $error = $_FILES['poster_event']['error'];
+    $tmpName = $_FILES['poster_event']['tmp_name'];
+
+    //cek apakah tidak ada gambar yg diupload
+    if( $error === 4 ) {
+        echo "
+            <script>
+                alert('Pilih gambar terlebih dahulu!');
+            </script>";
+        return false;
+    } 
+
+    // cek apakah yg diupload gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+        echo "
+            <script>
+                alert('File yang Anda upload bukan gambar!');
+            </script>";
+        return false;
+    }
+
+    // cek ukuran file
+    if( $ukuranFile > 5000000 ) {
+        echo "
+            <script>
+                alert('Ukuran gambar terlalu besar!');
+            </script>";
+        return false;
+    }
+
+    //siap diupload
+    // generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+
+    move_uploaded_file($tmpName, '../static/img/' . $namaFileBaru);
+
+    return $namaFileBaru;
+
+}
+
+
+
+function tambahevent($data) {
+    global $conn;
+
+    $nama_event = htmlspecialchars($data["nama_event"]);
+    $htm = htmlspecialchars($data["htm"]);
+    $kategori_event = htmlspecialchars($data["kategori_event"]);
+    $informasi_event = htmlspecialchars($data["informasi_event"]);
+    $tempat_event = htmlspecialchars($data["tempat_event"]);
+    $tanggal_event = htmlspecialchars($data["tanggal_event"]);
+    $waktu_event = htmlspecialchars($data["waktu_event"]);
+    $max_partisipan = htmlspecialchars($data["max_partisipan"]);
+    $status_event = htmlspecialchars($data["status_event"]);
+
+    //cek apa user memilih gambar atau tidak
+    if( $_FILES['poster_event']['error'] == 4 ) {
+        echo "
+            <script>
+                alert('Poster belum ditambahkan!');
+            </script>";
+        return false;
+    }else {
+        $poster_event = uploadevent();
+    }
+
+    $query = "INSERT INTO event VALUES('','$nama_event','$htm','$kategori_event','$informasi_event','$tanggal_event',
+                '$waktu_event','$tempat_event',$max_partisipan,'$poster_event','$status_event')";
+    
+    $status = mysqli_query($conn, $query);
+
+    if( !$status) {
+        echo "
+            <script>
+                alert('Gagal insert data!');
+            </script>";
+        return false;
+    }
+
+
+    return mysqli_affected_rows($conn);
+
+}
+
 ?>

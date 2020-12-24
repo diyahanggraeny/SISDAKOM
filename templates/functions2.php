@@ -96,4 +96,82 @@ function signup($data) {
     return mysqli_affected_rows($conn);
 }
 
+
+function uploadadmin(){
+    $namaFile = $_FILES['admin_picture']['name'];
+    $ukuranFile = $_FILES['admin_picture']['size'];
+    $error = $_FILES['admin_picture']['error'];
+    $tmpName = $_FILES['admin_picture']['tmp_name'];
+
+    //cek apakah tidak ada gambar yg diupload
+    if( $error === 4 ) {
+        echo "
+            <script>
+                alert('Pilih gambar terlebih dahulu!');
+            </script>";
+        return false;
+    } 
+
+    // cek apakah yg diupload gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+        echo "
+            <script>
+                alert('File yang Anda upload bukan gambar!');
+            </script>";
+        return false;
+    }
+
+    // cek ukuran file
+    if( $ukuranFile > 2000000 ) {
+        echo "
+            <script>
+                alert('Ukuran gambar terlalu besar!');
+            </script>";
+        return false;
+    }
+
+    //siap diupload
+    // generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+
+    move_uploaded_file($tmpName, '../static/img/' . $namaFileBaru);
+
+    return $namaFileBaru;
+
+}
+
+
+
+function ubahadmin($data) {
+    global $conn;
+
+    $id_admin = $data["id_admin"];
+    $admin_username = strtolower(stripcslashes($data["admin_username"]));
+    $admin_name = htmlspecialchars($data["admin_name"]);
+    $admin_email = htmlspecialchars($data["admin_email"]);
+    $admin_old_picture = htmlspecialchars($data["admin_old_picture"]);
+
+    //cek apa user memilih gambar atau tidak
+    if( $_FILES['admin_picture']['error'] == 4 ) {
+        $admin_picture = $admin_old_picture;
+    }else {
+        $admin_picture = uploadadmin();
+    }
+
+    $query = "UPDATE admin SET admin_username = '$admin_username',admin_name = '$admin_name',admin_email = '$admin_email',
+                admin_picture = '$admin_picture' WHERE id_admin = $id_admin";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
+}
+
 ?>

@@ -82,20 +82,9 @@ if( isset($_POST["submit"]) ){
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m12 l12">
-                    <label for="htm">HTM</label>
-                    <p>
-                        <label>
-                            <input name="htm" type="radio" value="Free" required />
-                            <span>Free</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input name="htm" type="radio" required />
-                            <span><input name="htm" type="text" class="validate" placeholder="Isi biaya (misal : 100000) "></span>
-                        </label>
-                    </p>
+                    <div class="input-field col s12 m12 l12">
+                        <input id="htm" name="htm" type="number" class="validate" placeholder="Isi Biaya ( misal : 100000 ), isi 0 jika gratis" required>
+                        <label for="htm">HTM</label>
                     </div>
                 </div>
                 <div class="row">

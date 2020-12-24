@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["login"])){
+    header("Location: admin-login.php");
+    exit;
+}
+
+require 'functions2.php';
+
+$event = query("SELECT * FROM event");
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,20 +33,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
+                <li><a href="admin-dashboard.php" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
+                <li><a href="admin-list.php" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
+                <li><a href="admin-userlist.php" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
+                <li><a href="admin-manage-event.php" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text" >Dashboard</a></li>
-        <li><a href="#" class="black-text" >Manage Admin</a></li>
-        <li><a href="#" class="black-text" >Manage User</a></li>
-        <li><a href="#" class="black-text" >Manage Event</a></li>
+        <li><a href="admin-dashboard.php" class="black-text" >Dashboard</a></li>
+        <li><a href="admin-list.php" class="black-text" >Manage Admin</a></li>
+        <li><a href="admin-userlist.php" class="black-text" >Manage User</a></li>
+        <li><a href="admin-manage-event.php" class="black-text" >Manage Event</a></li>
     </ul>
 
 
@@ -40,7 +56,7 @@
             <h4 class="center typo-1"><b>MANAGE EVENT</b></h4>
             <table class="centered responsive-table">
                 <div>
-                    <a class="btn-floating btn-large waves-effect waves-light green accent-2 right"><i class="black-text material-icons">add</i></a>
+                    <a href="admin-add-event.php" class="btn-floating btn-large waves-effect waves-light green accent-2 right"><i class="black-text material-icons">add</i></a>
                     <br>
                 </div>
                 <thead>
@@ -50,23 +66,41 @@
                         <th>POSTER</th>
                         <th>PRICE</th>
                         <th>INFORMATION</th>
+                        <th>KATEGORI</th>
                         <th>STATUS</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
+                    <?php $i =1; ?>
+                    <?php foreach( $event as $row) : ?>
                     <tr>
-                        <td>1</td>
-                        <td>Words of Courage</td>
-                        <td><img src="../static/img/logo-woc.png" class="responsive-img"></td>
-                        <td>Free</td>
-                        <td>20 September 2020 Zoom meeting</td>
-                        <td>Done</td>
-                        <td><a class="black-text"><b>EDIT</b></a></td>
-                        <td>  <button class="btn-flat waves-effect waves-light grey white-text">Participant List</button></td>
+                        <td><?= $i; ?></td>
+                        <td><?= $row["nama_event"]; ?></td>
+                        <td><img src="../static/img/<?= $row["poster_event"]; ?>" width="70px"></td>
+                        <td><?php if( $row["htm"] === '0') : ?>
+                                Gratis
+                            <?php else :?>
+                                <?= $row["htm"]; ?>
+                            <?php endif; ?>
+                        </td>
+                        <td><?= $row["tanggal_event"];?><br>
+                            <?= $row["waktu_event"];?><br>
+                            <?=$row["tempat_event"]; ?><br>
+                            Maks : <?=$row["max_partisipan"]; ?>
+                        </td>
+                        <td><?= $row["kategori_event"]; ?></td>
+                        <td><?= $row["status_event"]; ?></td>
+                        <td><a class="black-text" href="admin-edit-event.php?id=<?= $row["id_event"]; ?>"><b>EDIT</b></a></td>
+                        <td><a class="black-text" href="admin-delete-event.php?id=<?= $row["id_event"]; ?>" 
+                                onclick="return confirm('Apakah Anda yakin?');"><b>DELETE</b></a></td>
+                        <td><button  class="btn-flat waves-effect waves-light grey"><a href="admin-participant-list.php?id=<?= $row["id_event"]; ?>" class="white-text">Participant List</a></button></td>
                     </tr>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

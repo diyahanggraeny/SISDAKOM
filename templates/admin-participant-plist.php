@@ -12,6 +12,8 @@ $id = $_GET["id"];
 
 $count = query("SELECT COUNT(*) FROM event_partisipan_bayar WHERE id_event = $id");
 
+$event_data = query("SELECT * FROM event WHERE id_event = $id");
+
 $event = query("SELECT * FROM event_partisipan_bayar
             INNER JOIN user ON event_partisipan_bayar.id_user = user.id_user
             INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event 
@@ -61,7 +63,7 @@ $event = query("SELECT * FROM event_partisipan_bayar
         <div class="container">
             <h4 class="center typo-1"><b>PARTICIPANT LIST</b></h4>
             <div class="row">
-                <?php foreach( $event as $row) : ?>
+                <?php foreach( $event_data as $row) : ?>
                     <?php if( $row["id_event"] == $id ) { ?>
                 <div class="col s2 m2 l2">
                     <img src="../static/img/<?= $row["poster_event"] ?>" class="responsive-img">
@@ -110,9 +112,10 @@ $event = query("SELECT * FROM event_partisipan_bayar
                         <td><?= $row["phone_number"]; ?></td>
                         <td><?= $row["instansi"]; ?></td>
                         <td><?= $row["status_pembayaran"]; ?></td>
-                        <td><a class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
+                        <td><a href="admin-delete-plist.php?del=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>" onclick="
+                            return confirm('Apakah Anda yakin?');" class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
                         <td><a class="black-text"><i class="green-text accent-2-text material-icons">mail</i></a></td>
-                        <td><a>Check Payment</a></td>
+                        <td><a href="admin-status.php?id=<?= $row["id_pembayaran"]; ?>">Check Payment</a></td>
                     </tr>
                         <?php } ?>
                     <?php $i++; ?>

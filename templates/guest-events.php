@@ -41,11 +41,11 @@ $events = query("SELECT * FROM event");
 
 
     <main class="main">
-        <div class="row">
-            <?php foreach($events as $row) : ?>
-            <div class="col l2 s12" style="margin-left: 100px; margin-top: 25px;">
+        <div class="row" style="margin-left: 100px;">
+        <?php foreach($events as $row) : ?>
+            <div class="col l2 s12" style="margin-top: 25px;">
                 <div class="card border1 center-align">
-                    <img class="image4" src="../static/img/<?= $row["poster_event"] ?>">
+                    <img src="../static/img/<?= $row["poster_event"] ?>" style="margin-top: 5px" width="170px" height="250px">
                     <a class="blue-text font3"><b><?= $row["nama_event"]; ?></b></a>
                     <br><br>
                     <a class="blue-text font4 center"><b><?= $row["tanggal_event"]; ?></b></a>
@@ -54,12 +54,12 @@ $events = query("SELECT * FROM event");
                     <br>
                     <a class="blue-text font4 center">Rp <?= $row["htm"]; ?></a>
                     <br><br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
+                    <a href="user-eventdetail.php" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
                     <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
+                    <a href="user-register-and-payment.php" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
                 </div>
             </div>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </div>
 
         <div class="row">

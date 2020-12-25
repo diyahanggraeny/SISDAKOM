@@ -16,20 +16,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Login</b></a></li>
-                <li><a href="#" class="blue-text btn" style="font-size: 20px;"><b>Sign Up</b></a></li>
+                <li><a href="index.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
+                <li><a href="guest-events.php" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
+                <li><a href="login.php" class="white-text" style="font-size: 20px;"><b>Login</b></a></li>
+                <li><a href="signup.php" class="blue-text btn" style="font-size: 20px;"><b>Sign Up</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text">Home</a></li>
-        <li><a href="#" class="black-text">Events</a></li>
-        <li><a href="#" class="black-text">Login</a></li>
-        <li><a href="#" class="blue btn white-text"><b>Sign Up</b></a></li>
+        <li><a href="index.php" class="black-text">Home</a></li>
+        <li><a href="guest-events.php" class="black-text">Events</a></li>
+        <li><a href="login.php" class="black-text">Login</a></li>
+        <li><a href="signup.php" class="blue btn white-text"><b>Sign Up</b></a></li>
     </ul>
 
 

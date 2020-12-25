@@ -1,3 +1,10 @@
+<?php
+require 'functions2.php';
+
+$users = query("SELECT * FROM user");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,20 +28,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
+                <li><a href="admin-dashboard.php" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
+                <li><a href="admin-list.php" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
+                <li><a href="admin-userlist.php" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
+                <li><a href="admin-manage-event.php" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text" >Dashboard</a></li>
-        <li><a href="#" class="black-text" >Manage Admin</a></li>
-        <li><a href="#" class="black-text" >Manage User</a></li>
-        <li><a href="#" class="black-text" >Manage Event</a></li>
+        <li><a href="admin-dashboard.php" class="black-text">Dashboard</a></li>
+        <li><a href="admin-list.php" class="black-text">Manage Admin</a></li>
+        <li><a href="admin-userlist.php" class="black-text">Manage User</a></li>
+        <li><a href="admin-manage-event.php" class="black-text">Manage Event</a></li>
     </ul>
 
 
@@ -44,10 +51,11 @@
             <h3><center><b> User List</b></center></h3>
         </div>
         <center>
-        <table class="cyan lighten-4 responsive-table centered" style="width: 1000px;">
+        <table class="cyan lighten-4 responsive-table centered" style="width: 1250px;">
             <thead>
               <tr>
                   <th>No</th>
+                  <th>Picture</th>
                   <th>Username</th>
                   <th>E-mail</th>
                   <th>Full Name</th>
@@ -58,33 +66,20 @@
             </thead>
     
             <tbody>
+            <?php $i = 1; ?>
+            <?php foreach($users as $row) : ?>
               <tr>
-                <td>1</td>
-                <td>Sarah</td>
-                <td>Sarah@gmail.com</td>
-                <td>Sarah</td>
-                <td>2018</td>
-                <td>UNJ</td>
-                <td><b>Remove Account</b></td>
+                <td><?= $i; ?></td>
+                <td> </td>
+                <td><?= $row["user_username"]; ?></td>
+                <td><?= $row["user_email"]; ?></td>
+                <td><?= $row["full_name"]; ?></td>
+                <td><?= $row["angkatan"]; ?></td>
+                <td><?= $row["instansi"]; ?></td>
+                <td><a class="purple-text" href="#"><b>Remove Account</b></a></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Jonathan</td>
-                <td>Jonathan@gmail.com</td>
-                <td>Jonathan</td>
-                <td>2018</td>
-                <td>ITB</td>
-                <td><b>Remove Account</b></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Risya</td>
-                <td>Risya@gmail.com</td>
-                <td>Risya</td>
-                <td>2019</td>
-                <td>UGM</td>
-                <td><b>Remove Account</b></td>
-              </tr>
+            <?php $i++; ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
         </center>

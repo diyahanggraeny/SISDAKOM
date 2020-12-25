@@ -1,18 +1,18 @@
 <?php
 session_start();
 
-if( !isset($_SESSION["login"])){
+if( !isset($_SESSION["loginsubmit"])){
     header("Location: login.php");
     exit;
 }
 
 require 'functions2.php';
 
-$id_user = $_SESSION["login"];
+$id_user = $_SESSION["loginsubmit"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 
-
 ?>
+
 <!DOCTYPE html>
   <html>
     <head>

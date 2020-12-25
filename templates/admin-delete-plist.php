@@ -10,7 +10,7 @@ if( isset($del)) {
         echo "
             <script>
                 alert('Data berhasil dihapus!');
-                document.location.href = 'admin-manage-event.php';
+                window.location.href = 'admin-participant-plist.php?id= $id' ;
             </script>
         
         ";
@@ -18,7 +18,7 @@ if( isset($del)) {
         echo "
             <script>
                 alert('Data gagal dihapus!');
-                document.location.href = 'admin-manage-event.php';
+                document.location.href = 'admin-participant-plist.php?id= $id';
             </script>
     
     "; 
@@ -27,7 +27,7 @@ if( isset($del)) {
     echo "
     <script>
         alert('Data gagal dihapus karena id tidak ditemukan!');
-        document.location.href = 'admin-manage-event.php';
+        document.location.href = 'admin-participant-plist.php?id= $id';
     </script>
 "; 
 }

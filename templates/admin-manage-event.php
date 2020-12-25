@@ -66,7 +66,7 @@ $event = query("SELECT * FROM event");
                         <th>POSTER</th>
                         <th>PRICE</th>
                         <th>INFORMATION</th>
-                        <th>KATEGORI</th>
+                        <th>CATEGORY</th>
                         <th>STATUS</th>
                         <th></th>
                         <th></th>

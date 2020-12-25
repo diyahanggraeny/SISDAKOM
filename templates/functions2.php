@@ -303,4 +303,11 @@ function tambahevent($data) {
 
 }
 
+function hapusplist($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM event_partisipan_bayar WHERE id_partisipan = $id");
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>

@@ -1,3 +1,10 @@
+<?php
+require 'functions2.php';
+
+$events = query("SELECT * FROM event");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,86 +42,24 @@
 
     <main class="main">
         <div class="row">
+            <?php foreach($events as $row) : ?>
             <div class="col l2 s12" style="margin-left: 100px; margin-top: 25px;">
                 <div class="card border1 center-align">
-                    <img class="image4" src="../static/img/logo-woc.png">
-                    <a class="blue-text font3"><b>Words of Courage</b></a>
-                    <a class="blue-text font4 left"><b>20 September 2020</b></a>
+                    <img class="image4" src="../static/img/<?= $row["poster_event"] ?>">
+                    <a class="blue-text font3"><b><?= $row["nama_event"]; ?></b></a>
+                    <br><br>
+                    <a class="blue-text font4 center"><b><?= $row["tanggal_event"]; ?></b></a>
                     <br>
-                    <a class="blue-text font4 left"><b>Zoom Meeting</b></a>
+                    <a class="blue-text font4 center"><b><?= $row["tempat_event"]; ?></b></a>
                     <br>
-                    <br>
-                    <a class="blue-text font4 left"><b>Free</b></a>
-                    <br>
+                    <a class="blue-text font4 center">Rp <?= $row["htm"]; ?></a>
+                    <br><br>
                     <a href="#" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
                     <br>
                     <a href="#" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
                 </div>
             </div>
-            <div class="col l2 s12" style="margin-top: 25px;">
-                <div class="card border1 center-align">
-                    <img class="image4" src="../static/img/logo-thewalls.png">
-                    <a class="blue-text font3"><b>The Walls</b></a>
-                    <a class="blue-text font4 left"><b>25 September 2020</b></a>
-                    <br>
-                    <a class="blue-text font4 left"><b>GDS 608, UNJ</b></a>
-                    <br>
-                    <br>
-                    <a class="blue-text font4 left"><b>Rp50.000</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
-                </div>
-            </div>
-            <div class="col l2 s12" style="margin-top: 25px;">
-                <div class="card border1 center-align">
-                    <img class="image4" src="../static/img/logo-zadira.png">
-                    <a class="blue-text font3"><b>Zadira Mart</b></a>
-                    <a class="blue-text font4 left"><b>10 Oktober 2020</b></a>
-                    <br>
-                    <a class="blue-text font4 left"><b>GDS 607, UNJ</b></a>
-                    <br>
-                    <br>
-                    <a class="blue-text font4 left"><b>Rp20.000</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
-                </div>
-            </div>
-            <div class="col l2 s12" style="margin-top: 25px;">
-                <div class="card border1 center-align">
-                    <img class="image4" src="../static/img/logo-shopofcourage.png">
-                    <a class="blue-text font3"><b>Shop of Courage</b></a>
-                    <a class="blue-text font4 left"><b>24 Oktober 2020</b></a>
-                    <br>
-                    <a class="blue-text font4 left"><b>GDS 507, UNJ</b></a>
-                    <br>
-                    <br>
-                    <a class="blue-text font4 left"><b>Rp35.000</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
-                </div>
-            </div>
-            <div class="col l2 s12" style="margin-top: 25px;">
-                <div class="card border1 center-align">
-                    <img class="image4" src="../static/img/logo-thewalls.png">
-                    <a class="blue-text font3"><b>The Walls Seminar</b></a>
-                    <a class="blue-text font4 left"><b>03 November 2020</b></a>
-                    <br>
-                    <a class="blue-text font4 left"><b>GDS 505, UNJ</b></a>
-                    <br>
-                    <br>
-                    <a class="blue-text font4 left"><b>Rp100.000</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
-                    <br>
-                    <a href="#" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
 
         <div class="row">

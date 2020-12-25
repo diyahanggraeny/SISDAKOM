@@ -97,7 +97,12 @@ $event = query("SELECT * FROM event");
                         <td><a class="black-text" href="admin-edit-event.php?id=<?= $row["id_event"]; ?>"><b>EDIT</b></a></td>
                         <td><a class="black-text" href="admin-delete-event.php?id=<?= $row["id_event"]; ?>" 
                                 onclick="return confirm('Apakah Anda yakin?');"><b>DELETE</b></a></td>
-                        <td><button  class="btn-flat waves-effect waves-light grey"><a href="admin-participant-list.php?id=<?= $row["id_event"]; ?>" class="white-text">Participant List</a></button></td>
+                        <td><?php if( $row["htm"] === '0') : ?>
+                                <button  class="btn-flat waves-effect waves-light grey"><a href="admin-participant-flist.php?id=<?= $row["id_event"]; ?>" class="white-text">Participant List</a></button>
+                            <?php else :?>
+                                <button  class="btn-flat waves-effect waves-light grey"><a href="admin-participant-plist.php?id=<?= $row["id_event"]; ?>" class="white-text">Participant List</a></button>
+                            <?php endif; ?>
+                        </td>
                     </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>

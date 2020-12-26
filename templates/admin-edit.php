@@ -88,7 +88,11 @@ $mhs = query("SELECT * FROM admin WHERE id_admin = $id")[0];
                         <input id="admin_email" name="admin_email" type="email" class="validate" value="<?= $mhs["admin_email"]; ?>" required>
                     </div>
                     <div class="col s12 m3 l3">
-                        <img src="../static/img/<?= $mhs["admin_picture"]; ?>" width="150px" class="center">
+                        <?php if( $mhs["admin_picture"]) :?>
+                            <img src="../static/img/<?= $mhs["admin_picture"]; ?>" width="150px" class="center">
+                        <?php else: ?>
+                            <h6 style="font-style:italic;">None Picture</h6>
+                        <?php endif; ?>
                     </div>
                     <div class="col s12 m9 l9">
                         <div class="file-field input-field">

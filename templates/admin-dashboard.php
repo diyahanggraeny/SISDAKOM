@@ -59,7 +59,11 @@ $result = mysqli_query($conn, "SELECT * FROM admin WHERE id_admin = '$id_admin'"
                 <br>
                 <br>
                 <div class="center">
+                <?php if( $row["admin_picture"]) :?>
                     <img src="../static/img/<?= $row["admin_picture"]; ?>" width="100px" class="center">
+                <?php else: ?>
+                    <img src="../static/img/profile.PNG" width="100px" class="center">
+                <?php endif; ?>
                 </div>
                 <h5><?= $row["admin_name"]; ?></h5>
                 <p><?= $row["admin_email"]; ?></p>

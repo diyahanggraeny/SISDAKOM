@@ -74,7 +74,13 @@ $mahasiswa = query("SELECT * FROM admin");
                 <?php foreach( $mahasiswa as $row) : ?>
                     <tr>
                         <td><?= $i; ?></td>
-                        <td><img src="../static/img/<?= $row["admin_picture"]; ?>" width="80px" class="center"></td>
+                        <td>
+                        <?php if( $row["admin_picture"]) :?>
+                            <img src="../static/img/<?= $row["admin_picture"]; ?>" width="80px" class="center">
+                        <?php else: ?>
+                            <h6 class="center" style="font-style:italic;">None</h6>
+                        <?php endif; ?>
+                        </td>
                         <td><?= $row["admin_name"]; ?></td>
                         <td><?= $row["admin_username"]; ?></td>
                         <td><?= $row["admin_email"]; ?></td>

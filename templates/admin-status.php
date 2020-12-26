@@ -88,7 +88,11 @@ $row = query("SELECT * FROM pembayaran WHERE id_pembayaran = $bayar")[0];
                     <div class="input-field col s12 m12 l12">
                         <h5>Proof of Payment</h5>
                         <input id="bukti_pembayaran" type="hidden" class="validate" name="bukti_pembayaran" value="<?= $row["bukti_pembayaran"]; ?>">
-                        <img src="../static/img/<?= $row["bukti_pembayaran"]; ?>" width="300px">
+                        <?php if( $row["bukti_pembayaran"]) : ?>
+                            <img src="../static/img/<?= $row["bukti_pembayaran"]; ?>" width="300px">
+                        <?php else: ?>
+                            <h6 style="font-style:italic;">Belum melakukan pembayaran</h6>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="row">

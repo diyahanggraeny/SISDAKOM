@@ -116,7 +116,7 @@ $row = query("SELECT * FROM event WHERE id_event = $id")[0];
                         <input name="max_partisipan" type="number" value="<?= $row["max_partisipan"]; ?>" class="validate">
                         <h5>Status Event</h5>
                         <select name="status_event" value="<?= $row["status_event"]; ?>">
-                            <option value="" disabled>Pilih Status</option>
+                            <option value="<?= $row["status_event"]; ?>" disabled selected><?= $row["status_event"]; ?></option>
                             <option value="On Process">On Process</option>
                             <option value="Done">Done</option>
                             <option value="Cancel">Cancel</option>

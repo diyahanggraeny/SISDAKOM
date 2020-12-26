@@ -327,4 +327,13 @@ function ubahstatpembayaran($data) {
 
 }
 
+
+function hapusflist($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM event_partisipan_gratis WHERE id_partisipan = $id");
+
+    return mysqli_affected_rows($conn);
+}
+
+
 ?>

@@ -310,4 +310,21 @@ function hapusplist($id) {
     return mysqli_affected_rows($conn);
 }
 
+
+function ubahstatpembayaran($data) {
+    global $conn;
+
+    $id_pembayaran = $data["id_pembayaran"];
+    $bukti_pembayaran = htmlspecialchars($data["bukti_pembayaran"]);
+    $status_pembayaran = htmlspecialchars($data["status_pembayaran"]);
+
+    $query = "UPDATE pembayaran SET bukti_pembayaran = '$bukti_pembayaran',
+                status_pembayaran = '$status_pembayaran' WHERE id_pembayaran = $id_pembayaran";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
+}
+
 ?>

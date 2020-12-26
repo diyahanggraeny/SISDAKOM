@@ -1,3 +1,42 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["login"])){
+    header("Location: admin-login.php");
+    exit;
+}
+
+require 'functions2.php';
+
+$bayar = $_GET["bayar"];
+$id = $_GET["id"];
+
+// cek tombol submit sudah ditekan atau belum
+if( isset($_POST["submit"]) ){
+    // cek apakah data berhasil ditambahkan atau tidak
+    if ( ubahstatpembayaran($_POST) > 0 ) {
+        echo "
+            <script>
+                alert('Data berhasil diubah!');
+                window.location.href = 'admin-participant-plist.php?id= $id' ;
+            </script>
+        
+        ";
+    } else {
+        echo "
+            <script>
+                alert('Data gagal diubah!');
+                window.location.href = 'admin-participant-plist.php?id= $id';
+            </script>
+    
+    ";  }
+}
+
+$row = query("SELECT * FROM pembayaran WHERE id_pembayaran = $bayar")[0];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,20 +56,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
+                <li><a href="admin-dashboard.php" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
+                <li><a href="admin-list.php" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
+                <li><a href="admin-userlist.php" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
+                <li><a href="admin-manage-event.php" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text" >Dashboard</a></li>
-        <li><a href="#" class="black-text" >Manage Admin</a></li>
-        <li><a href="#" class="black-text" >Manage User</a></li>
-        <li><a href="#" class="black-text" >Manage Event</a></li>
+        <li><a href="admin-dashboard.php" class="black-text" >Dashboard</a></li>
+        <li><a href="admin-list.php" class="black-text" >Manage Admin</a></li>
+        <li><a href="admin-userlist.php" class="black-text" >Manage User</a></li>
+        <li><a href="admin-manage-event.php" class="black-text" >Manage Event</a></li>
     </ul>
 
 
@@ -38,24 +77,25 @@
         <br>
         <div class="container">
             <h4 class="center typo-1"><b>STATUS</b></h4>
-            <form>
+            <form action="" method="post">
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
-                        <h5>Name</h5>
-                        <input id="nama_partisipan" type="text" class="validate">
+                        <h5>Nomor Pembayaran : <?= $row["id_pembayaran"]; ?> </h5>
+                        <input id="id_pembayaran" type="hidden" class="validate" name="id_pembayaran" value="<?= $row["id_pembayaran"]; ?>">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
                         <h5>Proof of Payment</h5>
-                        <input id="bukti_pembayaran" type="text" class="validate">
+                        <input id="bukti_pembayaran" type="hidden" class="validate" name="bukti_pembayaran" value="<?= $row["bukti_pembayaran"]; ?>">
+                        <img src="../static/img/<?= $row["bukti_pembayaran"]; ?>" width="300px">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
                         <h5>Status Payment</h5>
-                        <select>
-                            <option value="" disabled selected>Pilih Status</option>
+                        <select value="<?= $row["status_pembayaran"]; ?>" name="status_pembayaran">
+                            <option value="<?= $row["status_pembayaran"]; ?>" disabled selected><?= $row["status_pembayaran"]; ?></option>
                             <option value="On Confirmation">On Confirmation</option>
                             <option value="Paid">Paid</option>
                             <option value="Done">Done</option>
@@ -65,7 +105,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12 m12 l12">
-                        <button class="right btn waves-effect waves-light indigo" type="submit" name="action"><b>UPDATE STATUS</b>
+                        <button class="right btn waves-effect waves-light indigo" type="submit" name="submit"><b>UPDATE STATUS</b>
                         </button>
                     </div>
                 </div>

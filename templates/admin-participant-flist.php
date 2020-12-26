@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["login"])){
+    header("Location: admin-login.php");
+    exit;
+}
+
+require 'functions2.php';
+
+$id = $_GET["id"];
+
+$count = query("SELECT COUNT(*) FROM event_partisipan_gratis WHERE id_event = $id");
+
+$event_data = query("SELECT * FROM event WHERE id_event = $id");
+
+$event = query("SELECT * FROM event_partisipan_gratis
+            INNER JOIN user ON event_partisipan_gratis.id_user = user.id_user
+            INNER JOIN event ON event_partisipan_gratis.id_event = event.id_event");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,20 +40,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
+                <li><a href="admin-dashboard.php" class="white-text" style="font-size: 20px;"><b>Dashboard</b></a></li>
+                <li><a href="admin-list.php" class="white-text" style="font-size: 20px;"><b>Manage Admin</b></a></li>
+                <li><a href="admin-userlist.php" class="white-text" style="font-size: 20px;"><b>Manage User</b></a></li>
+                <li><a href="admin-manage-event.php" class="white-text" style="font-size: 20px;"><b>Manage Event</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text" >Dashboard</a></li>
-        <li><a href="#" class="black-text" >Manage Admin</a></li>
-        <li><a href="#" class="black-text" >Manage User</a></li>
-        <li><a href="#" class="black-text" >Manage Event</a></li>
+        <li><a href="admin-dashboard.php" class="black-text" >Dashboard</a></li>
+        <li><a href="admin-list.php" class="black-text" >Manage Admin</a></li>
+        <li><a href="admin-userlist.php" class="black-text" >Manage User</a></li>
+        <li><a href="admin-manage-event.php" class="black-text" >Manage Event</a></li>
     </ul>
 
 
@@ -39,17 +62,22 @@
         <div class="container">
             <h4 class="center typo-1"><b>PARTICIPANT LIST</b></h4>
             <div class="row">
+                <?php foreach( $event_data as $row) : ?>
+                    <?php if( $row["id_event"] == $id ) { ?>
                 <div class="col s2 m2 l2">
-                    <img src="../static/img/logo-woc.png" class="responsive-img">
+                    <img src="../static/img/<?= $row["poster_event"] ?>" class="responsive-img">
                 </div>
                 <div class="col s10 m10 l10">
-                    <p>Words of Courage</p>
-                    <p>Free</p>
-                    <p>20 September 2020 Zoom meeting</p>
-                </div>
+                    <p><?= $row["nama_event"] ?></p>
+                    <p>Gratis</p>
+                    <p><?= $row["tanggal_event"] ?>  <?= $row["tempat_event"] ?></p>
+                    <?php } ?>
+                <?php endforeach; ?>
+                <?php foreach( $count as $row) : ?>
                 <div class="col s12 m12 l12">
-                    <a class="waves-effect waves-teal btn-flat grey right black-text">10 PARTICIPANTS</a>
+                    <a class="waves-effect waves-teal btn-flat grey right black-text"><?= $row["COUNT(*)"] ?> PARTICIPANTS</a>
                 </div>
+                <?php endforeach; ?> 
             </div>
             <div class="row">
                 <div class="col s12 m12 l12">
@@ -71,15 +99,22 @@
                 </thead>
 
                 <tbody>
+                    <?php $i =1; ?>
+                    <?php foreach( $event as $row) : ?>
+                        <?php if( $row["id_event"] == $id ) { ?>
                     <tr>
-                        <td>1</td>
-                        <td>Zulfan Afandi</td>
-                        <td>fazul.et.gmail.com</td>
-                        <td>082376548977</td>
-                        <td>BINUS</td>
-                        <td><a class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
+                        <td><?= $i; ?></td>
+                        <td><?= $row["full_name"]; ?></td>
+                        <td><?= $row["user_email"]; ?></td>
+                        <td><?= $row["phone_number"]; ?></td>
+                        <td><?= $row["instansi"]; ?></td>
+                        <td><a href="admin-delete-flist.php?del=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>" onclick="
+                            return confirm('Apakah Anda yakin?');" class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
                         <td><a class="black-text"><i class="green-text accent-2-text material-icons">mail</i></a></td>
                     </tr>
+                        <?php } ?>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

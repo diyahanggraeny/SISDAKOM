@@ -1,3 +1,18 @@
+<?php
+require 'functions2.php';
+
+$events = query("SELECT * FROM event");
+
+$idevent = $_GET["idevent"];
+$result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
+
+if (!isset($idevent)){
+  header("Location: guest-events.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,52 +31,49 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
+                <li><a href="user-home.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
+                <li><a href="user-events.php" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
+                <li><a href="user-message.php" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
+                <li><a href="user-profile-info.php" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text">Home</a></li>
-        <li><a href="#" class="black-text">Events</a></li>
-        <li><a href="#" class="black-text">Messages</a></li>
-        <li><a href="#" class="black-text">Profile</a></li>
+        <li><a href="user-home.php" class="black-text">Home</a></li>
+        <li><a href="user-events.php" class="black-text">Events</a></li>
+        <li><a href="user-message.php" class="black-text">Messages</a></li>
+        <li><a href="user-profile-info.php" class="black-text">Profile</a></li>
     </ul>
 
 
     <main class="main">
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="row">
             <div class="col s12 l3">
-                <img class="image3" src="../static/img/logo-thewalls.png">
+                <img class="image3" src="../static/img/<?= $row['poster_event'];?>">
             </div>
             <div class="col s12 l9">
                 <br><br><br>
-                <a class="blue-text font1"><b>The Walls</b></a>
+                <a class="blue-text font1"><b><?= $row['nama_event'];?></b></a>
                 <br>
-                <a class="blue-text font2"><b> 25 September 2020 </b></a>
+                <a class="blue-text font2"><b><?= $row['tanggal_event'];?></b></a>
                 <br>
-                <a class="blue-text font2"><b> 17.00 - 19.00 </b></a>
+                <a class="blue-text font2"><b><?= $row['waktu_event'];?></b></a>
                 <br>
-                <a class="blue-text font2"><b> GDS 608, UNJ </b></a>
+                <a class="blue-text font2"><b><?= $row['tempat_event'];?></b></a>
             </div>
         </div>
         <div class="row">
                 <p class="font2" style="margin-left: 50px;">
-                    The Walls akan mengadakan suatu workshop pembuatan website yang akan diadakan di GDS 608, UNJ.
-                    Yuk, ikutan workshop ini untuk mendapatkan ilmu yang bermanfaat serta benefit lainnya.
-                    <br><br>
-                    What you get: <br>
-                    - Snack <br>
-                    - E-Certificate
+                <?= $row['informasi_event'];?>
                 
-                <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b>Rp50.000</b></a> <br>
+                <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b><?= $row['htm'];?></b></a> <br>
                 <a href="#" class="white-text blue btn" style="font-size: 20px; float: right; margin-right: 30px;"><b>Register</b></a>
                 </p>
         </div>
+        <?php endwhile; ?>
     </main>
 
     <footer class="blue">

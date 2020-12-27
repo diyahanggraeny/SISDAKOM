@@ -17,20 +17,20 @@
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Message</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
+                <li><a href="user-home.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
+                <li><a href="user-events.php" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
+                <li><a href="user-message.php" class="white-text" style="font-size: 20px;"><b>Message</b></a></li>
+                <li><a href="user-profile-info.php" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
             </ul>
         </div>
     </nav>
 
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="#" class="black-text" >Home</a></li>
-        <li><a href="#" class="black-text" >Events</a></li>
-        <li><a href="#" class="black-text" >Message</a></li>
-        <li><a href="#" class="black-text" >Profile</a></li>
+        <li><a href="user-home.php" class="black-text" >Home</a></li>
+        <li><a href="user-events.php" class="black-text" >Events</a></li>
+        <li><a href="user-message.php" class="black-text" >Message</a></li>
+        <li><a href="user-profile-info.php" class="black-text" >Profile</a></li>
     </ul>
 
 

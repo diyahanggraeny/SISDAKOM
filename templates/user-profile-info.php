@@ -26,28 +26,29 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
       <title>Profile - Account Information</title>
     </head>
 
-    <body>
+    <body class="white">
 
       <!--Navbar-->
-         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container">
-              <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="index.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
+      <nav class="blue">
+        <div class="nav-wrapper">
+            <a><img class="first-logo" src="../static/img/profile.png"></a>
+            <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="user-home.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
                 <li><a href="user-events.php" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
                 <li><a href="user-message.php" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
                 <li><a href="user-profile-info.php" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
-              </ul>
-            </div>
-        </nav>
-
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="index.php" class="black-text">Home</a></li>
-            <li><a href="user-events.php" class="black-text">Events</a></li>
-            <li><a href="user-message.php" class="black-text">Message</a></li>
-            <li><a href="user-profile-info.php" class="black-text">Profile</a></li>
-        </ul>
+            </ul>
+        </div>
+    </nav>
+    
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="user-home.php" class="black-text">Home</a></li>
+        <li><a href="user-events.php" class="black-text">Events</a></li>
+        <li><a href="user-message.php" class="black-text">Messages</a></li>
+        <li><a href="user-profile-info.php" class="black-text">Profile</a></li>
+    </ul>
 
 <!--Main Page-->
 <div class="container">
@@ -55,7 +56,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
     
       <div class="col s3 card-panel blue lighten-4">
         <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
-          <img class="responsive-img" src="img/profile.png" style="margin-top: 20px;">
+          <img class="responsive-img" src="../static/img/profile.png" style="margin-top: 20px;">
           <h5 class="blue-text bold center"><?= $row["full_name"]; ?></h5>
           <div class="collection">
             <a href="user-profile-info.php" class="collection-item active white-text blue">Account Information</a>
@@ -63,7 +64,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
             <a href="user-profile-changed-password.php" class="collection-item white-text blue">Changed Password</a>
           </div>
             <div class="center">
-              <a href="index.php" class="white-text btn blue" style="margin-bottom: 20px;">Logout</a>
+              <a href="logout.php" class="white-text btn blue" style="margin-bottom: 20px;">Logout</a>
             </div>
             
       </div>
@@ -92,7 +93,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
     <div class="container">
       <div class="row">
         <div class="col l4 s12">
-          <h5 class="white-text">CAbout</h5>
+          <h5 class="white-text">About</h5>
           <p class="white-text">A website that provide platform for Computer Science events on State University of Jakarta</p>
         </div>
         <div class="col l4 s12">

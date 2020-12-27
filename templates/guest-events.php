@@ -54,9 +54,9 @@ $events = query("SELECT * FROM event");
                     <br>
                     <a class="blue-text font4 center">Rp <?= $row["htm"]; ?></a>
                     <br><br>
-                    <a href="user-eventdetail.php" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
+                    <a href="guest-eventdetail.php?idevent=<?= $row['id_event'];?>" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
                     <br>
-                    <a href="user-register-and-payment.php" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
+                    <a href="user-register-and-payment.php?" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
                 </div>
             </div>
         <?php endforeach; ?>

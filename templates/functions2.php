@@ -7,7 +7,7 @@ $conn = mysqli_connect("localhost","root","","sisdakom");
 function query($query) {
     global $conn;
     $result = mysqli_query($conn, $query);
-    $row = [];
+    $rows = [];
     while( $row = mysqli_fetch_assoc($result) ){
         $rows[] = $row;
     }
@@ -310,6 +310,30 @@ function hapusplist($id) {
     return mysqli_affected_rows($conn);
 }
 
+function ubahuser($data) {
+    global $conn;
+
+    $id_user = $data["id_user"];
+    $full_name = htmlspecialchars($data["full_name"]);
+    $user_email = htmlspecialchars($data["user_email"]);
+    $user_username = strtolower(stripcslashes($data["user_username"]));
+    $instansi = htmlspecialchars($data["instansi"]);
+    $angkatan = htmlspecialchars($data["angkatan"]);
+
+    $query = "UPDATE user SET 
+    user_username = '$user_username',
+    full_name = '$full_name',
+    user_email = '$user_email',
+    user_picture = '$user_picture',
+    instansi = '$instansi',
+    angkatan = '$angkatan' 
+    WHERE id_user = $id_user";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
+}
 
 function ubahstatpembayaran($data) {
     global $conn;
@@ -334,6 +358,5 @@ function hapusflist($id) {
 
     return mysqli_affected_rows($conn);
 }
-
 
 ?>

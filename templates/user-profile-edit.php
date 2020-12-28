@@ -6,7 +6,10 @@ if( !isset($_SESSION["loginsubmit"])){
     exit;
 }
 
+
 require 'functions2.php';
+
+$id = $_GET["id"];
 
 // cek tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ){
@@ -15,7 +18,7 @@ if( isset($_POST["submit"]) ){
         echo "
             <script>
                 alert('Data berhasil diubah!');
-                document.location.href = 'user-profile-info.php';
+                document.location.href = 'user-profile-info.php?id=$id';
             </script>
         
         ";
@@ -23,13 +26,12 @@ if( isset($_POST["submit"]) ){
         echo "
             <script>
                 alert('Data gagal diubah!');
-                document.location.href = 'user-profile-edit.php';
+                document.location.href = 'user-profile-edit.php?id=$id';
             </script>
     
     "; }
 }
 
-$id = $_GET["id"];
 
 $mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
 

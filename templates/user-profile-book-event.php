@@ -11,6 +11,13 @@ require 'functions2.php';
 $id_user = $_SESSION["loginsubmit"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 
+$events = query("SELECT * FROM event");
+
+$idevent = $_GET["idevent"];
+$mahabesar = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -75,15 +82,18 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
           </ul>
         </div>
         <div class="col s3">
-          <img class="responsive-img" src="../static/img/logo-thewalls.png" style="margin-top: 20px; margin-left: 20px;">
+          <?php while ($rows = mysqli_fetch_assoc($mahabesar)): ?>
+          <img class="responsive-img" src="../static/img/<?= $rows['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
         </div>
         <div class="col s6">
-          <h4 class="blue-text" style="margin-left: 10px;">The Walls Seminar</h4>
-          <h5 class="blue-text" style="margin-left: 10px;">3 November 2020</h5>
-          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;">GDS 505, UNJ</h5>
-          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;">Rp 100.000</h5>
+          <h4 class="blue-text" style="margin-left: 10px;"><?= $rows['nama_event'];?></h4>
+          <h5 class="blue-text" style="margin-left: 10px;"><?= $rows['tanggal_event'];?></h5>
+          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $rows['waktu_event'];?></h5>
+          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $rows['tempat_event'];?></h5>
+          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $rows['waktu_event'];?></h5>
           <a href="user-book-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
         </div>
+        <?php endwhile; ?>
     </div>
 </div>
 

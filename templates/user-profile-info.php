@@ -61,7 +61,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
           <div class="collection">
             <a href="user-profile-info.php" class="collection-item active white-text blue">Account Information</a>
             <a href="user-profile-book-event.php" class="collection-item white-text blue">My Events</a>
-            <a href="user-profile-changed-password.php" class="collection-item white-text blue">Changed Password</a>
+            <a href="user-profile-changed-password.php?id=<?= $row['id_user']; ?>" class="collection-item white-text blue">Changed Password</a>
           </div>
             <div class="center">
               <a href="logout.php" class="white-text btn blue" style="margin-bottom: 20px;">Logout</a>

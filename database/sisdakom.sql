@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Des 2020 pada 01.54
+-- Waktu pembuatan: 28 Des 2020 pada 10.47
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `admin_name`, `admin_email`, `admin_username`, `admin_password`, `admin_picture`) VALUES
 (6, 'ilmu komputer 2017', 'ilmukomputer2017@gmail.com', 'admin_ilkom17', '$2y$10$WCgoxyU1FgGm2FBfFlmhHuaUH1ZWE9AlmqVrPN1vkZuPhH.05QJym', '5fe2f7e3a6b07.png'),
-(8, 'ilmu komputer 2018', 'ilmukomputer2018@gmail.com', 'admin_ilkom18', '$2y$10$QArkdu5BlLK5xSacZPHOpebu7L1t2j.3CTwFq85DvU2XLUqWQ37gW', '5fe2f8eed0e60.png');
+(8, 'ilmu komputer 2018', 'ilmukomputer2018@gmail.com', 'admin_ilkom18', '$2y$10$QArkdu5BlLK5xSacZPHOpebu7L1t2j.3CTwFq85DvU2XLUqWQ37gW', '5fe6cbcb38f8d.png');
 
 -- --------------------------------------------------------
 
@@ -70,8 +70,23 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informasi_event`, `tanggal_event`, `waktu_event`, `tempat_event`, `max_partisipan`, `poster_event`, `status_event`) VALUES
 (23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'Cancel'),
-(30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 10, '5fe44313c860d.jpg', 'On Process'),
-(32, 'ttth', 10000, 'Online', 'hghg', '2020-12-26', '11:21', 'ghgh', 21, '5fe567a2ce164.jpg', 'On Process');
+(30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 10, '5fe44313c860d.jpg', 'On Process');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `event_detail`
+--
+
+CREATE TABLE `event_detail` (
+  `id_detail` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `judul_pesan` varchar(255) NOT NULL,
+  `isi_pesan` varchar(1000) NOT NULL,
+  `file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -110,7 +125,7 @@ CREATE TABLE `event_partisipan_gratis` (
 --
 
 INSERT INTO `event_partisipan_gratis` (`id_partisipan`, `id_event`, `id_user`) VALUES
-(1, 30, 1);
+(2, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -187,6 +202,12 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`id_event`);
 
 --
+-- Indeks untuk tabel `event_detail`
+--
+ALTER TABLE `event_detail`
+  ADD PRIMARY KEY (`id_detail`);
+
+--
 -- Indeks untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
@@ -240,6 +261,12 @@ ALTER TABLE `event`
   MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT untuk tabel `event_detail`
+--
+ALTER TABLE `event_detail`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
@@ -249,7 +276,7 @@ ALTER TABLE `event_partisipan_bayar`
 -- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`
 --
 ALTER TABLE `event_partisipan_gratis`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`

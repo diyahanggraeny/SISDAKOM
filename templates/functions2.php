@@ -359,4 +359,96 @@ function hapusflist($id) {
     return mysqli_affected_rows($conn);
 }
 
+
+function uploadeventdetail() {
+    $namaFile = $_FILES['file']['name'];
+    $ukuranFile = $_FILES['file']['size'];
+    $error = $_FILES['file']['error'];
+    $tmpName = $_FILES['file']['tmp_name'];
+
+    //cek apakah tidak ada gambar yg diupload
+    if( $error === 4 ) {
+        echo "
+            <script>
+                alert('Pilih gambar terlebih dahulu!');
+            </script>";
+        return false;
+    } 
+
+    // cek apakah yg diupload gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+        echo "
+            <script>
+                alert('File yang Anda upload bukan gambar!');
+            </script>";
+        return false;
+    }
+
+    // cek ukuran file
+    if( $ukuranFile > 5000000 ) {
+        echo "
+            <script>
+                alert('Ukuran gambar terlalu besar!');
+            </script>";
+        return false;
+    }
+
+    //siap diupload
+    // generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+
+    move_uploaded_file($tmpName, '../static/img/' . $namaFileBaru);
+
+    return $namaFileBaru;
+
+}
+
+
+function tambaheventdetail($data) {
+    global $conn;
+
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_admin = htmlspecialchars($data["id_admin"]);
+    $id_event = htmlspecialchars($data["id_event"]);
+    $judul_pesan = htmlspecialchars($data["judul_pesan"]);
+    $isi_pesan = htmlspecialchars($data["isi_pesan"]);
+
+    //cek apa user memilih gambar atau tidak
+    if( $_FILES['file']['error'] == 4 ) {
+        $file = 'None';
+    }else {
+        $file = uploadeventdetail();
+    }
+
+    $query = "INSERT INTO event_detail VALUES('','$id_user','$id_admin','$id_event','$judul_pesan','$isi_pesan','$file',NOW())";
+    
+    $status = mysqli_query($conn, $query);
+
+    if( !$status) {
+        echo "
+            <script>
+                alert('Gagal insert data!');
+            </script>";
+        return false;
+    }
+
+
+    return mysqli_affected_rows($conn);
+
+}
+
+function hapuseventdetail($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM event_detail WHERE id_detail = $id");
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>

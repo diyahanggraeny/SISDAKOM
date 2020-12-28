@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["loginsubmit"])){
+    header("Location: login.php");
+    exit;
+}
+
+require 'functions2.php';
+
+$id_user = $_SESSION["loginsubmit"];
+$result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+
+?>
+
 <!DOCTYPE html>
   <html>
     <head>
@@ -11,42 +26,46 @@
       <title>Register & Payments</title>
     </head>
 
-    <body>
+    <body class="white">
 
       <!--Navbar-->
-         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container">
-              <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
-                <li><a href="#" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
-              </ul>
-            </div>
-        </nav>
-
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="#" class="black-text">Home</a></li>
-            <li><a href="#" class="black-text">Events</a></li>
-            <li><a href="#" class="black-text">Message</a></li>
-            <li><a href="#" class="black-text">Profile</a></li>
-        </ul>
+      <nav class="blue">
+        <div class="nav-wrapper">
+            <a><img class="first-logo" src="../static/img/profile.png"></a>
+            <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="user-home.php" class="white-text" style="font-size: 20px;"><b>Home</b></a></li>
+                <li><a href="user-events.php" class="white-text" style="font-size: 20px;"><b>Events</b></a></li>
+                <li><a href="user-message.php" class="white-text" style="font-size: 20px;"><b>Messages</b></a></li>
+                <li><a href="user-profile-info.php" class="white-text" style="font-size: 20px;"><b>Profile</b></a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="user-home.php" class="black-text">Home</a></li>
+        <li><a href="user-events.php" class="black-text">Events</a></li>
+        <li><a href="user-message.php" class="black-text">Messages</a></li>
+        <li><a href="user-profile-info.php" class="black-text">Profile</a></li>
+    </ul>
 
 <!--Halaman Utama-->
 <div class="container">
   <div class="row">
+
     <div class="col s2 l3">
-      <img class="responsive-img" src="img/the_walls.jpeg" style="margin-top: 20px;">
+      <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
+      <img class="responsive-img" src="../static/img/logo-thewalls.png" style="margin-top: 20px;">
       <h6 class="blue-text bold">Full Name</h6>
-      <h5 class="black-text">Rose Azalea</h5>
+      <h5 class="black-text"><?= $row["full_name"]; ?></h5>
       <h6 class="blue-text bold">Email</h6>
-      <h5 class="black-text">roseazalea@mail.com</h5>
+      <h5 class="black-text"><?= $row["user_email"]; ?></h5>
       <h6 class="blue-text bold">Instansi</h6>
-      <h5 class="black-text">Universitas Negeri Jakarta</h5>
+      <h5 class="black-text"><?= $row["instansi"]; ?></h5>
       <h6 class="blue-text bold">Year</h6>
-      <h5 class="black-text">2018</h5>
+      <h5 class="black-text"><?= $row["angkatan"]; ?></h5>
+      <?php endwhile; ?>
     </div>
     <div class="col s4 l4">
       <h4 class="blue-text bold">The Walls Seminar</h4>
@@ -69,7 +88,8 @@
           </div>
         </div>
       </form>
-      <a class="white-text btn-large blue" style="margin-top: 50px;">Submit</a>
+      <button class="center btn waves-effect waves-light indigo" type="submit" name="submit"><b>Submit</b>
+        </button>
     </div>
   </div>
 </div>

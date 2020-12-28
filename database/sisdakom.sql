@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Des 2020 pada 10.47
+-- Waktu pembuatan: 28 Des 2020 pada 14.49
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -85,8 +85,16 @@ CREATE TABLE `event_detail` (
   `id_event` int(11) NOT NULL,
   `judul_pesan` varchar(255) NOT NULL,
   `isi_pesan` varchar(1000) NOT NULL,
-  `file` varchar(255) NOT NULL
+  `file` varchar(255) NOT NULL,
+  `timedate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `event_detail`
+--
+
+INSERT INTO `event_detail` (`id_detail`, `id_user`, `id_admin`, `id_event`, `judul_pesan`, `isi_pesan`, `file`, `timedate`) VALUES
+(12, 1, 8, 30, 'link webinar', 'link zoom ', 'None', '2020-12-28 13:23:29');
 
 -- --------------------------------------------------------
 
@@ -106,7 +114,7 @@ CREATE TABLE `event_partisipan_bayar` (
 --
 
 INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `id_pembayaran`) VALUES
-(16, 1, 23, 1);
+(17, 1, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -205,7 +213,10 @@ ALTER TABLE `event`
 -- Indeks untuk tabel `event_detail`
 --
 ALTER TABLE `event_detail`
-  ADD PRIMARY KEY (`id_detail`);
+  ADD PRIMARY KEY (`id_detail`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_admin` (`id_admin`),
+  ADD KEY `id_event` (`id_event`);
 
 --
 -- Indeks untuk tabel `event_partisipan_bayar`
@@ -264,13 +275,13 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT untuk tabel `event_detail`
 --
 ALTER TABLE `event_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`

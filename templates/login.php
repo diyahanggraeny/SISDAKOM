@@ -2,6 +2,20 @@
 session_start();
 require 'functions2.php';
 
+if (isset($_COOKIE["id"]) && isset($_COOKIE['key'])) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    // Ambil username berdasarkan id
+    $result = mysqli_query($conn, "SELECT user_username FROM user WHERE id_user = $id");
+    $row = mysqli_fetch_assoc($result);
+
+    // Cek cookie dan username
+    if ($key === hash('sha256', $row['user_username'])){
+        $_SESSION['loginsubmit'] = true;
+    }
+}
+
 if (isset($_SESSION["loginsubmit"])) {
     header("Location: user-home.php");
     exit;
@@ -21,7 +35,16 @@ if (isset($_POST["loginsubmit"])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($user_password, $row["user_password"])) {
 
+            // Set session
             $_SESSION["loginsubmit"] = $row["id_user"];
+
+            // Cek Remember Me
+            if (isset($_POST["remember"])) {
+                // Buat Cookie
+                setcookie('id', $row['id_user'], time()+60);
+                setcookie('key', hash('sha256', $row['user_username']), time()+60);
+            }
+
             header("Location: user-home.php");
             exit;
         }
@@ -93,6 +116,13 @@ if (isset($_POST["loginsubmit"])) {
                                         Login
                                     </b>
                                 </button>
+                            <br><br>
+                                <p>
+                                <label for="remember">
+                                    <input type="checkbox" id="remember" name="remember" />
+                                    <span>Remember Me</span>
+                                </label>
+                                </p>
                             </form>
                             <br><br>
                             <div class="forget password">

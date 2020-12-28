@@ -8,8 +8,32 @@ if( !isset($_SESSION["loginsubmit"])){
 
 require 'functions2.php';
 
+// cek tombol submit sudah ditekan atau belum
+if( isset($_POST["submit"]) ){
+    // cek apakah data berhasil ubah atau tidak
+    if ( ubahpass($_POST) > 0 ) {
+        echo "
+            <script>
+                alert('Password berhasil diubah!');
+                document.location.href = 'user-profile-info.php';
+            </script>
+        
+        ";
+    } else {
+        echo "
+            <script>
+                alert('Password gagal diubah!');
+                document.location.href = 'user-profile-edit.php';
+            </script>
+    
+    "; }
+}
+
 $id_user = $_SESSION["loginsubmit"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+
+$id = $_GET["id"];
+$mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
 
 ?>
 
@@ -68,25 +92,30 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
             <?php endwhile; ?>
       </div>
       <div class="col s9">
+        <form action="user-profile-changed-password.php" method="post" enctype="multipart/form-data">
           <div class="row">
+            <input  name="id_user" type="hidden" value="<?= $mhs["id_user"]; ?>">
             <div class="input-field col s10" style="margin-left: 15px; margin-top: 20px;">
-              <input id="password1" type="password" class="validate">
-              <label for="password1">Current Password</label>
+              
+              <input id="user_password" name="user_password" type="password" class="validate" required>
+              <label class="active" for="user_password">Current Password</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s10" style="margin-left: 15px;">
-              <input id="password2" type="password" class="validate">
-              <label for="password2">New Password</label>
+              <input id="new_password" name="new_password" type="password" class="validate">
+              <label class="active" for="newpassword">New Password</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s10" style="margin-left: 15px;">
-              <input id="password3" type="password" class="validate">
-              <label for="password3">Confirm New Password</label>
+              
+              <input id="confirmpassword" name="confirmpassword" type="password" class="validate">
+              <label class="active" for="confirmpassword">Confirm New Password</label>
             </div>
           </div>
-          <a class="center white-text btn blue" style="margin-top: 115px; margin-left: 10px;">Changed Password</a>
+          <button class="center btn waves-effect waves-light indigo" type="submit" name="submit"><b>Save</b>
+        </button>
       </div>
     </div>
 </div>

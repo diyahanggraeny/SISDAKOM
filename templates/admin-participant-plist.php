@@ -19,6 +19,18 @@ $event = query("SELECT * FROM event_partisipan_bayar
             INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event 
             INNER JOIN pembayaran ON event_partisipan_bayar.id_pembayaran = pembayaran.id_pembayaran");
 
+
+if( !isset($event)){
+    echo "
+            <script>
+                alert('Event ini belum memiliki partisipan!');
+                window.location.href = 'admin-manage-event.php';
+            </script>
+        
+        ";
+    exit;
+}
+
 ?>
 
 
@@ -81,11 +93,6 @@ $event = query("SELECT * FROM event_partisipan_bayar
                 </div>
                 <?php endforeach; ?> 
             </div>
-            <div class="row">
-                <div class="col s12 m12 l12">
-                    <a class="waves-effect waves-teal btn-flat green accent-2 right black-text"><i class="right material-icons">mail</i>Message All</a>
-                </div>
-            </div>
             <table class="centered responsive-table">
                 <thead>
                     <tr>
@@ -114,8 +121,8 @@ $event = query("SELECT * FROM event_partisipan_bayar
                         <td><?= $row["status_pembayaran"]; ?></td>
                         <td><a href="admin-delete-plist.php?del=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>" onclick="
                             return confirm('Apakah Anda yakin?');" class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
-                        <td><a class="black-text"><i class="green-text accent-2-text material-icons">mail</i></a></td>
-                        <td><a href="admin-status.php?id=<?= $row["id_pembayaran"]; ?>">Check Payment</a></td>
+                        <td><a href="admin-event-detail.php?id_user=<?= $row["id_user"]; ?>&id_event=<?= $id ?>" class="black-text"><b><i class="green-text accent-2-text material-icons">mail</i></b></a></td>
+                        <td><a href="admin-status.php?bayar=<?= $row["id_pembayaran"]; ?>&id=<?= $id ?>">Check Payment</a></td>
                     </tr>
                         <?php } ?>
                     <?php $i++; ?>

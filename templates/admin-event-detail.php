@@ -8,25 +8,18 @@ if( !isset($_SESSION["login"])){
 
 require 'functions2.php';
 
-$id = $_GET["id"];
+$id_user = $_GET["id_user"];
+$id_event = $_GET["id_event"];
 
-$count = query("SELECT COUNT(*) FROM event_partisipan_gratis WHERE id_event = $id");
 
-$event_data = query("SELECT * FROM event WHERE id_event = $id");
-
-$event = query("SELECT * FROM event_partisipan_gratis
-            INNER JOIN user ON event_partisipan_gratis.id_user = user.id_user
-            INNER JOIN event ON event_partisipan_gratis.id_event = event.id_event");
+$event = query("SELECT * FROM event_detail
+            INNER JOIN user ON event_detail.id_user = user.id_user
+            INNER JOIN event ON event_detail.id_event = event.id_event 
+            INNER JOIN admin ON event_detail.id_admin = admin.id_admin");
 
 
 if( !isset($event)){
-    echo "
-            <script>
-                alert('Event ini belum memiliki partisipan!');
-                window.location.href = 'admin-manage-event.php';
-            </script>
-        
-        ";
+    header("Location: admin-add-event-detail.php?id_user=$id_user&id_event=$id_event");
     exit;
 }
 
@@ -38,7 +31,7 @@ if( !isset($event)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participant List</title>
+    <title>Event Detail</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css//materialize.css">
@@ -72,55 +65,33 @@ if( !isset($event)){
     <main class="white">
         <br>
         <div class="container">
-            <h4 class="center typo-1"><b>PARTICIPANT LIST</b></h4>
-            <div class="row">
-                <?php foreach( $event_data as $row) : ?>
-                    <?php if( $row["id_event"] == $id ) { ?>
-                <div class="col s2 m2 l2">
-                    <img src="../static/img/<?= $row["poster_event"] ?>" class="responsive-img">
-                </div>
-                <div class="col s10 m10 l10">
-                    <p><?= $row["nama_event"] ?></p>
-                    <p>Gratis</p>
-                    <p><?= $row["tanggal_event"] ?>  <?= $row["tempat_event"] ?></p>
-                    <?php } ?>
-                <?php endforeach; ?>
-                <?php foreach( $count as $row) : ?>
-                <div class="col s12 m12 l12">
-                    <a class="waves-effect waves-teal btn-flat grey right black-text"><?= $row["COUNT(*)"] ?> PARTICIPANTS</a>
-                </div>
-                <?php endforeach; ?> 
+            <h4 class="center typo-1"><b>EVENT DETAIL</b></h4>
+            <div>
+                <a href="admin-add-event-detail.php?id_user=<?= $id_user ?>&id_event=<?= $id_event ?>" class="btn-floating btn-large waves-effect waves-light green accent-2 right"><i class="black-text material-icons">add</i></a>
             </div>
             <table class="centered responsive-table">
                 <thead>
                     <tr>
-                        <th>NO</th>
-                        <th>NAME</th>
-                        <th>E-MAIL</th>
-                        <th>NO.HP</th>
-                        <th>INSTANSI</th>
-                        <th></th>
-                        <th></th>
+                        <th>WAKTU</th>
+                        <th>JUDUL</th>
+                        <th>ISI PESAN</th>
+                        <th>ISI FILE</th>
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <?php $i =1; ?>
                     <?php foreach( $event as $row) : ?>
-                        <?php if( $row["id_event"] == $id ) { ?>
+                        <?php if( $row["id_event"] == $id_event and $row["id_user"] == $id_user and $row["id_admin"] == $_SESSION["login"] ) { ?>
                     <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $row["full_name"]; ?></td>
-                        <td><?= $row["user_email"]; ?></td>
-                        <td><?= $row["phone_number"]; ?></td>
-                        <td><?= $row["instansi"]; ?></td>
-                        <td><a href="admin-delete-flist.php?del=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>" onclick="
-                            return confirm('Apakah Anda yakin?');" class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
-                        <td><a href="admin-event-detail.php?id_user=<?= $row["id_user"]; ?>&id_event=<?= $id ?>" class="black-text"><b><i class="green-text accent-2-text material-icons">mail</i></b></a></td>
+                        <td><?= $row["timedate"]; ?></td>
+                        <td><?= $row["judul_pesan"]; ?></td>
+                        <td><?= $row["isi_pesan"]; ?></td>
+                        <td><?= $row["file"]; ?></td>
+                        <td><a href="admin-delete-event-detail.php?id_user=<?= $id_user ?>&id_event=<?= $id_event ?>&id=<?= $row["id_detail"]; ?>" onclick="
+                            return confirm('Apakah Anda yakin?');" class="black-text"><b><i class="green-text accent-2-text material-icons">delete</i></b></a></td>
                     </tr>
                         <?php } ?>
-                    <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>

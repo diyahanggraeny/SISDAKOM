@@ -21,7 +21,7 @@ if (isset($_POST["loginsubmit"])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($user_password, $row["user_password"])) {
 
-            $_SESSION["loginsubmit"] = true;
+            $_SESSION["loginsubmit"] = $row["id_user"];
             header("Location: user-home.php");
             exit;
         }

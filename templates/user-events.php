@@ -7,7 +7,14 @@ if (!isset($_SESSION["loginsubmit"])) {
     exit;
 }
 
-$events = query("SELECT * FROM event");
+// Konfigurasi Pagination
+$JumlahDataperHalaman = 5;
+$JumlahData = count(query("SELECT * FROM event"));
+$JumlahHalaman = ceil($JumlahData / $JumlahDataperHalaman);
+$ActivePage = (isset($_GET["page"])) ? $_GET["page"]:1 ;
+$AwalData = ($JumlahDataperHalaman * $ActivePage) - $JumlahDataperHalaman;
+
+$events = query("SELECT * FROM event LIMIT $AwalData, $JumlahDataperHalaman");
 
 ?>
 
@@ -47,7 +54,7 @@ $events = query("SELECT * FROM event");
 
 
     <main class="main">
-        <div class="row" style="margin-left: 100px;">
+        <div class="row center-align" style="margin-left: 100px;">
         <?php foreach($events as $row) : ?>
             <div class="col l2 s12" style="margin-top: 25px;">
                 <div class="card border1 center-align">
@@ -70,13 +77,23 @@ $events = query("SELECT * FROM event");
 
         <div class="row">
             <ul class="pagination center-align">
+            <?php if($ActivePage == 1): ?>
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active blue"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="#!">3</a></li>
-                <li class="waves-effect"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            <?php else: ?>
+                <li><a href="?page=<?= $ActivePage - 1; ?>"><i class="material-icons">chevron_left</i></a></li>
+            <?php endif; ?>
+            <?php for($i = 1; $i <= $JumlahHalaman; $i++): ?>
+                <?php if( $i == $ActivePage): ?>
+                    <li class="active blue"><a href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                <?php else: ?>
+                    <li class="waves-effect"><a href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                <?php endif; ?>
+            <?php endfor; ?>
+            <?php if($ActivePage == $JumlahHalaman): ?>
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            <?php else: ?>
+                <li><a href="?page=<?= $ActivePage + 1; ?>"><i class="material-icons">chevron_right</i></a></li>
+            <?php endif; ?>
             </ul>
         </div>
     </main>

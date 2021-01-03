@@ -8,6 +8,16 @@ if( !isset($_SESSION["loginsubmit"])){
 
 require 'functions2.php';
 
+$events = query("SELECT * FROM event");
+
+$idevent = $_GET["idevent"];
+$eventresult = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
+
+if (!isset($idevent)){
+  header("Location: guest-events.php");
+    exit;
+}
+
 $id_user = $_SESSION["loginsubmit"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 
@@ -51,12 +61,18 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
     </ul>
 
 <!--Halaman Utama-->
-<div class="container">
   <div class="row">
-
-    <div class="col s2 l3">
+    <?php while ($eventlist = mysqli_fetch_assoc($eventresult)): ?>
+    <div class="col s12 l5 center-align">
+    <img class="image3" src="../static/img/<?= $eventlist['poster_event'];?>">
+      <h4 class="blue-text bold"><?= $eventlist['nama_event'];?></h4>
+      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;"><?= $eventlist['tanggal_event'];?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $eventlist['waktu_event'];?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $eventlist['tempat_event'];?></h5>
+    </div>
+    <?php endwhile; ?>
+    <div class="col s12 l3">
       <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
-      <img class="responsive-img" src="../static/img/logo-thewalls.png" style="margin-top: 20px;">
       <h6 class="blue-text bold">Full Name</h6>
       <h5 class="black-text"><?= $row["full_name"]; ?></h5>
       <h6 class="blue-text bold">Email</h6>
@@ -67,14 +83,8 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
       <h5 class="black-text"><?= $row["angkatan"]; ?></h5>
       <?php endwhile; ?>
     </div>
-    <div class="col s4 l4">
-      <h4 class="blue-text bold">The Walls Seminar</h4>
-      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;">25 September 2020</h5>
-      <h5 class="blue-text bold" style="font-size: 20px;">17.00 - 19.00</h5>
-      <h5 class="blue-text bold" style="font-size: 20px;">GDS 608, UNJ</h5>
-    </div>
-    <div class="col s6 l5">
-      <h5 class="black-text bold" style="font-size: 22px; margin-top: 20px;">
+    <div class="col s12 l4">
+      <h5 class="black-text bold" style="font-size: 22px; margin-top: 20px; margin-right: 10px;">
         Thank you for registering on this event. Pay for your event and submit the payment receipt. <br> Total : Rp 50.000 <br> <br> GOPAY : 085100000000 <br> DANA : 085100000000 <br> OVO : 085100000000
       </h5>
       <form action="#">

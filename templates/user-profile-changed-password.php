@@ -8,32 +8,50 @@ if( !isset($_SESSION["loginsubmit"])){
 
 require 'functions2.php';
 
-// cek tombol submit sudah ditekan atau belum
-if( isset($_POST["submit"]) ){
-    // cek apakah data berhasil ubah atau tidak
-    if ( ubahpass($_POST) > 0 ) {
+$id_user = $_SESSION["loginsubmit"];
+
+if( isset($_POST["submit"])) {
+
+  $user_password = $_POST["user_password"];
+
+  $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
+
+  // cek username
+  if( mysqli_num_rows($result) == 1 ){
+      // cek password
+      $row = mysqli_fetch_assoc($result);
+      if( password_verify($user_password, $row["user_password"]) ){
+        if ( ubahpass($_POST) > 0 ) {
+          echo "
+              <script>
+                  alert('Data berhasil diubah!');
+                  document.location.href = 'user-profile-info.php';
+              </script>
+          
+          ";
+        } else {
+          echo "
+              <script>
+                  alert('Data gagal diubah!');
+                  document.location.href = 'user-profile-changed-password.php';
+              </script>
+          "; 
+        }
+      } else {
         echo "
-            <script>
-                alert('Password berhasil diubah!');
-                document.location.href = 'user-profile-info.php';
-            </script>
-        
-        ";
-    } else {
-        echo "
-            <script>
-                alert('Password gagal diubah!');
-                document.location.href = 'user-profile-edit.php';
-            </script>
-    
-    "; }
+        <script>
+            alert('Password lama salah!');
+            document.location.href = 'user-profile-changed-password.php';
+        </script>
+    "; 
+      }
+  }
+  $error = true;
 }
 
-$id_user = $_SESSION["loginsubmit"];
-$result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+$result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
 
-$id = $_GET["id"];
-$mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
+$mhs = query("SELECT * FROM user WHERE id_user = $id_user")[0];
 
 ?>
 
@@ -92,24 +110,22 @@ $mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
             <?php endwhile; ?>
       </div>
       <div class="col s9">
-        <form action="user-profile-changed-password.php" method="post" enctype="multipart/form-data">
+        <form action="" method="post">
           <div class="row">
-            <input  name="id_user" type="hidden" value="<?= $mhs["id_user"]; ?>">
-            <div class="input-field col s10" style="margin-left: 15px; margin-top: 20px;">
-              
-              <input id="user_password" name="user_password" type="password" class="validate" required>
+              <input  name="id_user" type="hidden" value="<?= $mhs["id_user"]; ?>">
+              <div class="input-field col s10" style="margin-left: 15px; margin-top: 20px;">
+                <input id="user_password" name="user_password" type="password" class="validate" required>
               <label class="active" for="user_password">Current Password</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s10" style="margin-left: 15px;">
               <input id="new_password" name="new_password" type="password" class="validate">
-              <label class="active" for="newpassword">New Password</label>
+              <label class="active" for="new_password">New Password</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s10" style="margin-left: 15px;">
-              
               <input id="confirmpassword" name="confirmpassword" type="password" class="validate">
               <label class="active" for="confirmpassword">Confirm New Password</label>
             </div>

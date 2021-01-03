@@ -451,4 +451,35 @@ function hapuseventdetail($id) {
     return mysqli_affected_rows($conn);
 }
 
+function ubahpass($data) {
+    global $conn;
+
+    $id_user = $data["id_user"];
+    $new_password = mysqli_real_escape_string($conn, $data["new_password"]);
+    $confirmpassword = mysqli_real_escape_string($conn, $data["confirmpassword"]);
+
+
+    // Cek konfirmasi password
+    if ($new_password !== $confirmpassword){
+        echo "<script> 
+                alert('Konfirmasi password tidak sesuai');
+              </script>";
+        return false;
+    }
+
+    // Enkripsi password
+    $user_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+
+    $query = "UPDATE user SET 
+    user_password = '$user_password'
+    WHERE id_user = $id_user";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
+}
+
+
 ?>

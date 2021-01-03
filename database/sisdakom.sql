@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2020 at 08:00 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Waktu pembuatan: 03 Jan 2021 pada 22.35
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +37,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `admin_name`, `admin_email`, `admin_username`, `admin_password`, `admin_picture`) VALUES
@@ -46,7 +47,7 @@ INSERT INTO `admin` (`id_admin`, `admin_name`, `admin_email`, `admin_username`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event`
+-- Struktur dari tabel `event`
 --
 
 CREATE TABLE `event` (
@@ -64,7 +65,7 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `event`
+-- Dumping data untuk tabel `event`
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informasi_event`, `tanggal_event`, `waktu_event`, `tempat_event`, `max_partisipan`, `poster_event`, `status_event`) VALUES
@@ -79,7 +80,31 @@ INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_partisipan_bayar`
+-- Struktur dari tabel `event_detail`
+--
+
+CREATE TABLE `event_detail` (
+  `id_detail` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `judul_pesan` varchar(255) NOT NULL,
+  `isi_pesan` varchar(1000) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `timedate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `event_detail`
+--
+
+INSERT INTO `event_detail` (`id_detail`, `id_user`, `id_admin`, `id_event`, `judul_pesan`, `isi_pesan`, `file`, `timedate`) VALUES
+(12, 1, 8, 30, 'link webinar', 'link zoom ', 'None', '2020-12-28 13:23:29');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `event_partisipan_bayar`
 --
 
 CREATE TABLE `event_partisipan_bayar` (
@@ -90,7 +115,7 @@ CREATE TABLE `event_partisipan_bayar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `event_partisipan_bayar`
+-- Dumping data untuk tabel `event_partisipan_bayar`
 --
 
 INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `id_pembayaran`) VALUES
@@ -99,7 +124,7 @@ INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event_partisipan_gratis`
+-- Struktur dari tabel `event_partisipan_gratis`
 --
 
 CREATE TABLE `event_partisipan_gratis` (
@@ -109,7 +134,7 @@ CREATE TABLE `event_partisipan_gratis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `event_partisipan_gratis`
+-- Dumping data untuk tabel `event_partisipan_gratis`
 --
 
 INSERT INTO `event_partisipan_gratis` (`id_partisipan`, `id_event`, `id_user`) VALUES
@@ -118,7 +143,7 @@ INSERT INTO `event_partisipan_gratis` (`id_partisipan`, `id_event`, `id_user`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Struktur dari tabel `message`
 --
 
 CREATE TABLE `message` (
@@ -132,7 +157,7 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
+-- Struktur dari tabel `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -142,7 +167,7 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pembayaran`
+-- Dumping data untuk tabel `pembayaran`
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `bukti_pembayaran`, `status_pembayaran`) VALUES
@@ -151,7 +176,7 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `bukti_pembayaran`, `status_pembayara
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -167,11 +192,11 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `user_username`, `user_email`, `full_name`, `instansi`, `angkatan`, `user_picture`, `user_password`, `phone_number`) VALUES
-(1, 'carnation123', 'carnation123@gmail.com', 'carnation', '', '', '', '$2y$10$Z2.sesvvVWgRzC7xYEch0OQnT/F9kdZp3rcEIDcsnpXpoWMCNee2i', ''),
+(1, 'carnation123', 'carnation123@gmail.com', 'carnation', '', '', '', '$2y$10$EX.Gj39H.oJumNxVd4sCk.abphNXhWBPhxPJ9ewIEZVbyXmFGMI8e', ''),
 (2, 'azalea123', 'azalea@gmail.com', 'azalea', '', '', '', '$2y$10$MShMzBQWX1br3p8MxxxS2urqf.TBw0MQxedQfPc8ljtGKwKSzRs22', ''),
 (3, 'sapphire123', 'sapphire@gmail.com', 'sapphire', '', '', '', '$2y$10$UV7C2U5FjyNZSSYXdtzKresv0bt7zZRzl/9JLIUYU2NqEsOrhTHva', '');
 
@@ -180,19 +205,28 @@ INSERT INTO `user` (`id_user`, `user_username`, `user_email`, `full_name`, `inst
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `event`
+-- Indeks untuk tabel `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id_event`);
 
 --
--- Indexes for table `event_partisipan_bayar`
+-- Indeks untuk tabel `event_detail`
+--
+ALTER TABLE `event_detail`
+  ADD PRIMARY KEY (`id_detail`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_admin` (`id_admin`),
+  ADD KEY `id_event` (`id_event`);
+
+--
+-- Indeks untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
   ADD PRIMARY KEY (`id_partisipan`),
@@ -201,7 +235,7 @@ ALTER TABLE `event_partisipan_bayar`
   ADD KEY `id_pembayaran` (`id_pembayaran`);
 
 --
--- Indexes for table `event_partisipan_gratis`
+-- Indeks untuk tabel `event_partisipan_gratis`
 --
 ALTER TABLE `event_partisipan_gratis`
   ADD PRIMARY KEY (`id_partisipan`),
@@ -209,7 +243,7 @@ ALTER TABLE `event_partisipan_gratis`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `message`
+-- Indeks untuk tabel `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id_pesan`),
@@ -217,51 +251,64 @@ ALTER TABLE `message`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `pembayaran`
+-- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `event`
+-- AUTO_INCREMENT untuk tabel `event`
 --
 ALTER TABLE `event`
   MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
--- AUTO_INCREMENT for table `event_partisipan_bayar`
+-- AUTO_INCREMENT untuk tabel `event_detail`
+--
+ALTER TABLE `event_detail`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
   MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
--- AUTO_INCREMENT for table `event_partisipan_gratis`
+-- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`
 --
 ALTER TABLE `event_partisipan_gratis`
   MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `pembayaran`
+-- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
   MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -32,7 +32,7 @@ if( isset($_POST["submit"]) ){
     ";  }
 }
 
-$row = query("SELECT * FROM pembayaran WHERE id_pembayaran = $bayar")[0];
+$row = query("SELECT * FROM event_partisipan_bayar WHERE id_partisipan = $bayar")[0];
 
 ?>
 
@@ -80,8 +80,8 @@ $row = query("SELECT * FROM pembayaran WHERE id_pembayaran = $bayar")[0];
             <form action="" method="post">
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
-                        <h5>Nomor Pembayaran : <?= $row["id_pembayaran"]; ?> </h5>
-                        <input id="id_pembayaran" type="hidden" class="validate" name="id_pembayaran" value="<?= $row["id_pembayaran"]; ?>">
+                        <h5>Nomor Partisipan : <?= $row["id_partisipan"]; ?> </h5>
+                        <input id="id_partisipan" type="hidden" class="validate" name="id_partisipan" value="<?= $row["id_partisipan"]; ?>">
                     </div>
                 </div>
                 <div class="row">
@@ -99,7 +99,7 @@ $row = query("SELECT * FROM pembayaran WHERE id_pembayaran = $bayar")[0];
                     <div class="input-field col s12 m12 l12">
                         <h5>Status Payment</h5>
                         <select value="<?= $row["status_pembayaran"]; ?>" name="status_pembayaran">
-                            <option value="<?= $row["status_pembayaran"]; ?>" disabled selected><?= $row["status_pembayaran"]; ?></option>
+                            <option value="<?= $row["status_pembayaran"]; ?>" selected>Data Lama : <?= $row["status_pembayaran"]; ?></option>
                             <option value="On Confirmation">On Confirmation</option>
                             <option value="Paid">Paid</option>
                             <option value="Done">Done</option>

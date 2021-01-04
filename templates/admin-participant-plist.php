@@ -16,8 +16,7 @@ $event_data = query("SELECT * FROM event WHERE id_event = $id");
 
 $event = query("SELECT * FROM event_partisipan_bayar
             INNER JOIN user ON event_partisipan_bayar.id_user = user.id_user
-            INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event 
-            INNER JOIN pembayaran ON event_partisipan_bayar.id_pembayaran = pembayaran.id_pembayaran");
+            INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event");
 
 
 if( !isset($event)){
@@ -122,7 +121,7 @@ if( !isset($event)){
                         <td><a href="admin-delete-plist.php?del=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>" onclick="
                             return confirm('Apakah Anda yakin?');" class="black-text"><i class="green-text accent-2-text material-icons">delete</i></a></td>
                         <td><a href="admin-event-detail.php?id_user=<?= $row["id_user"]; ?>&id_event=<?= $id ?>" class="black-text"><b><i class="green-text accent-2-text material-icons">mail</i></b></a></td>
-                        <td><a href="admin-status.php?bayar=<?= $row["id_pembayaran"]; ?>&id=<?= $id ?>">Check Payment</a></td>
+                        <td><a href="admin-status.php?bayar=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>">Check Payment</a></td>
                     </tr>
                         <?php } ?>
                     <?php $i++; ?>

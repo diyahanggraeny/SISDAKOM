@@ -11,6 +11,13 @@ require 'functions2.php';
 $id_user = $_SESSION["loginsubmit"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 
+$events = query("SELECT * FROM event");
+
+$eventbayar = query("SELECT * FROM event_partisipan_bayar
+                  INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event WHERE status_event = 'Done'");
+
+$eventgratis = query("SELECT * FROM event_partisipan_gratis
+                  INNER JOIN event ON event_partisipan_gratis.id_event = event.id_event WHERE status_event = 'Done'");
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +60,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 <!--Main Page-->
 <div class="container">
   <div class="row">
-      <div class="col s3 card-panel blue lighten-4">
+      <div class="col s12 l3 card-panel blue lighten-4 center-align">
         <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
           <img class="responsive-img" src="../static/img/profile.png" style="margin-top: 20px;">
           <h5 class="blue-text bold center"><?= $row["full_name"]; ?></h5>
@@ -67,22 +74,37 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
             </div>
             <?php endwhile; ?>
       </div>
-      <div class="col s9">
+      <div class="col s12 l9">
           <ul class="tabs" style="margin-top: 15px;">
-            <li class="tab col s3"><a href="user-profile-book-event.php">Booked</a></li>
-            <li class="tab col s3 black"><a href="#">Finished</a></li>
+            <li class="tab col s12 l3"><a href="user-profile-book-event.php">Booked</a></li>
+            <li class="tab col s12 l3  black"><a href="user-profile-finish-event.php">Finished</a></li>
           </ul>
-        </div>
-        <div class="col s3">
-          <img class="responsive-img" src="../static/img/logo-woc.png" style="margin-top: 20px; margin-left: 20px;">
-        </div>
-        <div class="col s6">
-          <h4 class="blue-text" style="margin-left: 10px;">Words of Courage</h4>
-          <h5 class="blue-text" style="margin-left: 10px;">20 September 2020</h5>
-          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;">Zoom Meeting</h5>
-          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;">Free</h5>
-          <a href="user-finish-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
-        </div>
+          <?php foreach($eventbayar as $event) : ?>
+          <div class="col s12 l4">
+            <img class="responsive-img" src="../static/img/<?= $event['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
+          </div>
+          <div class="col s12 l8" style="margin-bottom: 100px">
+            <h5 class="blue-text" style="margin-left: 10px;"><b><?= $event['nama_event'];?></b></h5>
+            <h5 class="blue-text" style="margin-left: 10px;"><?= $event['tanggal_event'];?></h5>
+            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['tempat_event'];?></h5>
+            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['waktu_event'];?></h5>
+            <a href="user-finish-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+          </div>
+          <?php endforeach; ?>
+          <?php foreach($eventgratis as $event2) : ?>
+          <div class="col s12 l4">
+            <img class="responsive-img" src="../static/img/<?= $event2['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
+          </div>
+          <div class="col s12 l8" style="margin-bottom: 100px">
+            <h5 class="blue-text" style="margin-left: 10px;"><b><?= $event2['nama_event'];?></b></h5>
+            <h5 class="blue-text" style="margin-left: 10px;"><?= $event2['tanggal_event'];?></h5>
+            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['tempat_event'];?></h5>
+            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['waktu_event'];?></h5>
+            <a href="user-finish-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+          </div>
+          <?php endforeach; ?>
+          </div>
+      </div>
     </div>
 </div>
 

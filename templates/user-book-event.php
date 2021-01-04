@@ -8,9 +8,13 @@ if( !isset($_SESSION["loginsubmit"])){
 
 require 'functions2.php';
 
-$id_user = $_SESSION["loginsubmit"];
-$result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+$idevent = $_GET["idevent"];
+$result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
 
+if (!isset($idevent)){
+  header("Location: guest-events.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,31 +56,29 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 
 <!--Halaman Utama-->
 <div class="container">
+  <?php while ($row = mysqli_fetch_assoc($result)): ?>
   <div class="row">
-    <div class="col s3 l3">
-      <img class="responsive-img" src="../static/img/logo-thewalls.png" style="margin-top: 20px;">
+    <div class="col s12 l3">
+      <img class="responsive-img" src="../static/img/<?= $row['poster_event'];?>" style="margin-top: 20px;">
     </div>
-    <div class="col s4 l5">
-      <h4 class="blue-text bold">The Walls Seminar</h4>
-      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;">3 November 2020</h5>
-      <h5 class="blue-text bold" style="font-size: 20px;">13.00 - 15.00</h5>
-      <h5 class="blue-text bold" style="font-size: 20px;">GDS 505, UNJ</h5>
+    <div class="col s12 l7">
+      <h4 class="blue-text bold"><?= $row['nama_event'];?></h4>
+      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;"><?= $row['tanggal_event'];?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $row['waktu_event'];?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $row['tempat_event'];?></h5>
     </div>
-    <div class="col s5 l4">
+    <div class="col s12 l2">
       <h5 class="blue-text bold" style="font-size: 23px;">Status</h5>
       <h5 class="black-text bold" style="font-size: 20px;">Pembayaran Sedang Dikonfirmasi</h5>
       <a href="#" class="white-text btn-large blue" style="margin-top: 20px;">Payment Receipt</a>
     </div>
     <div class="col s12 l12">
       <p class="black-text bold" style="font-size: 20px;">
-        The Walls mengadakan seminar yang akan membahas bisnis desain interior dan properti berbasis website. Seminar akan diadakan di UNJ gedung GDS 505. 
-      </p>
-      <p class="black-text bold" style="font-size: 20px;">
-        Benefits : 
-        <br>- E-Certificate <br>- Makan Siang <br>- Doorprize
+        <?= $row['informasi_event'];?>
       </p>
     </div>
   </div>
+  <?php endwhile; ?>
 </div>
 
 <!--Footer--> 

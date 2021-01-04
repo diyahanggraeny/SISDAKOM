@@ -81,6 +81,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             <li class="tab col s12 l3 black"><a href="#">Booked</a></li>
             <li class="tab col s12 l3"><a href="user-profile-finish-event.php">Finished</a></li>
           </ul>
+          <h5 class="blue-text" style="margin-left: 30px; margin-top: 20px;"><u>Paid Event</u></h5>
           <?php foreach($eventbayar as $event) : ?>
           <div class="col s12 l4">
             <img class="responsive-img" src="../static/img/<?= $event['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
@@ -93,6 +94,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             <a href="user-book-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
           </div>
           <?php endforeach; ?>
+          <h5 class="blue-text" style="margin-left: 30px; margin-top: 20px;"><u>Free Event</u></h5>
           <?php foreach($eventgratis as $event2) : ?>
           <div class="col s12 l4">
             <img class="responsive-img" src="../static/img/<?= $event2['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">

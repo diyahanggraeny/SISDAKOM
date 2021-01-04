@@ -8,18 +8,31 @@ if( !isset($_SESSION["loginsubmit"])){
 
 require 'functions2.php';
 
-$events = query("SELECT * FROM event");
-
-$idevent = $_GET["idevent"];
-$eventresult = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
-
-if (!isset($idevent)){
-  header("Location: guest-events.php");
-    exit;
-}
-
 $id_user = $_SESSION["loginsubmit"];
+$id_event = $_GET["id_event"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+$result2 = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$id_event'");
+
+
+if( isset($_POST["submit"])) {
+    if ( registbayar($_POST) > 0 ) {
+      echo "
+          <script>
+              alert('Anda berhasil melakukan registrasi!');
+              document.location.href = 'user-events.php';
+          </script>
+      
+      ";
+    } else {
+      echo "
+          <script>
+              alert('Anda gagal melakukan registrasi!');
+              document.location.href = 'user-events.php';
+          </script>
+      "; 
+    }
+  $error = true;
+}
 
 ?>
 
@@ -61,45 +74,40 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
     </ul>
 
 <!--Halaman Utama-->
+<div class="container">
   <div class="row">
-    <?php while ($eventlist = mysqli_fetch_assoc($eventresult)): ?>
-    <div class="col s12 l5 center-align">
-    <img class="image3" src="../static/img/<?= $eventlist['poster_event'];?>">
-      <h4 class="blue-text bold"><?= $eventlist['nama_event'];?></h4>
-      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;"><?= $eventlist['tanggal_event'];?></h5>
-      <h5 class="blue-text bold" style="font-size: 20px;"><?= $eventlist['waktu_event'];?></h5>
-      <h5 class="blue-text bold" style="font-size: 20px;"><?= $eventlist['tempat_event'];?></h5>
+    <div class="col s12 m3 l3">
+      <?php while( $row = mysqli_fetch_assoc($result2) ) : ?>
+      <img class="responsive-img" src="../static/img/<?= $row["poster_event"]; ?>" style="margin-top: 20px;">
     </div>
-    <?php endwhile; ?>
-    <div class="col s12 l3">
-      <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
-      <h6 class="blue-text bold">Full Name</h6>
-      <h5 class="black-text"><?= $row["full_name"]; ?></h5>
-      <h6 class="blue-text bold">Email</h6>
-      <h5 class="black-text"><?= $row["user_email"]; ?></h5>
-      <h6 class="blue-text bold">Instansi</h6>
-      <h5 class="black-text"><?= $row["instansi"]; ?></h5>
-      <h6 class="blue-text bold">Year</h6>
-      <h5 class="black-text"><?= $row["angkatan"]; ?></h5>
-      <?php endwhile; ?>
+    <div class="col s12 m4 l4">
+      <h4 class="blue-text bold"><?= $row["nama_event"]; ?></h4>
+      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;"><?= $row["tanggal_event"]; ?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $row["waktu_event"]; ?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $row["tempat_event"]; ?></h5>
     </div>
-    <div class="col s12 l4">
-      <h5 class="black-text bold" style="font-size: 22px; margin-top: 20px; margin-right: 10px;">
-        Thank you for registering on this event. Pay for your event and submit the payment receipt. <br> Total : Rp 50.000 <br> <br> GOPAY : 085100000000 <br> DANA : 085100000000 <br> OVO : 085100000000
+    <div class="col s12 m5 l5">
+      <h5 class="black-text bold" style="font-size: 22px; margin-top: 20px;">
+        Thank you for registering on this event. Pay for your event and submit the payment receipt. <br> Total : Rp<?= $row["htm"]; ?> <br> <br> GOPAY : 085100000000 <br> DANA : 085100000000 <br> OVO : 085100000000
       </h5>
-      <form action="#">
-        <div class="file-field input-field">
+      <br>
+      <form action="" method="post" enctype="multipart/form-data">
+        <input  name="id_user" type="hidden" value="<?= $id_user ?>">
+        <input  name="id_event" type="hidden" value="<?= $id_event ?>">
+        <input  name="max_partisipan" type="hidden" value="<?= $row['max_partisipan']; ?>">
+        <div class="file-field input-field col s12 m12 l12">
           <div class="btn blue"  style="margin-top: 10px">
             <span>Upload File</span>
-            <input type="file" multiple>
+            <input type="file" name="bukti_pembayaran" required>
           </div>
           <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload Payment Receipt">
+            <input class="file-path validate" name="bukti_pembayaran" type="text">
           </div>
         </div>
+        <button class="right btn waves-effect waves-light indigo" type="submit" name="submit"><b>Submit</b></button>
       </form>
-      <button class="center btn waves-effect waves-light indigo" type="submit" name="submit"><b>Submit</b>
-        </button>
+      <?php endwhile; ?>
+      <br>
     </div>
   </div>
 </div>
@@ -109,7 +117,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
     <div class="container">
       <div class="row">
         <div class="col l4 s12">
-          <h5 class="white-text">CAbout</h5>
+          <h5 class="white-text">About</h5>
           <p class="white-text">A website that provide platform for Computer Science events on State University of Jakarta</p>
         </div>
         <div class="col l4 s12">

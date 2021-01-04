@@ -1,15 +1,56 @@
 <?php
+session_start();
+
 require 'functions2.php';
 
-$events = query("SELECT * FROM event");
+if (!isset($_SESSION["loginsubmit"])) {
+  header("Location: login.php");
+  exit;
+}
+
+if( isset($_POST["submit"])) {
+
+  $id_user = $_POST["id_user"];
+  $id_event = $_POST["id_event"];
+
+  $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $id_event");
+
+  // cek username
+  if( mysqli_num_rows($result) == 1 ){
+      // cek password
+      $row = mysqli_fetch_assoc($result);
+      if( $row["htm"] == '0') {
+        if ( registgratis($_POST) > 0 ) {
+          echo "
+              <script>
+                  alert('Anda berhasil melakukan registrasi!');
+                  document.location.href = 'user-events.php';
+              </script>
+          
+          ";
+        } else {
+          echo "
+              <script>
+                  alert('Anda gagal melakukan registrasi!');
+                  document.location.href = 'user-events.php';
+              </script>
+          "; 
+        }
+      } else {
+        echo "
+        <script>
+            document.location.href = 'user-register-and-payment.php?id_event=$id_event';
+        </script>
+         "; 
+      }
+  }
+  $error = true;
+}
+
 
 $idevent = $_GET["idevent"];
-$result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
+$result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $idevent");
 
-if (!isset($idevent)){
-  header("Location: guest-events.php");
-    exit;
-}
 
 ?>
 
@@ -18,7 +59,7 @@ if (!isset($idevent)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Walls Event</title>
+    <title>Event Detail</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css//materialize.css">
 </head>
@@ -68,9 +109,17 @@ if (!isset($idevent)){
         <div class="row">
                 <p class="font2" style="margin-left: 50px;">
                 <?= $row['informasi_event'];?>
-                
-                <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b><?= $row['htm'];?></b></a> <br>
-                <a href="#" class="white-text blue btn" style="font-size: 20px; float: right; margin-right: 30px;"><b>Register</b></a>
+                <?php if($row['htm'] == '0') {?>
+                  <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b>Gratis</b></a> <br>
+                <?php }else{ ?>
+                  <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b>Rp<?= $row['htm'] ?></b></a> <br>
+                <?php } ?>
+                <form action="" method="post">
+                  <input  name="id_user" type="hidden" value="<?= $_SESSION["loginsubmit"] ?>">
+                  <input  name="id_event" type="hidden" value="<?= $idevent ?>">
+                  <input  name="max_partisipan" type="hidden" value="<?= $row['max_partisipan'];?>">
+                  <button class="btn waves-effect waves-light blue white-text right" type="submit" style="margin-right:30px;" name="submit"><b>Register</b>
+                </form>
                 </p>
         </div>
         <?php endwhile; ?>

@@ -16,6 +16,45 @@ $AwalData = ($JumlahDataperHalaman * $ActivePage) - $JumlahDataperHalaman;
 
 $events = query("SELECT * FROM event LIMIT $AwalData, $JumlahDataperHalaman");
 
+if( isset($_POST["submit"])) {
+
+    $id_user = $_POST["id_user"];
+    $id_event = $_POST["id_event"];
+  
+    $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $id_event");
+  
+    // cek username
+    if( mysqli_num_rows($result) == 1 ){
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if( $row["htm"] == '0') {
+          if ( registgratis($_POST) > 0 ) {
+            echo "
+                <script>
+                    alert('Anda berhasil melakukan registrasi!');
+                    document.location.href = 'user-events.php';
+                </script>
+            
+            ";
+          } else {
+            echo "
+                <script>
+                    alert('Anda gagal melakukan registrasi!');
+                    document.location.href = 'user-events.php';
+                </script>
+            "; 
+          }
+        } else {
+          echo "
+          <script>
+              document.location.href = 'user-register-and-payment.php?id_event=$id_event';
+          </script>
+           "; 
+        }
+    }
+    $error = true;
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +108,12 @@ $events = query("SELECT * FROM event LIMIT $AwalData, $JumlahDataperHalaman");
                     <br><br>
                     <a href="user-eventdetail.php?idevent=<?= $row['id_event'];?>" class="blue btn white-text" style="margin-top: 10px; width: 100px; border-radius: 10px;"><b>Details</b></a>
                     <br>
-                    <a href="user-register-and-payment.php?idevent=<?= $row['id_event'];?>" class="blue btn white-text" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;"><b>Register</b></a>
+                    <form action="" method="post">
+                        <input  name="id_user" type="hidden" value="<?= $_SESSION["loginsubmit"] ?>">
+                        <input  name="id_event" type="hidden" value="<?= $row["id_event"]; ?>">
+                        <input  name="max_partisipan" type="hidden" value="<?= $row['max_partisipan'];?>">
+                        <button class="btn waves-effect waves-light blue white-text" type="submit" style="margin-top: 5px; margin-bottom: 10px; width: 100px; border-radius: 10px;" name="submit"><b>Register</b>
+                    </form>
                 </div>
             </div>
         <?php endforeach; ?>

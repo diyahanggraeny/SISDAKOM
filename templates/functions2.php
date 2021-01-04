@@ -482,4 +482,167 @@ function ubahpass($data) {
 }
 
 
+
+function registgratis($data) {
+    global $conn;
+
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_event = htmlspecialchars($data["id_event"]);
+    $max_partisipan = htmlspecialchars($data["max_partisipan"]);
+
+
+    // cek jumlah partisipan
+    $result = mysqli_query($conn, "SELECT COUNT(*) FROM event_partisipan_gratis WHERE id_event = $id_event");
+    if( isset($result) ){
+        $row = mysqli_fetch_assoc($result);
+        if( $row["COUNT(*)"] >= $max_partisipan) {
+            echo "
+            <script>
+                alert('Kapasitas peserta sudah penuh!');
+            </script>";
+        return false;
+        }
+    }
+
+    // cek sudah terdaftar atau belum
+    $result2 = mysqli_query($conn, "SELECT * FROM event_partisipan_gratis WHERE id_user = $id_user");
+    if( isset($result2) ){
+        $row = mysqli_fetch_assoc($result2);
+        if( $row["id_event"] == $id_event) {
+            echo "
+            <script>
+                alert('Anda sudah terdaftar!');
+            </script>";
+        return false;
+        }
+    }
+
+    $query = "INSERT INTO event_partisipan_gratis
+             VALUES('','$id_event','$id_user')";
+    
+    $status = mysqli_query($conn, $query);
+
+    if( !$status) {
+        echo "
+            <script>
+                alert('Gagal insert data!');
+            </script>";
+        return false;
+    }
+
+    return mysqli_affected_rows($conn);
+
+}
+
+
+function uploadbukti() {
+    $namaFile = $_FILES['bukti_pembayaran']['name'];
+    $ukuranFile = $_FILES['bukti_pembayaran']['size'];
+    $error = $_FILES['bukti_pembayaran']['error'];
+    $tmpName = $_FILES['bukti_pembayaran']['tmp_name'];
+
+    //cek apakah tidak ada gambar yg diupload
+    if( $error === 4 ) {
+        echo "
+            <script>
+                alert('Pilih gambar terlebih dahulu!');
+            </script>";
+        return false;
+    } 
+
+    // cek apakah yg diupload gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+        echo "
+            <script>
+                alert('File yang Anda upload bukan gambar!');
+            </script>";
+        return false;
+    }
+
+    // cek ukuran file
+    if( $ukuranFile > 2000000 ) {
+        echo "
+            <script>
+                alert('Ukuran gambar terlalu besar!');
+            </script>";
+        return false;
+    }
+
+    //siap diupload
+    // generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+
+    move_uploaded_file($tmpName, '../static/img/' . $namaFileBaru);
+
+    return $namaFileBaru;
+
+}
+
+
+function registbayar($data) {
+    global $conn;
+
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_event = htmlspecialchars($data["id_event"]);
+    $max_partisipan = htmlspecialchars($data["max_partisipan"]);
+
+
+    // cek jumlah partisipan
+    $result = mysqli_query($conn, "SELECT COUNT(*) FROM event_partisipan_bayar WHERE id_event = $id_event");
+    if( isset($result) ){
+        $row = mysqli_fetch_assoc($result);
+        if( $row["COUNT(*)"] >= $max_partisipan) {
+            echo "
+            <script>
+                alert('Kapasitas peserta sudah penuh!');
+            </script>";
+        return false;
+        }
+    }
+
+    // cek sudah terdaftar atau belum
+    $result2 = mysqli_query($conn, "SELECT * FROM event_partisipan_bayar WHERE id_user = $id_user");
+    if( isset($result2) ){
+        $row = mysqli_fetch_assoc($result2);
+        if( $row["id_event"] == $id_event) {
+            echo "
+            <script>
+                alert('Anda sudah terdaftar!');
+            </script>";
+        return false;
+        }
+    }
+
+    //cek apa user memilih gambar atau tidak
+    if( $_FILES['bukti_pembayaran']['error'] == 4 ) {
+        $bukti_pembayaran = 'None';
+    }else {
+        $bukti_pembayaran = uploadbukti();
+    }
+
+    $query = "INSERT INTO event_partisipan_bayar
+             VALUES('','$id_user','$id_event','$bukti_pembayaran','On Confirmation')";
+    
+    $status = mysqli_query($conn, $query);
+
+    if( !$status) {
+        echo "
+            <script>
+                alert('Gagal insert data!');
+            </script>";
+        return false;
+    }
+
+    return mysqli_affected_rows($conn);
+
+}
+
+
 ?>

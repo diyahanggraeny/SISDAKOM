@@ -338,12 +338,12 @@ function ubahuser($data) {
 function ubahstatpembayaran($data) {
     global $conn;
 
-    $id_pembayaran = $data["id_pembayaran"];
+    $id_partisipan = $data["id_partisipan"];
     $bukti_pembayaran = htmlspecialchars($data["bukti_pembayaran"]);
     $status_pembayaran = htmlspecialchars($data["status_pembayaran"]);
 
-    $query = "UPDATE pembayaran SET bukti_pembayaran = '$bukti_pembayaran',
-                status_pembayaran = '$status_pembayaran' WHERE id_pembayaran = $id_pembayaran";
+    $query = "UPDATE event_partisipan_bayar SET bukti_pembayaran = '$bukti_pembayaran',
+                status_pembayaran = '$status_pembayaran' WHERE id_partisipan = $id_partisipan";
     
     mysqli_query($conn, $query);
 

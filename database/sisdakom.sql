@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jan 2021 pada 22.35
+-- Waktu pembuatan: 04 Jan 2021 pada 03.34
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -99,7 +99,8 @@ CREATE TABLE `event_detail` (
 --
 
 INSERT INTO `event_detail` (`id_detail`, `id_user`, `id_admin`, `id_event`, `judul_pesan`, `isi_pesan`, `file`, `timedate`) VALUES
-(12, 1, 8, 30, 'link webinar', 'link zoom ', 'None', '2020-12-28 13:23:29');
+(12, 1, 8, 30, 'link webinar', 'link zoom ', 'None', '2020-12-28 13:23:29'),
+(14, 1, 8, 30, 'File sertifikat', 'Terima kasih sudah mengikuti acara kami. Berikut sertifikat acara kami', '5ff27498356b4.jpg', '2021-01-04 01:51:20');
 
 -- --------------------------------------------------------
 
@@ -282,7 +283,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT untuk tabel `event_detail`
 --
 ALTER TABLE `event_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`

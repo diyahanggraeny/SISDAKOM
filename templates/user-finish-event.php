@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["loginsubmit"])){
+    header("Location: login.php");
+    exit;
+}
+
+require 'functions2.php';
+
+$idevent = $_GET["idevent"];
+$result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
+
+if (!isset($idevent)){
+  header("Location: guest-events.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
   <html>
     <head>
@@ -37,30 +56,27 @@
 
 <!--Halaman Utama-->
 <div class="container">
+  <?php while ($row = mysqli_fetch_assoc($result)): ?>
   <div class="row">
-    <div class="col s3 l3">
-      <img class="responsive-img" src="../static/img/logo-woc.png" style="margin-top: 20px;">
+    <div class="col s12 l3">
+      <img class="responsive-img" src="../static/img/<?= $row['poster_event'];?>" style="margin-top: 20px;">
     </div>
-    <div class="col s4 l5">
-      <h4 class="blue-text bold">Words of Courage</h4>
-      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;">20 September 2020</h5>
-      <h5 class="blue-text bold" style="font-size: 20px;">13.00 - 15.00</h5>
-      <h5 class="blue-text bold" style="font-size: 20px;">Zoom Meeting</h5>
+    <div class="col s12 l7">
+      <h4 class="blue-text bold"><?= $row['nama_event'];?></h4>
+      <h5 class="blue-text bold" style="font-size: 20px; margin-top: 20px;"><?= $row['tanggal_event'];?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $row['waktu_event'];?></h5>
+      <h5 class="blue-text bold" style="font-size: 20px;"><?= $row['tempat_event'];?></h5>
     </div>
-    <div class="col s5 l4">
-      <a href="#" class="white-text btn-large blue" style="margin-top: 25px;">Download E-Certificate</a>
+    <div class="col s12 l2">
+      <a href="#" class="white-text btn-large blue" style="margin-top: 25px; width: 300px;">Download E-Certificate</a>
     </div>
     <div class="col s12 l12">
       <p class="black-text bold" style="font-size: 20px;">
-        Words of Courage mengadakan webinar via Zoom Meeting yang akan membahas mengenai membangun online shop pada platform media sosial seperti Instagram dan Twitter. Event ini gratid dengan kuota terbatas. 
-      </p>
-      <p class="black-text bold" style="font-size: 20px;">
-        Benefits : 
-        <br>
-        - E-Certificate
+      <?= $row['informasi_event'];?>
       </p>
     </div>
   </div>
+  <?php endwhile; ?>
 </div>
 
 <!--Footer--> 

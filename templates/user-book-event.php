@@ -70,7 +70,7 @@ if (!isset($idevent)){
     <div class="col s12 l2">
       <h5 class="blue-text bold" style="font-size: 23px;">Status</h5>
       <h5 class="black-text bold" style="font-size: 20px;">Pembayaran Sedang Dikonfirmasi</h5>
-      <a href="#" class="white-text btn-large blue" style="margin-top: 20px;">Payment Receipt</a>
+      <a href="#" class="white-text btn-large blue" style="margin-top: 20px; width: 250px">Payment Receipt</a>
     </div>
     <div class="col s12 l12">
       <p class="black-text bold" style="font-size: 20px;">

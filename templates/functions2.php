@@ -23,6 +23,14 @@ function hapus($id) {
 }
 
 
+function hapusevent($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM event WHERE id_event = $id");
+
+    return mysqli_affected_rows($conn);
+}
+
+
 function tambahadmin($data) {
     global $conn;
 

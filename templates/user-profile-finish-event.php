@@ -18,6 +18,7 @@ $eventbayar = query("SELECT * FROM event_partisipan_bayar
 
 $eventgratis = query("SELECT * FROM event_partisipan_gratis
                   INNER JOIN event ON event_partisipan_gratis.id_event = event.id_event WHERE status_event = 'Done'");
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +89,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             <h5 class="blue-text" style="margin-left: 10px;"><?= $event['tanggal_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['tempat_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['waktu_event'];?></h5>
-            <a href="user-finish-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+            <a href="user-finish-event.php?idevent=<?= $event['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
           </div>
           <?php endforeach; ?>
           <?php foreach($eventgratis as $event2) : ?>
@@ -100,7 +101,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             <h5 class="blue-text" style="margin-left: 10px;"><?= $event2['tanggal_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['tempat_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['waktu_event'];?></h5>
-            <a href="user-finish-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+            <a href="user-finish-event.php?idevent=<?= $event2['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
           </div>
           <?php endforeach; ?>
           </div>

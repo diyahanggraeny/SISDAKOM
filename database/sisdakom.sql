@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jan 2021 pada 03.34
+-- Waktu pembuatan: 04 Jan 2021 pada 08.20
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -70,7 +70,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informasi_event`, `tanggal_event`, `waktu_event`, `tempat_event`, `max_partisipan`, `poster_event`, `status_event`) VALUES
 (23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'Cancel'),
-(30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 10, '5fe44313c860d.jpg', 'On Process'),
+(30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 1, '5fe44313c860d.jpg', 'On Process'),
 (33, 'The Walls', 50000, 'Online', 'Ikutilah event ini untuk mendapatkan ilmu yang bermanfaat!', '2021-01-08', '12:45', 'Google Meet', 70, '5fea1bf49e852.png', ''),
 (34, 'Shop of Courage', 0, 'Online', 'Ikutilah event ini', '2021-01-09', '00:50', 'Zoom Meeting', 100, '5fecbce962d0b.png', 'On Process'),
 (35, 'Zadira', 50000, 'Offline', 'Ikutilah seminar ini untuk mendapatkan pengetahuan tentang bisnis', '2021-01-20', '14:00', 'Universitas Negeri Jakarta', 100, '5fecbd4c8b4ee.png', 'On Process'),
@@ -112,15 +112,16 @@ CREATE TABLE `event_partisipan_bayar` (
   `id_partisipan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_event` int(11) NOT NULL,
-  `id_pembayaran` int(11) NOT NULL
+  `bukti_pembayaran` varchar(255) NOT NULL,
+  `status_pembayaran` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `event_partisipan_bayar`
 --
 
-INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `id_pembayaran`) VALUES
-(16, 1, 23, 1);
+INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `bukti_pembayaran`, `status_pembayaran`) VALUES
+(17, 1, 23, '5ff2bec35bc96.jpg', 'On Confirmation');
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,7 @@ CREATE TABLE `event_partisipan_gratis` (
 --
 
 INSERT INTO `event_partisipan_gratis` (`id_partisipan`, `id_event`, `id_user`) VALUES
-(1, 30, 1);
+(7, 30, 2);
 
 -- --------------------------------------------------------
 
@@ -154,25 +155,6 @@ CREATE TABLE `message` (
   `files` blob NOT NULL,
   `isi_pesan` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pembayaran`
---
-
-CREATE TABLE `pembayaran` (
-  `id_pembayaran` int(11) NOT NULL,
-  `bukti_pembayaran` varchar(255) NOT NULL,
-  `status_pembayaran` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `pembayaran`
---
-
-INSERT INTO `pembayaran` (`id_pembayaran`, `bukti_pembayaran`, `status_pembayaran`) VALUES
-(1, 'logo-woc.PNG', 'Cancel');
 
 -- --------------------------------------------------------
 
@@ -232,8 +214,7 @@ ALTER TABLE `event_detail`
 ALTER TABLE `event_partisipan_bayar`
   ADD PRIMARY KEY (`id_partisipan`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_event` (`id_event`),
-  ADD KEY `id_pembayaran` (`id_pembayaran`);
+  ADD KEY `id_event` (`id_event`);
 
 --
 -- Indeks untuk tabel `event_partisipan_gratis`
@@ -250,12 +231,6 @@ ALTER TABLE `message`
   ADD PRIMARY KEY (`id_pesan`),
   ADD KEY `id_admin` (`id_admin`),
   ADD KEY `id_user` (`id_user`);
-
---
--- Indeks untuk tabel `pembayaran`
---
-ALTER TABLE `pembayaran`
-  ADD PRIMARY KEY (`id_pembayaran`);
 
 --
 -- Indeks untuk tabel `user`
@@ -289,19 +264,13 @@ ALTER TABLE `event_detail`
 -- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`
 --
 ALTER TABLE `event_partisipan_gratis`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `pembayaran`
---
-ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

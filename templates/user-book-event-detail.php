@@ -8,6 +8,7 @@ if (!isset($_SESSION["loginsubmit"])) {
 
 require 'functions2.php';
 $id_user = $_SESSION["loginsubmit"];
+$id_event = $_GET["id"];
 
 $event = query("SELECT * FROM event_detail
                 INNER JOIN user ON event_detail.id_user = user.id_user
@@ -17,8 +18,8 @@ $event = query("SELECT * FROM event_detail
 if( !isset($event)){
     echo "
             <script>
-                alert('Anda belum memiliki pesan!');
-                window.location.href = 'user-profile-info.php';
+                alert('Event ini belum memiliki detail!');
+                window.location.href = 'user-profile-book-event.php';
             </script>
         
         ";
@@ -32,7 +33,7 @@ if( !isset($event)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Message</title>
+    <title>Event Details</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css//materialize.css">
@@ -66,10 +67,10 @@ if( !isset($event)){
     <main class="white">
         <br>
         <div class="container">
-            <h4 class="center"><b>ALL MESSAGE</b></h4>
+            <h4 class="center"><b>EVENT DETAILS</b></h4>
             <?php foreach( $event as $row) : ?>
-                <?php if ( $row["id_user"] == $id_user) { ?>
-            <div class="row">
+                <?php if ( $row["id_user"] == $id_user and $row["id_event"] == $id_event) { ?>
+                <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="card horizontal">
                         <div class="card-stacked">
@@ -84,7 +85,10 @@ if( !isset($event)){
                     </div>
                 </div>
             </div>
-                <?php } ?>
+                <?php } else{
+                    header("Location: user-book-event-detail-none.php");
+                    exit();
+                } ?>
             <?php endforeach; ?>
         </div>
         <br>

@@ -8,11 +8,13 @@ if( !isset($_SESSION["loginsubmit"])){
 
 require 'functions2.php';
 
-$idevent = $_GET["idevent"];
-$result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$idevent'");
+$id = $_GET["id"];
+$result = query("SELECT * FROM event_partisipan_bayar
+                  INNER JOIN user ON event_partisipan_bayar.id_user = user.id_user
+                  INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event WHERE id_partisipan = $id");
 
-if (!isset($idevent)){
-  header("Location: guest-events.php");
+if (!isset($id)){
+  header("Location: user-profile-book-event.php");
     exit;
 }
 ?>
@@ -56,10 +58,13 @@ if (!isset($idevent)){
 
 <!--Halaman Utama-->
 <div class="container">
-  <?php while ($row = mysqli_fetch_assoc($result)): ?>
+  <?php foreach($result as $row) : ?>
   <div class="row">
     <div class="col s12 l3">
       <img class="responsive-img" src="../static/img/<?= $row['poster_event'];?>" style="margin-top: 20px;">
+      <p class="black-text bold" style="font-size: 20px;">
+        <?= $row['informasi_event'];?>
+      </p>
     </div>
     <div class="col s12 l7">
       <h4 class="blue-text bold"><?= $row['nama_event'];?></h4>
@@ -69,16 +74,12 @@ if (!isset($idevent)){
     </div>
     <div class="col s12 l2">
       <h5 class="blue-text bold" style="font-size: 23px;">Status</h5>
-      <h5 class="black-text bold" style="font-size: 20px;">Pembayaran Sedang Dikonfirmasi</h5>
-      <a href="#" class="white-text btn-large blue" style="margin-top: 20px; width: 250px">Payment Receipt</a>
-    </div>
-    <div class="col s12 l12">
-      <p class="black-text bold" style="font-size: 20px;">
-        <?= $row['informasi_event'];?>
-      </p>
+      <h5 class="black-text bold" style="font-size: 20px;"><?= $row['status_pembayaran'];?></h5>
+      <a class="white-text btn-large blue" style="margin-top: 20px; width: 250px">Payment Receipt</a>
+      <img width="250px" src="../static/img/<?= $row['bukti_pembayaran'];?>" style="margin-top: 20px;">
     </div>
   </div>
-  <?php endwhile; ?>
+  <?php endforeach; ?>
 </div>
 
 <!--Footer--> 

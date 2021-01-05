@@ -6,25 +6,6 @@ if (!isset($_SESSION["loginsubmit"])) {
     exit;
 }
 
-require 'functions2.php';
-$id_user = $_SESSION["loginsubmit"];
-
-$event = query("SELECT * FROM event_detail
-                INNER JOIN user ON event_detail.id_user = user.id_user
-                INNER JOIN event ON event_detail.id_event = event.id_event 
-                INNER JOIN admin ON event_detail.id_admin = admin.id_admin");
-
-if( !isset($event)){
-    echo "
-            <script>
-                alert('Anda belum memiliki pesan!');
-                window.location.href = 'user-profile-info.php';
-            </script>
-        
-        ";
-    exit;
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +13,7 @@ if( !isset($event)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Message</title>
+    <title>Event Details</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css//materialize.css">
@@ -66,26 +47,19 @@ if( !isset($event)){
     <main class="white">
         <br>
         <div class="container">
-            <h4 class="center"><b>ALL MESSAGE</b></h4>
-            <?php foreach( $event as $row) : ?>
-                <?php if ( $row["id_user"] == $id_user) { ?>
-            <div class="row">
+            <h4 class="center"><b>EVENT DETAILS</b></h4>
+                <div class="row">
                 <div class="col s12 m12 l12">
-                    <div class="card horizontal">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p class="right"><?= $row["timedate"]?></p>
-                                <p>From : <?= $row["admin_username"]?> </p>
-                                <p><b><?= $row["judul_pesan"]?></b></p>
-                            </div>
-                            <div class="card-action">
-                                <a href="user-message-detail.php?id=<?= $row["id_detail"]?>" class="indigo-text">See Message</a>
-                        </div>
+                    <div class="">
+                        <h5>Admin belum mengirimkan detail event!</h5>
+                        <p>Harap tunggu hingga jadwal dilaksanakan acara.</p>
+                        <p>Jika hingga hari-H pelaksanaan belum dikirim apapun.</p>
+                        <p>Segera hubungi kami di : </p>
+                        <p>Telepon : </p><a class="blue-text">+6285200000000</a>
+                        <p>E-mail : </p><a class="blue-text">emailaddressexample@unj.ac.id</a>
                     </div>
                 </div>
             </div>
-                <?php } ?>
-            <?php endforeach; ?>
         </div>
         <br>
     </main>

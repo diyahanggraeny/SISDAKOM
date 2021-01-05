@@ -79,10 +79,11 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
       </div>
       <div class="col s12 l9">
           <ul class="tabs" style="margin-top: 15px;">
-            <li class="tab col s12 l3 black"><a href="#">Booked</a></li>
-            <li class="tab col s12 l3"><a href="user-profile-finish-event.php">Finished</a></li>
+            <li class="tab col s12 l3 blue white-text"><a href="#" class="white-text">Booked</a></li>
+            <li class="tab col s12 l3"><a href="user-profile-finish-event.php" class="blue-text">Finished</a></li>
           </ul>
           <?php foreach($eventbayar as $event) : ?>
+            <?php if( $event['id_user'] == $id_user ){?>
           <div class="col s12 l4">
             <img class="responsive-img" src="../static/img/<?= $event['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
           </div>
@@ -91,10 +92,13 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             <h5 class="blue-text" style="margin-left: 10px;"><?= $event['tanggal_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['tempat_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['waktu_event'];?></h5>
-            <a href="user-book-event.php?idevent=<?= $event['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+            <a href="user-book-event.php?id=<?= $event['id_partisipan'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Check Payment Status</a>
+            <a href="user-book-event-detail.php?id=<?= $event['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
           </div>
+            <?php } ?>
           <?php endforeach; ?>
           <?php foreach($eventgratis as $event2) : ?>
+            <?php if( $event2['id_user'] == $id_user ){?>
           <div class="col s12 l4">
             <img class="responsive-img" src="../static/img/<?= $event2['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
           </div>
@@ -103,8 +107,9 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             <h5 class="blue-text" style="margin-left: 10px;"><?= $event2['tanggal_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['tempat_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['waktu_event'];?></h5>
-            <a href="user-book-event.php?idevent=<?= $event2['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+            <a href="user-book-event-detail.php?id=<?= $event2['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
           </div>
+            <?php } ?>
           <?php endforeach; ?>
           </div>
       </div>

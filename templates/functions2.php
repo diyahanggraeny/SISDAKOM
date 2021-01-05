@@ -653,4 +653,25 @@ function registbayar($data) {
 }
 
 
+function act_log($log){
+    global $conn;
+
+    $ip = $_SERVER['REMOTE_ADDR'];
+
+    $query = "INSERT INTO action_log VALUES('','$ip',NOW(),'$log')";
+    
+    $status = mysqli_query($conn, $query);
+
+    if( !$status) {
+        echo "
+            <script>
+                alert('Gagal insert data!');
+            </script>";
+        return false;
+    }
+
+    return mysqli_affected_rows($conn);
+
+}
+
 ?>

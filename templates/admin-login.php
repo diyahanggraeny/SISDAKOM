@@ -24,10 +24,15 @@ if( isset($_POST["login"])) {
             // set session
             $_SESSION["login"] = $row["id_admin"];
 
+            $log =  $username .= " berhasil log in" ;
+            act_log($log);
+
             header("Location: admin-dashboard.php");
             exit;
         }
     }
+    $log =  $username .= " gagal log in" ;
+    act_log($log);
     $error = true;
 }
 

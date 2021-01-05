@@ -10,11 +10,15 @@ require 'functions2.php';
 
 $bayar = $_GET["bayar"];
 $id = $_GET["id"];
+$id_admin = $_SESSION["login"];
+$mhs = query("SELECT * FROM admin WHERE id_admin = $id_admin")[0];
 
 // cek tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ){
     // cek apakah data berhasil ditambahkan atau tidak
     if ( ubahstatpembayaran($_POST) > 0 ) {
+        $log =  $mhs["admin_username"] .= " berhasil mengubah status pembayaran" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data berhasil diubah!');
@@ -23,6 +27,8 @@ if( isset($_POST["submit"]) ){
         
         ";
     } else {
+        $log =  $mhs["admin_username"] .= " gagal mengubah status pembayaran" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data gagal diubah!');

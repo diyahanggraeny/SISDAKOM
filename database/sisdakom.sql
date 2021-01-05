@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jan 2021 pada 08.20
+-- Waktu pembuatan: 05 Jan 2021 pada 01.03
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `admin_name`, `admin_email`, `admin_username`, `admin_password`, `admin_picture`) VALUES
 (6, 'ilmu komputer 2017', 'ilmukomputer2017@gmail.com', 'admin_ilkom17', '$2y$10$WCgoxyU1FgGm2FBfFlmhHuaUH1ZWE9AlmqVrPN1vkZuPhH.05QJym', '5fe2f7e3a6b07.png'),
-(8, 'ilmu komputer 2018', 'ilmukomputer2018@gmail.com', 'admin_ilkom18', '$2y$10$QArkdu5BlLK5xSacZPHOpebu7L1t2j.3CTwFq85DvU2XLUqWQ37gW', '5fe2f8eed0e60.png');
+(8, 'ilmu komputer 2018', 'ilmukomputer2018@gmail.com', 'admin_ilkom18', '$2y$10$QArkdu5BlLK5xSacZPHOpebu7L1t2j.3CTwFq85DvU2XLUqWQ37gW', '5ff38e04e1d2f.png');
 
 -- --------------------------------------------------------
 
@@ -69,13 +69,12 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informasi_event`, `tanggal_event`, `waktu_event`, `tempat_event`, `max_partisipan`, `poster_event`, `status_event`) VALUES
-(23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'Cancel'),
-(30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 1, '5fe44313c860d.jpg', 'On Process'),
+(23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'On Process'),
+(30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 1, '5fe44313c860d.jpg', 'Done'),
 (33, 'The Walls', 50000, 'Online', 'Ikutilah event ini untuk mendapatkan ilmu yang bermanfaat!', '2021-01-08', '12:45', 'Google Meet', 70, '5fea1bf49e852.png', ''),
-(34, 'Shop of Courage', 0, 'Online', 'Ikutilah event ini', '2021-01-09', '00:50', 'Zoom Meeting', 100, '5fecbce962d0b.png', 'On Process'),
-(35, 'Zadira', 50000, 'Offline', 'Ikutilah seminar ini untuk mendapatkan pengetahuan tentang bisnis', '2021-01-20', '14:00', 'Universitas Negeri Jakarta', 100, '5fecbd4c8b4ee.png', 'On Process'),
-(36, 'Words of Courage', 70000, 'Online', 'Yuk daftar event ini', '2021-01-10', '17:50', 'Google Meet', 50, '5fecbd934863e.png', 'On Process'),
-(39, 'Words of Courage Seminar', 70000, 'Online', 'Ikutilah meeting ini di platform Zoom Meeting', '2021-01-08', '13:30', 'Zoom Meeting', 80, '5fecc772d6dda.png', 'On Process');
+(34, 'Shop of Courage', 0, 'Online', 'Ikutilah event ini', '2021-01-09', '00:50', 'Zoom Meeting', 100, '5fecbce962d0b.png', 'Done'),
+(35, 'Zadira', 50000, 'Online', 'Ikutilah seminar ini untuk mendapatkan pengetahuan tentang bisnis', '2021-01-20', '14:00', 'Universitas Negeri Jakarta', 100, '5fecbd4c8b4ee.png', 'Done'),
+(36, 'Words of Courage', 70000, 'Online', 'Yuk daftar event ini', '2021-01-10', '17:50', 'Google Meet', 50, '5fecbd934863e.png', 'On Process');
 
 -- --------------------------------------------------------
 
@@ -121,7 +120,8 @@ CREATE TABLE `event_partisipan_bayar` (
 --
 
 INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `bukti_pembayaran`, `status_pembayaran`) VALUES
-(17, 1, 23, '5ff2bec35bc96.jpg', 'On Confirmation');
+(17, 1, 23, '5ff2bec35bc96.jpg', 'On Confirmation'),
+(21, 1, 35, '5ff390200d9a2.jpg', 'On Confirmation');
 
 -- --------------------------------------------------------
 
@@ -140,7 +140,8 @@ CREATE TABLE `event_partisipan_gratis` (
 --
 
 INSERT INTO `event_partisipan_gratis` (`id_partisipan`, `id_event`, `id_user`) VALUES
-(7, 30, 2);
+(7, 34, 2),
+(10, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -264,13 +265,13 @@ ALTER TABLE `event_detail`
 -- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`
 --
 ALTER TABLE `event_partisipan_gratis`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

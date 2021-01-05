@@ -12,10 +12,13 @@ $id_user = $_SESSION["loginsubmit"];
 $id_event = $_GET["id_event"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 $result2 = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$id_event'");
+$row = mysqli_fetch_assoc($result);
 
 
 if( isset($_POST["submit"])) {
     if ( registbayar($_POST) > 0 ) {
+      $log =  $row["user_username"] .= " berhasil melakukan registrasi pada event ";
+      act_log($log);
       echo "
           <script>
               alert('Anda berhasil melakukan registrasi!');
@@ -24,6 +27,8 @@ if( isset($_POST["submit"])) {
       
       ";
     } else {
+      $log =  $row["user_username"] .= " gagal melakukan registrasi pada event ";
+      act_log($log);
       echo "
           <script>
               alert('Anda gagal melakukan registrasi!');

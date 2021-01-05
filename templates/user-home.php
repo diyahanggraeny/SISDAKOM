@@ -16,7 +16,7 @@ if (!isset($_SESSION["loginsubmit"])) {
     <title>Sisdakom</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="white">
@@ -59,7 +59,10 @@ if (!isset($_SESSION["loginsubmit"])) {
         </div>
 
         <div class="row">
-            <div class="col l2 s12" style="margin-left: 100px;">
+        <center>
+            <div class="col l1 s12">
+            </div>
+            <div class="col l2 s12">
                 <div class="card border1 center-align" style="width: 200px; height: 200px; border-radius: 20px;">
                     <a class="blue-text"><h3><b>1</b></h3></a>
                     <a class="blue-text"><h5><b>Search for Events</b></h5></a>
@@ -89,6 +92,9 @@ if (!isset($_SESSION["loginsubmit"])) {
                     <a class="blue-text"><h5><b>Download E-Certificate</b></h5></a>
                 </div>
             </div>
+            <div class="col l1 s12">
+            </div>
+        </center>
         </div>
     </main>
 

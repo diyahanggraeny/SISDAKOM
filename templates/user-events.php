@@ -8,7 +8,7 @@ if (!isset($_SESSION["loginsubmit"])) {
 }
 
 // Konfigurasi Pagination
-$JumlahDataperHalaman = 5;
+$JumlahDataperHalaman = 4;
 $JumlahData = count(query("SELECT * FROM event"));
 $JumlahHalaman = ceil($JumlahData / $JumlahDataperHalaman);
 $ActivePage = (isset($_GET["page"])) ? $_GET["page"]:1 ;
@@ -71,7 +71,7 @@ if( isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="white">
@@ -100,11 +100,11 @@ if( isset($_POST["submit"])) {
 
 
     <main class="main">
-        <div class="row center-align" style="margin-left: 100px;">
+        <div class="row">
         <?php foreach($events as $row) : ?>
-            <div class="col l2 s12" style="margin-top: 25px;">
+            <div class="col l3 s12" style="margin-top: 25px;">
                 <div class="card border1 center-align">
-                    <img src="../static/img/<?= $row["poster_event"] ?>" style="margin-top: 5px" width="170px" height="250px">
+                    <img src="../static/img/<?= $row["poster_event"] ?>" style="margin-top: 5px" width="170px" height="250px"><br>
                     <a class="blue-text font3"><b><?= $row["nama_event"]; ?></b></a>
                     <br><br>
                     <a class="blue-text font4 center"><b><?= $row["tanggal_event"]; ?></b></a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2021 pada 01.03
+-- Waktu pembuatan: 05 Jan 2021 pada 12.44
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `sisdakom`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `action_log`
+--
+
+CREATE TABLE `action_log` (
+  `id_actlog` int(11) NOT NULL,
+  `ip_adress` varchar(255) NOT NULL,
+  `timedate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `action` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `action_log`
+--
+
+INSERT INTO `action_log` (`id_actlog`, `ip_adress`, `timedate`, `action`) VALUES
+(2, '::1', '2021-01-05 11:34:18', 'admin_ilkom17 berhasil mengubah data admin');
 
 -- --------------------------------------------------------
 
@@ -146,20 +166,6 @@ INSERT INTO `event_partisipan_gratis` (`id_partisipan`, `id_event`, `id_user`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `message`
---
-
-CREATE TABLE `message` (
-  `id_pesan` int(11) NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `files` blob NOT NULL,
-  `isi_pesan` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `user`
 --
 
@@ -187,6 +193,12 @@ INSERT INTO `user` (`id_user`, `user_username`, `user_email`, `full_name`, `inst
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `action_log`
+--
+ALTER TABLE `action_log`
+  ADD PRIMARY KEY (`id_actlog`);
 
 --
 -- Indeks untuk tabel `admin`
@@ -226,14 +238,6 @@ ALTER TABLE `event_partisipan_gratis`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`id_pesan`),
-  ADD KEY `id_admin` (`id_admin`),
-  ADD KEY `id_user` (`id_user`);
-
---
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -242,6 +246,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `action_log`
+--
+ALTER TABLE `action_log`
+  MODIFY `id_actlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `admin`

@@ -22,6 +22,8 @@ if( isset($_POST["submit"])) {
       $row = mysqli_fetch_assoc($result);
       if( password_verify($user_password, $row["user_password"]) ){
         if ( ubahpass($_POST) > 0 ) {
+          $log =  $row["user_username"] .= " berhasil mengubah password";
+          act_log($log);
           echo "
               <script>
                   alert('Data berhasil diubah!');
@@ -30,6 +32,8 @@ if( isset($_POST["submit"])) {
           
           ";
         } else {
+          $log =  $row["user_username"] .= " gagal mengubah password";
+          act_log($log);
           echo "
               <script>
                   alert('Data gagal diubah!');
@@ -38,6 +42,8 @@ if( isset($_POST["submit"])) {
           "; 
         }
       } else {
+        $log =  $row["user_username"] .= " gagal mengubah password";
+        act_log($log);
         echo "
         <script>
             alert('Password lama salah!');

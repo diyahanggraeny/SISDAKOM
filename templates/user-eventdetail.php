@@ -14,6 +14,9 @@ if( isset($_POST["submit"])) {
   $id_event = $_POST["id_event"];
 
   $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $id_event");
+  $result2 = mysqli_query($conn, "SELECT * FROM user WHERE id_user = $id_user");
+
+  $row2 = mysqli_fetch_assoc($result2);
 
   // cek username
   if( mysqli_num_rows($result) == 1 ){
@@ -21,6 +24,8 @@ if( isset($_POST["submit"])) {
       $row = mysqli_fetch_assoc($result);
       if( $row["htm"] == '0') {
         if ( registgratis($_POST) > 0 ) {
+          $log =  $row2["user_username"] .= " berhasil melakukan registrasi pada event ";
+          act_log($log);
           echo "
               <script>
                   alert('Anda berhasil melakukan registrasi!');
@@ -29,6 +34,8 @@ if( isset($_POST["submit"])) {
           
           ";
         } else {
+          $log =  $row2["user_username"] .= " gagal melakukan registrasi pada event ";
+          act_log($log);
           echo "
               <script>
                   alert('Anda gagal melakukan registrasi!');

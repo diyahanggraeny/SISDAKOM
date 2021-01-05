@@ -6,15 +6,17 @@ if( !isset($_SESSION["loginsubmit"])){
     exit;
 }
 
-
 require 'functions2.php';
 
 $id = $_GET["id"];
+$row = query("SELECT * FROM user WHERE id_user = $id")[0];
 
 // cek tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ){
     // cek apakah data berhasil ubah atau tidak
     if ( ubahuser($_POST) > 0 ) {
+        $log =  $row["user_username"] .= " berhasil mengubah profile user" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data berhasil diubah!');
@@ -23,6 +25,8 @@ if( isset($_POST["submit"]) ){
         
         ";
     } else {
+        $log =  $row["user_username"] .= " gagal mengubah profile user" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data gagal diubah!');

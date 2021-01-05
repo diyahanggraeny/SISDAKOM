@@ -19,7 +19,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="../static/css//materialize.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="../static/css/materialize.css"  media="screen,projection"/>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -54,7 +54,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
 <div class="container">
   <div class="row">
     
-      <div class="col s3 card-panel blue lighten-4">
+      <div class="col s12 l3 card-panel blue lighten-4 center-align">
         <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
           <img class="responsive-img" src="../static/img/profile.png" style="margin-top: 20px;">
           <h5 class="blue-text bold center"><?= $row["full_name"]; ?></h5>
@@ -80,7 +80,8 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
         <h5 class="black-text" style="margin-top: 10px; margin-left: 20px;"><?= $row["instansi"]; ?></h5>
         <h5 class="blue-text" style="margin-top: 10px; margin-left: 20px;">Year</h5>
         <h5 class="black-text" style="margin-top: 10px; margin-left: 20px;"><?= $row["angkatan"]; ?></h5>
-        <a class="center white-text btn indigo" href="user-profile-edit.php?id=<?= $row["id_user"]; ?>" ><b>Edit Profile</b></a>
+        <br>
+        <a class="center white-text btn indigo" style="margin-left: 20px;" href="user-profile-edit.php?id=<?= $row["id_user"]; ?>" ><b>Edit Profile</b></a>
         <?php endwhile; ?>
       </div>
       

@@ -68,7 +68,7 @@ if (isset($_POST["loginsubmit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="white">
@@ -123,14 +123,16 @@ if (isset($_POST["loginsubmit"])) {
                                         Login
                                     </b>
                                 </button>
-                            <br><br>
+                                <br><br>
                                 <p>
                                 <label for="remember">
                                     <input type="checkbox" id="remember" name="remember" />
                                     <span>Remember Me</span>
                                 </label>
                                 </p>
+                                <br><br>
                             </form>
+                            <a href="admin-login.php" class="waves-effect waves-light btn blue white-text link-button" style="border-radius: 10px;"><b>Login as Admin</b></a>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2021 pada 12.44
+-- Waktu pembuatan: 05 Jan 2021 pada 14.13
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -33,13 +33,6 @@ CREATE TABLE `action_log` (
   `timedate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `action` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `action_log`
---
-
-INSERT INTO `action_log` (`id_actlog`, `ip_adress`, `timedate`, `action`) VALUES
-(2, '::1', '2021-01-05 11:34:18', 'admin_ilkom17 berhasil mengubah data admin');
 
 -- --------------------------------------------------------
 
@@ -89,9 +82,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `htm`, `kategori_event`, `informasi_event`, `tanggal_event`, `waktu_event`, `tempat_event`, `max_partisipan`, `poster_event`, `status_event`) VALUES
-(23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'On Process'),
+(23, 'Webinar web programming', 100000, 'Online', 'paling diminati 2020!', '2020-12-25', '12:00', 'Zoom', 50, '5fe44ccc24628.jpg', 'On Process'),
 (30, 'Webinar Artificial Intelligence', 0, 'Online', 'Webinar paling dicari!', '2020-12-25', '12:30', 'Google meet', 1, '5fe44313c860d.jpg', 'Done'),
-(33, 'The Walls', 50000, 'Online', 'Ikutilah event ini untuk mendapatkan ilmu yang bermanfaat!', '2021-01-08', '12:45', 'Google Meet', 70, '5fea1bf49e852.png', ''),
 (34, 'Shop of Courage', 0, 'Online', 'Ikutilah event ini', '2021-01-09', '00:50', 'Zoom Meeting', 100, '5fecbce962d0b.png', 'Done'),
 (35, 'Zadira', 50000, 'Online', 'Ikutilah seminar ini untuk mendapatkan pengetahuan tentang bisnis', '2021-01-20', '14:00', 'Universitas Negeri Jakarta', 100, '5fecbd4c8b4ee.png', 'Done'),
 (36, 'Words of Courage', 70000, 'Online', 'Yuk daftar event ini', '2021-01-10', '17:50', 'Google Meet', 50, '5fecbd934863e.png', 'On Process');
@@ -118,8 +110,7 @@ CREATE TABLE `event_detail` (
 --
 
 INSERT INTO `event_detail` (`id_detail`, `id_user`, `id_admin`, `id_event`, `judul_pesan`, `isi_pesan`, `file`, `timedate`) VALUES
-(12, 1, 8, 30, 'link webinar', 'link zoom ', 'None', '2020-12-28 13:23:29'),
-(14, 1, 8, 30, 'File sertifikat', 'Terima kasih sudah mengikuti acara kami. Berikut sertifikat acara kami', '5ff27498356b4.jpg', '2021-01-04 01:51:20');
+(12, 1, 8, 30, 'link webinar', 'link zoom ', 'None', '2020-12-28 13:23:29');
 
 -- --------------------------------------------------------
 
@@ -140,8 +131,7 @@ CREATE TABLE `event_partisipan_bayar` (
 --
 
 INSERT INTO `event_partisipan_bayar` (`id_partisipan`, `id_user`, `id_event`, `bukti_pembayaran`, `status_pembayaran`) VALUES
-(17, 1, 23, '5ff2bec35bc96.jpg', 'On Confirmation'),
-(21, 1, 35, '5ff390200d9a2.jpg', 'On Confirmation');
+(22, 1, 23, '5ff45ed64c5bb.jpg', 'Cancel');
 
 -- --------------------------------------------------------
 
@@ -251,37 +241,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `action_log`
 --
 ALTER TABLE `action_log`
-  MODIFY `id_actlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_actlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_detail`
 --
 ALTER TABLE `event_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_bayar`
 --
 ALTER TABLE `event_partisipan_bayar`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `event_partisipan_gratis`
 --
 ALTER TABLE `event_partisipan_gratis`
-  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_partisipan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

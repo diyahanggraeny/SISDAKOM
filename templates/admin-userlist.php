@@ -80,7 +80,8 @@ $users = query("SELECT * FROM user");
                     <td><?= $row["full_name"]; ?></td>
                     <td><?= $row["angkatan"]; ?></td>
                     <td><?= $row["instansi"]; ?></td>
-                    <td><a class="purple-text" href="#"><b>Remove Account</b></a></td>
+                    <td><a class="purple-text" href="admin-delete-user.php?id=<?= $row["id_user"]; ?>" onclick="
+                        return confirm('Apakah Anda yakin?');"><b>Remove Account</b></a></td>
                   </tr>
                 <?php $i++; ?>
                 <?php endforeach; ?>

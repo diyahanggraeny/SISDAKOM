@@ -11,10 +11,15 @@ require 'functions2.php';
 $id_user = $_GET["id_user"];
 $id_event = $_GET["id_event"];
 
+$id_admin = $_SESSION["login"];
+$mhs = query("SELECT * FROM admin WHERE id_admin = $id_admin")[0];
+
 // cek tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ){
     // cek apakah data berhasil ditambahkan atau tidak
     if ( tambaheventdetail($_POST) > 0 ) {
+        $log =  $mhs["admin_username"] .= " berhasil menambah event detail" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data berhasil ditambahkan!');
@@ -23,6 +28,8 @@ if( isset($_POST["submit"]) ){
         
         ";
     } else {
+        $log =  $mhs["admin_username"] .= " gagal menambah event detail" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data gagal ditambahkan!');

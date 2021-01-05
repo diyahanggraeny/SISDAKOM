@@ -117,10 +117,10 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
   </footer>
 
       <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script>
-        const sideNav = document.querySelectorAll('.sidenav');
+  <script type="text/javascript" src="../static/js/materialize.js"></script>
+  <script>
+    const sideNav = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sideNav);
-      </script> 
-    </body>
-  </html>
+  </script> 
+</body>
+</html>

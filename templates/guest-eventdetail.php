@@ -20,7 +20,7 @@ if (!isset($idevent)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Walls Event</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="white">
@@ -51,11 +51,11 @@ if (!isset($idevent)){
     <main class="main">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="row">
-            <div class="col s12 l3">
+            <div class="col s12 l3 center-align">
                 <img class="image3" src="../static/img/<?= $row['poster_event'];?>">
             </div>
-            <div class="col s12 l9">
-                <br><br><br>
+            <div class="col s12 l5">
+                <br><br>
                 <a class="blue-text font1"><b><?= $row['nama_event'];?></b></a>
                 <br>
                 <a class="blue-text font2"><b><?= $row['tanggal_event'];?></b></a>
@@ -66,12 +66,16 @@ if (!isset($idevent)){
             </div>
         </div>
         <div class="row">
+                <div class="col s12 l9">
                 <p class="font2" style="margin-left: 50px;">
                 <?= $row['informasi_event'];?>
-                
-                <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b><?= $row['htm'];?></b></a> <br>
+                </div>
+
+                <div class="col s12 l3">
+                <a class="blue-text" style="font-size: 20px; float: right; margin-right: 40px;"><b><?= $row['htm'];?></b></a><br><br>
                 <a href="#" class="white-text blue btn" style="font-size: 20px; float: right; margin-right: 30px;"><b>Register</b></a>
                 </p>
+                </div>
         </div>
         <?php endwhile; ?>
     </main>

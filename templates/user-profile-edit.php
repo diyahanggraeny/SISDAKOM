@@ -48,7 +48,7 @@ $mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="../static/css//materialize.css" media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="../static/css/materialize.css" media="screen,projection"/>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -81,7 +81,7 @@ $mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
 <!--Main Page-->
 <div class="container">
   <div class="row">
-      <div class="col s3 card-panel blue lighten-4">
+      <div class="col s12 l3 card-panel blue lighten-4 center-align">
           
           <div class="collection">
             <a href="user-profile-info.php" class="collection-item active white-text blue">Account Information</a>
@@ -92,7 +92,7 @@ $mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
               <a href="logout.php" class="white-text btn blue" style="margin-bottom: 20px;">Logout</a>
             </div>
       </div>
-      <div class="input-field col s9">
+      <div class="input-field col s12 l9">
         <form action="" method="post" enctype="multipart/form-data">
         <div class="row">
           <input  name="id_user" type="hidden" value="<?= $mhs["id_user"]; ?>">
@@ -122,7 +122,7 @@ $mhs = query("SELECT * FROM user WHERE id_user = $id")[0];
           </div>
 
         </div>
-        <button class="center btn waves-effect waves-light indigo" type="submit" name="submit"><b>Save</b>
+        <button class="center btn waves-effect waves-light indigo" style="margin-left: 20px;" type="submit" name="submit"><b>Save</b>
         </button>
       </div>
     </div>

@@ -41,15 +41,22 @@ if (isset($_POST["loginsubmit"])) {
             // Cek Remember Me
             if (isset($_POST["remember"])) {
                 // Buat Cookie
-                setcookie('id', $row['id_user'], time()+60);
-                setcookie('key', hash('sha256', $row['user_username']), time()+60);
+                setcookie('id', $row['id_user'], time()+86400*30);
+                setcookie('key', hash('sha256', $row['user_username']), time()+86400*30);
             }
+
+            $log =  $row["user_username"] .= " berhasil login" ;
+            act_log($log);
 
             header("Location: user-home.php");
             exit;
         }
 
-    } $error = true;
+    } 
+    $log = "User gagal login" ;
+    act_log($log);
+
+    $error = true;
 }
 
 ?>

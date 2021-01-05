@@ -49,40 +49,44 @@ $users = query("SELECT * FROM user");
         <br>
         <div class="container">
             <h3><center><b> User List</b></center></h3>
+            <table class="cyan lighten-4 responsive-table centered">
+                <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>Picture</th>
+                      <th>Username</th>
+                      <th>E-mail</th>
+                      <th>Full Name</th>
+                      <th>Angkatan</th>
+                      <th>Instansi</th>
+                      <th></th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                <?php $i = 1; ?>
+                <?php foreach($users as $row) : ?>
+                  <tr>
+                    <td><?= $i; ?></td>
+                    <td> 
+                    <?php if( $row["user_picture"]) :?>
+                        <img src="../static/img/<?= $row["user_picture"]; ?>" width="80px" class="center">
+                    <?php else: ?>
+                        <h7 class="center" style="font-style:italic;">None</h7>
+                    <?php endif; ?>
+                    </td>
+                    <td><?= $row["user_username"]; ?></td>
+                    <td><?= $row["user_email"]; ?></td>
+                    <td><?= $row["full_name"]; ?></td>
+                    <td><?= $row["angkatan"]; ?></td>
+                    <td><?= $row["instansi"]; ?></td>
+                    <td><a class="purple-text" href="#"><b>Remove Account</b></a></td>
+                  </tr>
+                <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
-        <center>
-        <table class="cyan lighten-4 responsive-table centered" style="width: 1250px;">
-            <thead>
-              <tr>
-                  <th>No</th>
-                  <th>Picture</th>
-                  <th>Username</th>
-                  <th>E-mail</th>
-                  <th>Full Name</th>
-                  <th>Angkatan</th>
-                  <th>Instansi</th>
-                  <th></th>
-              </tr>
-            </thead>
-    
-            <tbody>
-            <?php $i = 1; ?>
-            <?php foreach($users as $row) : ?>
-              <tr>
-                <td><?= $i; ?></td>
-                <td> </td>
-                <td><?= $row["user_username"]; ?></td>
-                <td><?= $row["user_email"]; ?></td>
-                <td><?= $row["full_name"]; ?></td>
-                <td><?= $row["angkatan"]; ?></td>
-                <td><?= $row["instansi"]; ?></td>
-                <td><a class="purple-text" href="#"><b>Remove Account</b></a></td>
-              </tr>
-            <?php $i++; ?>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-        </center>
         <br>
     </main>
 

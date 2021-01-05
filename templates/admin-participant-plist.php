@@ -123,8 +123,8 @@ if( !isset($event)){
                         <td><a href="admin-event-detail.php?id_user=<?= $row["id_user"]; ?>&id_event=<?= $id ?>" class="black-text"><b><i class="green-text accent-2-text material-icons">mail</i></b></a></td>
                         <td><a href="admin-status.php?bayar=<?= $row["id_partisipan"]; ?>&id=<?= $id ?>">Check Payment</a></td>
                     </tr>
+                        <?php $i++; ?>
                         <?php } ?>
-                    <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>

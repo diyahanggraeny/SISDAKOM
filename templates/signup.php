@@ -26,7 +26,7 @@ if (isset($_POST["signup"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="white">

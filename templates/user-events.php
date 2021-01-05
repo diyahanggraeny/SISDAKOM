@@ -42,7 +42,7 @@ if( isset($_POST["submit"])) {
             
             ";
           } else {
-            $log =  $row2["user_username"] .= " berhasil melakukan registrasi pada event ";
+            $log =  $row2["user_username"] .= " gagal melakukan registrasi pada event ";
             act_log($log);
             echo "
                 <script>

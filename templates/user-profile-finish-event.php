@@ -10,14 +10,7 @@ require 'functions2.php';
 
 $id_user = $_SESSION["loginsubmit"];
 $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
-
-$events = query("SELECT * FROM event");
-
-$eventbayar = query("SELECT * FROM event_partisipan_bayar
-                  INNER JOIN event ON event_partisipan_bayar.id_event = event.id_event WHERE status_event = 'Done'");
-
-$eventgratis = query("SELECT * FROM event_partisipan_gratis
-                  INNER JOIN event ON event_partisipan_gratis.id_event = event.id_event WHERE status_event = 'Done'");
+$acara = mysqli_query($conn, "SELECT * FROM event WHERE id_event = '$id_user'")
 
 ?>
 
@@ -61,7 +54,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
 <!--Main Page-->
 <div class="container">
   <div class="row">
-      <div class="col s12 l3 card-panel blue lighten-4 center-align">
+      <div class="col s3 card-panel blue lighten-4">
         <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
           <img class="responsive-img" src="../static/img/profile.png" style="margin-top: 20px;">
           <h5 class="blue-text bold center"><?= $row["full_name"]; ?></h5>
@@ -75,41 +68,24 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
             </div>
             <?php endwhile; ?>
       </div>
-      <div class="col s12 l9">
+      <div class="col s9">
           <ul class="tabs" style="margin-top: 15px;">
-            <li class="tab col s12 l3"><a href="user-profile-book-event.php" class="blue-text">Booked</a></li>
-            <li class="tab col s12 l3 blue"><a href="user-profile-finish-event.php" class="white-text">Finished</a></li>
+            <li class="tab col s3"><a href="user-profile-book-event.php">Booked</a></li>
+            <li class="tab col s3 black"><a href="#">Finished</a></li>
           </ul>
-          <?php foreach($eventbayar as $event) : ?>
-            <?php if( $event['id_user'] == $id_user ){?>
-          <div class="col s12 l4">
-            <img class="responsive-img" src="../static/img/<?= $event['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
-          </div>
-          <div class="col s12 l8" style="margin-bottom: 100px">
-            <h5 class="blue-text" style="margin-left: 10px;"><b><?= $event['nama_event'];?></b></h5>
-            <h5 class="blue-text" style="margin-left: 10px;"><?= $event['tanggal_event'];?></h5>
-            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['tempat_event'];?></h5>
-            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['waktu_event'];?></h5>
-            <a href="user-book-event-detail.php?id=<?= $event['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
-          </div>
-            <?php } ?>
-          <?php endforeach; ?>
-          <?php foreach($eventgratis as $event2) : ?>
-            <?php if( $event2['id_user'] == $id_user ){?>
-          <div class="col s12 l4">
-            <img class="responsive-img" src="../static/img/<?= $event2['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
-          </div>
-          <div class="col s12 l8" style="margin-bottom: 100px">
-            <h5 class="blue-text" style="margin-left: 10px;"><b><?= $event2['nama_event'];?></b></h5>
-            <h5 class="blue-text" style="margin-left: 10px;"><?= $event2['tanggal_event'];?></h5>
-            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['tempat_event'];?></h5>
-            <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['waktu_event'];?></h5>
-            <a href="user-book-event-detail.php?id=<?= $event2['id_event'];?>" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
-          </div>
-            <?php } ?>
-          <?php endforeach; ?>
-          </div>
-      </div>
+        </div>
+        <div class="col s3">
+          <?php while( $acr = mysqli_fetch_assoc($acara) ) : ?>
+          <img class="responsive-img" src="<?= $acr["poster_event"]; ?>" style="margin-top: 20px; margin-left: 20px;">
+        </div>
+        <div class="col s6">
+          <h4 class="blue-text" style="margin-left: 10px;"><?= $acr["nama_event"]; ?></h4>
+          <h5 class="blue-text" style="margin-left: 10px;"><?= $acr["tanggal_event"]; ?></h5>
+          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $acr["tempat_event"]; ?></h5>
+          <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $acr["htm"]; ?></h5>
+          <a href="user-finish-event.php" class="center white-text btn blue" style="margin-top: 0px; margin-left: 10px;">Details</a>
+            <?php endwhile; ?>       
+        </div>
     </div>
 </div>
 
@@ -143,7 +119,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
   </footer>
 
       <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="../static/js/materialize.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
       <script>
         const sideNav = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sideNav);

@@ -73,7 +73,7 @@ if (!isset($idevent)){
 
                 <div class="col s12 l3">
                 <a class="blue-text" style="font-size: 20px; float: right; margin-right: 40px;"><b><?= $row['htm'];?></b></a><br><br>
-                <a href="#" class="white-text blue btn" style="font-size: 20px; float: right; margin-right: 30px;"><b>Register</b></a>
+                <a href="login.php" class="white-text blue btn" style="font-size: 20px; float: right; margin-right: 30px;"><b>Register</b></a>
                 </p>
                 </div>
         </div>

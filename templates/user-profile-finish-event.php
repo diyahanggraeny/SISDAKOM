@@ -85,7 +85,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
           <div class="col s12 l4">
             <img class="responsive-img" src="../static/img/<?= $event['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
           </div>
-          <div class="col s12 l8" style="margin-bottom: 100px">
+          <div class="col s12 l8" style="margin-bottom: 120px">
             <h5 class="blue-text" style="margin-left: 10px;"><b><?= $event['nama_event'];?></b></h5>
             <h5 class="blue-text" style="margin-left: 10px;"><?= $event['tanggal_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event['tempat_event'];?></h5>
@@ -99,7 +99,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
           <div class="col s12 l4">
             <img class="responsive-img" src="../static/img/<?= $event2['poster_event'];?>" style="margin-top: 20px; margin-left: 20px;">
           </div>
-          <div class="col s12 l8" style="margin-bottom: 100px">
+          <div class="col s12 l8" style="margin-bottom: 120px">
             <h5 class="blue-text" style="margin-left: 10px;"><b><?= $event2['nama_event'];?></b></h5>
             <h5 class="blue-text" style="margin-left: 10px;"><?= $event2['tanggal_event'];?></h5>
             <h5 class="blue-text" style="margin-top: 0px; margin-left: 10px;"><?= $event2['tempat_event'];?></h5>

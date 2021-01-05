@@ -36,14 +36,14 @@ if( !isset($event)){
     <title>Event Details</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="blue">
 
     <nav class="blue">
         <div class="nav-wrapper">
-            <a></a>
+            <a><img class="first-logo" src="../static/img/profile.png"></a>
             <a href="#" class="brand-logo white-text" style="font-size: 25px;"><b>SISDAKOM</b></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -94,12 +94,31 @@ if( !isset($event)){
         <br>
     </main>
 
-    <footer class="blue">
-        <br>
-        <div class="center">
-            <a class="white-text"><b>Copyright © 2020 - Developed by Diyah, Izzat, Rachel</b></a>
+    <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 s12">
+          <h5 class="white-text">About</h5>
+          <p class="white-text">A website that provide platform for Computer Science events on State University of Jakarta</p>
         </div>
-        <br>
+        <div class="col l4 s12">
+            <h5 class="white-text">Address</h5>
+              <p class="white-text">Jl. Rawamangun Muka, RT.11/RW.14 Rawamangun, Pulo Gadung, Kota Jakarta Timur, DKI Jakarta 13220</p>
+        </div>
+        <div class="col l4 s12">
+          <h5 class="white-text">Contact</h5>
+          <ul>
+            <li><a class="white-text">+6285200000000</a></li>
+            <li><a class="white-text">emailaddressexample@unj.ac.id</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright indigo">
+      <div class="container center">
+        <a class="white-text"><b>Copyright © 2020 - Developed by Diyah, Izzat, Rachel</b></a>
+      </div>
+    </div>
     </footer>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -114,4 +133,4 @@ if( !isset($event)){
         });
     </script>
 </body>
-</html> 
+</html>

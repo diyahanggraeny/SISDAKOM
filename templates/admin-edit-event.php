@@ -8,10 +8,15 @@ if( !isset($_SESSION["login"])){
 
 require 'functions2.php';
 
+$id_admin = $_SESSION["login"];
+$mhs = query("SELECT * FROM admin WHERE id_admin = $id_admin")[0];
+
 // cek tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"]) ){
     // cek apakah data berhasil ditambahkan atau tidak
     if ( ubahevent($_POST) > 0 ) {
+        $log =  $mhs["admin_username"] .= " berhasil mengedit event" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data berhasil diubah!');
@@ -20,6 +25,8 @@ if( isset($_POST["submit"]) ){
         
         ";
     } else {
+        $log =  $mhs["admin_username"] .= " gagal mengedit event" ;
+        act_log($log);
         echo "
             <script>
                 alert('Data gagal diubah!');

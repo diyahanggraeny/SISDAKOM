@@ -61,7 +61,7 @@ $eventgratis = query("SELECT * FROM event_partisipan_gratis
 <!--Main Page-->
 <div class="container">
   <div class="row">
-      <div class="col s12 l3 card-panel blue lighten-4 center-align">
+      <div class="col s12 l3 card-panel blue lighten-4">
         <?php while( $row = mysqli_fetch_assoc($result) ) : ?>
           <img class="responsive-img" src="../static/img/profile.png" style="margin-top: 20px;">
           <h5 class="blue-text bold center"><?= $row["full_name"]; ?></h5>

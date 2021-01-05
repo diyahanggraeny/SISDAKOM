@@ -3,11 +3,16 @@ require 'functions2.php';
 
 // Pemberitahuan Sign Up berhasil atau tidak
 if (isset($_POST["signup"])) {
+
     if(signup($_POST) > 0) {
+        $log = " User berhasil melakukan sign up ";
+        act_log($log);
         echo "<script> 
                 alert('Sign Up berhasil!')
               </script>";
     } else {
+        $log = " User gagal melakukan sign up ";
+        act_log($log);
         echo mysqli_error($conn);
     }
 }

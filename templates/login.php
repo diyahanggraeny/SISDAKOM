@@ -124,25 +124,6 @@ if (isset($_POST["loginsubmit"])) {
                                 </label>
                                 </p>
                             </form>
-                            <br><br>
-                            <div class="forget password">
-                              <a href="#" class="purple-text"><u>Forget Password?</u></a>
-                            </div>
-                            <div class="center">
-                              <a class="blue-text">Dont't have an account?</a>
-                              <a href="signup.php" class="purple-text"><u>Sign Up</u></a>
-                            </div>
-                            <br><br>
-                            <a href="#" class="blue-text btn" style="border: 2px solid #3282E1; border-radius: 10px;">
-                                <img class="image2" src="../static/img/logo-google.png">
-                                <b>Login with Google</b>
-                            </a>
-                            <br>
-                            <a href="#" class="blue-text btn" style="margin-top: 10px; border: 2px solid #3282E1; border-radius: 10px;">
-                                <img class="image2" style="margin-top: 3px;" src="../static/img/logo-fb.png">
-                                <b>Login with Facebook</b>
-                            </a>
-                            <br>
                         </div>
                     </div>
                 </div>

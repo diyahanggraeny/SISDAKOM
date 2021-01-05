@@ -58,7 +58,6 @@ if( isset($_POST["submit"])) {
 $idevent = $_GET["idevent"];
 $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $idevent");
 
-
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +67,7 @@ $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $idevent");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Detail</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css//materialize.css">
+    <link rel="stylesheet" href="../static/css/materialize.css">
 </head>
 
 <body class="white">
@@ -99,10 +98,10 @@ $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $idevent");
     <main class="main">
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <div class="row">
-            <div class="col s12 l3">
+            <div class="col s12 l3 center-align">
                 <img class="image3" src="../static/img/<?= $row['poster_event'];?>">
             </div>
-            <div class="col s12 l9">
+            <div class="col s12 l5">
                 <br><br><br>
                 <a class="blue-text font1"><b><?= $row['nama_event'];?></b></a>
                 <br>
@@ -114,12 +113,16 @@ $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $idevent");
             </div>
         </div>
         <div class="row">
+                <div class="col s12 l9">
                 <p class="font2" style="margin-left: 50px;">
                 <?= $row['informasi_event'];?>
+                </div>
+
+                <div class="col s12 l3">
                 <?php if($row['htm'] == '0') {?>
-                  <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b>Gratis</b></a> <br>
+                  <a class="blue-text" style="font-size: 20px; float: right; margin-right: 40px;"><b>Gratis</b></a> <br>
                 <?php }else{ ?>
-                  <a class="blue-text" style="font-size: 20px; float: right; margin-right: 50px;"><b>Rp<?= $row['htm'] ?></b></a> <br>
+                  <a class="blue-text" style="font-size: 20px; float: right; margin-right: 40px;"><b>Rp<?= $row['htm'] ?></b></a><br><br>
                 <?php } ?>
                 <form action="" method="post">
                   <input  name="id_user" type="hidden" value="<?= $_SESSION["loginsubmit"] ?>">
@@ -128,6 +131,7 @@ $result = mysqli_query($conn, "SELECT * FROM event WHERE id_event = $idevent");
                   <button class="btn waves-effect waves-light blue white-text right" type="submit" style="margin-right:30px;" name="submit"><b>Register</b>
                 </form>
                 </p>
+                </div>
         </div>
         <?php endwhile; ?>
     </main>

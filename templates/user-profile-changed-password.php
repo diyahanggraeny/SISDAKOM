@@ -166,7 +166,7 @@ $mhs = query("SELECT * FROM user WHERE id_user = $id_user")[0];
   </footer>
 
       <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="../static/js/materialize.js"></script>
       <script>
         const sideNav = document.querySelectorAll('.sidenav');
     M.Sidenav.init(sideNav);

@@ -22,16 +22,12 @@ Dalam mengadakan suatu acara, biasanya prosesnya tidak singkat dan dalam proses 
 ### Interaction Control User
 <img src="https://github.com/diyahanggraeny/SISDAKOM/blob/main/Interaction%20Control%20Design/interaction%20control-user.jpeg"/>
 
-## Mockup Design dan Presentasi
+## Mockup Design 
 Link Mockup Guest : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Guest
 
 Link Mockup User : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/User
 
 Link Mockup Admin : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Admin
 
-Link Presentasi Mockup User & Guest Page: https://youtu.be/cmauZKpzeB4
-
-Link Presentasi Mockup Admin : https://youtu.be/GVCvRp2mnzQ
-
 ## Link Konferensi
-Link Video Konferensi : https://youtu.be/xFoqaf7Vjro
+Link Video Konferensi : 

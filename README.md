@@ -33,5 +33,4 @@ Link Mockup User : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%2
 
 Link Mockup Admin : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Admin
 
-## Link Konferensi
-Link Video Konferensi : 
+

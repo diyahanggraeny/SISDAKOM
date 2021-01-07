@@ -33,4 +33,6 @@ Link Mockup User : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%2
 
 Link Mockup Admin : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Admin
 
-
+## Video Presentasi dan Konferensi
+Video Presentasi dengan Pengelola (Anggota BEMP Ilmu Komputer UNJ) : https://youtu.be/D7RZJF5bJTo
+Video Konferensi dengann User : https://youtu.be/x6fCNfzCc1g

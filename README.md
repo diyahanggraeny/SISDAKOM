@@ -2,9 +2,9 @@
 branch ini berisi coding untuk website
 
 ## Developer (Team G)
-1. M.Izzat Ibrahim (1313618031)
-2. Diyah Anggraeny (1313618005)
-3. Rachel Haryawan (1313618026)
+1. Diyah Anggraeny (1313618005)
+2. Rachel Haryawan (1313618026)
+3. M.Izzat Ibrahim (1313618031)
 
 ## Site Deployment Link
 Website dapat diakses pada link http://sisdakom.xyz/

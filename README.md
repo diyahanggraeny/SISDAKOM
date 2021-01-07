@@ -9,6 +9,14 @@ branch ini berisi coding untuk website
 ## Site Deployment Link
 Website dapat diakses pada link http://sisdakom.xyz/
 
+## Video Presentasi dan Konferensi
+Video Presentasi dengan Pengelola (Anggota BEMP Ilmu Komputer UNJ) : https://youtu.be/D7RZJF5bJTo
+
+Video Konferensi dengann User : https://youtu.be/x6fCNfzCc1g
+
+## Final Project Report
+Final Project Report dapat diakses pada link 
+
 ## Tentang
 Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar dan acara yang diadakan oleh BEMP Ilmu Komputer Universitas Negeri Jakarta. Website ini dapat menghubungkan antara peminat dan penyelenggara dimana di dalam website ini kami memberikan fitur-fitur lengkap dari mulai pendaftaran hingga selesai.
 
@@ -33,7 +41,3 @@ Link Mockup User : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%2
 
 Link Mockup Admin : https://github.com/diyahanggraeny/SISDAKOM/tree/main/Mockup%20Design/Admin
 
-## Video Presentasi dan Konferensi
-Video Presentasi dengan Pengelola (Anggota BEMP Ilmu Komputer UNJ) : https://youtu.be/D7RZJF5bJTo
-
-Video Konferensi dengann User : https://youtu.be/x6fCNfzCc1g

@@ -5,6 +5,9 @@
 2. Diyah Anggraeny (1313618005)
 3. Rachel Haryawan (1313618026)
 
+## Site Deployment Link
+Website dapat diakses pada link http://sisdakom.xyz/
+
 ## Tentang
 Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar dan acara yang diadakan oleh BEMP Ilmu Komputer Universitas Negeri Jakarta. Website ini dapat menghubungkan antara peminat dan penyelenggara dimana di dalam website ini kami memberikan fitur-fitur lengkap dari mulai pendaftaran hingga selesai.
 

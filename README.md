@@ -1,4 +1,5 @@
 # SISDAKOM (Sistem Informasi Acara dan Seminar Ilmu Komputer UNJ)
+branch ini berisi coding untuk website
 
 ## Developer (Team G)
 1. M.Izzat Ibrahim (1313618031)

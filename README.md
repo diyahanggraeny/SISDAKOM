@@ -15,7 +15,7 @@ Video Presentasi dengan Pengelola (Anggota BEMP Ilmu Komputer UNJ) : https://you
 Video Konferensi dengann User : https://youtu.be/x6fCNfzCc1g
 
 ## Final Project Report
-Final Project Report dapat diakses pada link 
+Final Project Report dapat diakses pada link : https://github.com/diyahanggraeny/SISDAKOM/blob/website-sisdakom/Final%20Project%20Report.pdf
 
 ## Tentang
 Sisdakom adalah sebuah website yang memberikan informasi terkait seminar,webinar dan acara yang diadakan oleh BEMP Ilmu Komputer Universitas Negeri Jakarta. Website ini dapat menghubungkan antara peminat dan penyelenggara dimana di dalam website ini kami memberikan fitur-fitur lengkap dari mulai pendaftaran hingga selesai.
